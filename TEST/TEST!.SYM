@@ -1,0 +1,6 @@
+2 143 TF1
+2 1 _BIT
+2 2 BIT2
+0 32784 write_text
+1 37 _data
+0 643 fwref

@@ -1,0 +1,343 @@
+bv bb;include dsm51.inc
+
+;makro1  macro	a, b, c, d, e, f, g, h, i, j
+;          mov a, %a%
+;          mov %a%, %b%
+;          mov %b%, %c%
+;          mov %c%, a
+;        endm
+;makro2  macro	a, b, c
+;          mov a, #00h
+;          add a, %a%
+;          add a, %b%
+;          add a, %c%
+;        macend
+;makro3  macro	a, b, c
+;          mov a, %a%
+;          mov b, %b%
+;          mul ab
+;          mov %c%, a
+;        endmac
+
+	ORG	100H
+
+_DATA	EQU	25H
+AlaMaKotaAKotMaAle equ 1234
+_BIT	BIT	20H.1
+BIG	EQU	4455H
+SMALL	EQU	5
+ZORCH	EQU	7
+tttt	equ	100o
+
+
+BIT2	BIT	20H.2
+BIT3	BIT	20H.5
+BIT4	BIT	2FH.0
+BIT5	BIT	88H.7
+BIT6	BIT	0F8H.0
+BIT7	BIT	0F0H.2
+BIT8	BIT	0E0H.0
+
+        nop
+        nop
+        nop
+        nop
+;        makro2  #1, #2, 3
+        nop
+        nop
+        nop
+        nop
+
+	ACALL	$
+	ACALL	FWREF
+
+;	lcall	write_text
+	ADD	A,#SMALL
+	ADD	A,@R0
+	ADD	A,@R1
+	ADD	A,R0
+	ADD	A,R1
+	ADD	A,R2
+	ADD	A,R3
+	ADD	A,R4
+	ADD	A,R5
+	ADD	A,R6
+	ADD	A,R7
+	ADD	A,_DATA
+
+	ADDC	A,#SMALL
+	ADDC	A,@R0
+	ADDC	A,@R1
+	ADDC	A,R0
+	ADDC	A,R1
+	ADDC	A,R2
+	ADDC	A,R3
+	ADDC	A,R4
+	ADDC	A,R5
+	ADDC	A,R6
+	ADDC	A,R7
+	ADDC	A,_DATA
+
+	AJMP	$
+	AJMP	FWREF
+
+	ANL	A,#SMALL
+	ANL	A,@R0
+	ANL	A,@R1
+	ANL	A,R0
+	ANL	A,R1
+	ANL	A,R2
+	ANL	A,R3
+	ANL	A,R4
+	ANL	A,R5
+	ANL	A,R6
+	ANL	A,R7
+	ANL	A,_DATA
+	ANL	C,_BIT
+	ANL	C,/_BIT
+	ANL	_DATA,#SMALL
+	ANL	_DATA,A
+
+	LCALL	$
+	LCALL	$+2+128
+	LCALL	$+2+2048
+	LCALL	FWREF
+
+;	CALL	$
+;	CALL	$+2+128
+;	CALL	$+2+2048
+;	CALL	FWREF
+
+	CJNE	@R0,#SMALL,$
+	CJNE	@R1,#SMALL,$
+	CJNE	A,#SMALL,$
+	CJNE	A,_DATA,$
+	CJNE	R0,#SMALL,$
+	CJNE	R1,#SMALL,$
+	CJNE	R2,#SMALL,$
+	CJNE	R3,#SMALL,$
+	CJNE	R4,#SMALL,$
+	CJNE	R5,#SMALL,$
+	CJNE	R6,#SMALL,$
+	CJNE	R7,#SMALL,$
+
+	CLR	A
+	CLR	C
+	CLR	_BIT
+
+	CPL	A
+	CPL	C
+	CPL	_BIT
+
+	DA	A
+
+	DEC	@R0
+	DEC	@R1
+	DEC	A
+	DEC	R0
+	DEC	R1
+	DEC	R2
+	DEC	R3
+	DEC	R4
+	DEC	R5
+	DEC	R6
+	DEC	R7
+	DEC	_DATA
+
+	DIV	AB
+
+	DJNZ	R0,$
+	DJNZ	R1,$
+	DJNZ	R2,$
+	DJNZ	R3,$
+	DJNZ	R4,$
+	DJNZ	R5,$
+	DJNZ	R6,$
+	DJNZ	R7,$
+	DJNZ	_DATA,$
+
+	INC	@R0
+	INC	@R1
+	INC	A
+	INC	R0
+	INC	R1
+	INC	R2
+	INC	R3
+	INC	R4
+	INC	R5
+	INC	R6
+	INC	R7
+	INC	_DATA
+	INC	DPTR
+
+	JB	_BIT,$
+	JBC	_BIT,$
+	JC	$
+
+	JMP	@A+DPTR
+;	JMP	$
+;	JMP	$+2+128
+;	JMP	$+2+2048
+;	JMP	FWREF
+
+	JNB	_BIT,$
+	JNC	$
+	JNZ	$
+	JZ	$
+
+	LCALL	BIG
+	LJMP	BIG
+
+	MOV	@R0,#SMALL
+	MOV	@R1,#SMALL
+	MOV	@R0,A
+	MOV	@R1,A
+	MOV	@R0,_DATA
+	MOV	@R1,_DATA
+	MOV	A,#SMALL
+	MOV	A,@R0
+	MOV	A,@R1
+	MOV	A,R0
+	MOV	A,R1
+	MOV	A,R2
+	MOV	A,R3
+	MOV	A,R4
+	MOV	A,R5
+	MOV	A,R6
+	MOV	A,R7
+	MOV	A,_DATA
+	MOV	C,_BIT
+	MOV	DPTR,#BIG
+	MOV	R0,#SMALL
+	MOV	R1,#SMALL
+	MOV	R2,#SMALL
+	MOV	R3,#SMALL
+	MOV	R4,#SMALL
+	MOV	R5,#SMALL
+	MOV	R6,#SMALL
+	MOV	R7,#SMALL
+	MOV	R0,A
+	MOV	R1,A
+	MOV	R2,A
+	MOV	R3,A
+	MOV	R4,A
+	MOV	R5,A
+	MOV	R6,A
+	MOV	R7,A
+	MOV	R0,_DATA
+	MOV	R1,_DATA
+	MOV	R2,_DATA
+	MOV	R3,_DATA
+	MOV	R4,_DATA
+	MOV	R5,_DATA
+	MOV	R6,_DATA
+	MOV	R7,_DATA
+	MOV	_BIT,C
+	MOV	_DATA,#SMALL
+	MOV	_DATA,@R0
+	MOV	_DATA,@R1
+	MOV	_DATA,A
+	MOV	_DATA,R0
+	MOV	_DATA,R1
+	MOV	_DATA,R2
+	MOV	_DATA,R3
+	MOV	_DATA,R4
+	MOV	_DATA,R5
+	MOV	_DATA,R6
+	MOV	_DATA,R7
+	MOV	_DATA+5,_DATA
+
+	MOVC	A,@A+DPTR
+	MOVC	A,@A+PC
+
+	MOVX	@DPTR,A
+	MOVX	@R0,A
+	MOVX	@R1,A
+	MOVX	A,@DPTR
+	MOVX	A,@R0
+	MOVX	A,@R1
+
+	MUL	AB
+	NOP
+
+	ORL	A,#SMALL
+	ORL	A,@R0
+	ORL	A,@R1
+	ORL	A,R0
+	ORL	A,R1
+	ORL	A,R2
+	ORL	A,R3
+	ORL	A,R4
+	ORL	A,R5
+	ORL	A,R6
+	ORL	A,R7
+	ORL	A,_DATA
+	ORL	C,_BIT
+	ORL	C,/_BIT
+	ORL	_DATA,#SMALL
+	ORL	_DATA,A
+
+	POP	_DATA
+	PUSH	_DATA
+
+	RET
+	RETI
+	RL	A
+	RLC	A
+	RR	A
+	RRC	A
+
+	SETB	C
+	SETB	_BIT
+
+	SJMP	$
+	SJMP	FWREF
+
+	SUBB	A,#SMALL
+	SUBB	A,@R0
+	SUBB	A,@R1
+	SUBB	A,R0
+	SUBB	A,R1
+	SUBB	A,R2
+	SUBB	A,R3
+	SUBB	A,R4
+	SUBB	A,R5
+	SUBB	A,R6
+	SUBB	A,R7
+	SUBB	A,_DATA
+
+	SWAP	A
+
+	XCH	A,@R0
+	XCH	A,@R1
+	XCH	A,R0
+	XCH	A,R1
+	XCH	A,R2
+	XCH	A,R3
+	XCH	A,R4
+	XCH	A,R5
+	XCH	A,R6
+	XCH	A,R7
+	XCH	A,_DATA
+
+	XCHD	A,@R0
+	XCHD	A,@R1
+
+	XRL	A,#SMALL
+	XRL	A,@R0
+	XRL	A,@R1
+	XRL	A,R0
+	XRL	A,R1
+	XRL	A,R2
+	XRL	A,R3
+	XRL	A,R4
+	XRL	A,R5
+	XRL	A,R6
+	XRL	A,R7
+	XRL	A,_DATA
+	XRL	_DATA,#SMALL
+	XRL	_DATA,A
+
+FWREF:  sjmp $
+
+;	END;
