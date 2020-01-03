@@ -1,0 +1,37 @@
+    EXTRASCR.TPx version 1.20, release as of May, 1993
+    --------------------------------------------------
+                                                      
+
+    Major changes since revision 1.00 are:
+    --------------------------------------
+    
+    (1)  Full protected mode support with 386(sx)-class-machines and above.
+         Compatible protected mode support for 286-class-machines, problems
+         with 'forgotten' mouse cursors might occur.
+         We recommend using protected mode WITH enhanced video modes only
+         on 386(sx)-class-machines.
+         Protected mode works fine in both Borland's and MS-WINDOWS'
+         Dos Protected Mode.
+    (2)  EGA/VGA 80x43/50 video mode included in mode selection box.
+         Version 1.00 just didn't show up the mode selection box if no
+         driver file was found.
+         We recommend having an empty driver file (BUILTIN.DRV is provided)
+         in order to still be able to select EGA/VGA modes.
+    (3)  Solved mutually-exclusive problems.
+         Version 1.00 sometimes kind of 'forgot' the mouse cursor on the
+         screen while in enhanced screen modes.
+         We fully solved this problem with 386(sx)-class-machines and
+         above, and we diminished the occurence of those conflicts on
+         286 and lower.
+    (4)  Got rid of GPF's (general protection faults) in protected mode
+         version caused by some interrupt services not provided by
+         Borland's or Microsoft's Dos Protected Mode Interface's.
+         The way the mouse cursor is drawn in real mode is completely
+         different from the one in protected mode.
+         The different mouse-status-buffer scanning tecniques used in
+         version 1.00 are no longer necessary.
+    (5)  Got rid of some minor bugs.
+
+
+    Please read the documentation file for more information.
+    

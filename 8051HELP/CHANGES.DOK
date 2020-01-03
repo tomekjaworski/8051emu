@@ -1,0 +1,29 @@
+
+                               Т  Т     кФФФФФД
+                               УФФД elp РФП ys
+  лллллллллллллллллллллллллллл С  С УФФФФФй    лллллллллллллллллллллллллллл
+                             лмммммммммммммммммл
+                             ппппппппппппппппппп
+                                  Changes
+
+   ў 15.09.1993
+     Initial Release
+
+   ў
+     fixed errors
+     - some minor errors in helpcompiler
+     - some minor errors in helpviewer
+     - runtime error, when help-project window closes
+     - wrong error message, if in one topicline duplicate names are defined
+
+     Changes
+     - Methode of finding and displaying compilation errors
+
+   ў 31.01.1994
+     release of v1.2a
+
+     - fixed lots of minor and major bugs
+     - changed lots of internal things to speed up and to
+       allow future changes
+
+

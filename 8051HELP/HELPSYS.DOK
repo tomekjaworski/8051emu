@@ -1,0 +1,704 @@
+ 
+                               ¬  ¬     ⁄ƒƒƒƒƒ¥
+                               √ƒƒ¥ elp ¿ƒø ys
+  €€€€€€€€€€€€€€€€€€€€€€€€€€€€ ¡  ¡ √ƒƒƒƒƒŸ    €€€€€€€€€€€€€€€€€€€€€€€€€€€€
+                             €‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹€
+                             ﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂﬂ
+  ˛ HelpSys 1.0
+
+  Welcome to HelpSys V1.0, the universal Turbo-Vision helpfile creating 
+  utility. HelpSys is a complete help-project-managing utility, that makes 
+  it is easy to create, compile, maintain and debug Turbo-Vision style 
+  helpfiles.
+
+  The included im- and exporters support converting existing helptexts
+  and helpfiles into other formats. It's possible to create multi-target 
+  helpfile, e.g. to create turbo-vision and windows helpfile in just one 
+  project.
+  
+
+
+  ˛ Installation
+
+  All HelpSys files should be copied into there own directory. HelpSys 
+  will create a subdirectory for each project.
+
+
+
+  ˛ Introduction
+
+  This introduction will show how to create a new project, write helptopics, 
+  insert links and add the compiled helpfile into your Turbo-Vision program.
+  And some tricks how to optimize the help system.
+  
+  Attention: You should be familar with programing Turbo Vision and using
+             Borland Pascal. 
+
+
+  Step 1.) Creating a new project
+   Press F10|Project|New. Enter the project name, it must be a valid dos 
+   directory name, then enter a short description. HelpSys will open the 
+   project window.
+
+   
+  Step 2.) Creating a help topic
+   Use the NEW-Button to create a new topic and its empty helppage. 
+   A topic has a symbolic name (i.e. aboutbox) that is refering the 
+   helppage, the helpcompiler will generate a pascal context file 
+   (i.e. "hcaboutbox = 14;") that can be used in the program source 
+   code.
+
+   The syntax of a topic name is:
+     symbol[=+|=number|=+number][, symbol[=+|=number|=+number][...]]
+
+   The symbolic topic name can be any combination of characters and 
+   numbers, a topicpage can have multiple topic names. After the topic 
+   name a topic number can follow, otherwise HelpSys will assign 
+   a topic number during compilation.
+
+   More symbolic topic names can be defined by separating them with comma.
+
+   I.e.:
+
+    foo                   assigns a topic FOO
+    baa=100               assigns a topic BAA with page number 100
+
+    foo1, baa1, baa2=200  multiple assignment
+
+   When the topic is defined, it will appear in the topic list of the
+   project window. After placing the focus on the topic and pressing ENTER,
+   the topic editor will be opend. It will look something like that:
+
+    ; topic created 05.07.93 09:11:37
+    ;
+    .TOPIC about
+    ;
+                                     <- up from here it's your job!
+     #f{About:about}#!
+     ﬂﬂﬂﬂﬂﬂﬂﬂ
+
+    This is a about box.
+    ^
+    ≥
+    ¿ƒ this is the first column
+
+   The first four lines are created automaticly by HelpSys. They should
+   never be changed manualy!!
+
+   The format of a help page is quite simple: Any text can be written into
+   it.
+
+   Some special hints:
+    - Text begining in the first column will be wrapped, if it does not fit
+      into the window. All adjacent wrappable lines are wrapped as a
+      paragraph. To avoid wrapping, text must start with one or more
+      blanks.
+
+    - Comments can be placed into helptext begining with a ";" in the 
+      first column.
+      Attention: HelpSys has a special methode to save topics. Due to 
+                 that methode, it is not possible to place comments at 
+                 the end of a topic file. If a comment must be placed at 
+                 the end, please use the ".ENDTOPIC" command to define
+                 the end of a topic.
+
+    - A compiler keyword is defined by placing a "." into the first column,
+      following the keyword.
+
+   Links to other pages can be inserted by placing cross references (links)
+   into the text. The syntax of a link is:
+
+     {link description:topic}
+
+   If the link description is equal to the topic, the topic can be omited. 
+   The text in the brackets is highlighted by the help viewer. This text 
+   can be selected and will take the user to that topic page.
+
+   To insert links to already defined pages, the local editor function 
+   "insert link" (Alt+F10 or ^k^t) is helpfull...
+
+
+  Step 3.) Compiling
+   After writing all (or some) pages, the helpfile can be compiled by using
+   F10|Run|Compile (F9) or F10|Run|Run (Ctrl+F9). The methode of this
+   functions is equal the pascal compiler: COMPILE will compile every time 
+   again, RUN will only compile, if it is needed otherwise it will run
+   the helpfile at once.
+
+   After errorfree compilation HelpSys will parse the pascal symbol file 
+   and display a topics list and the page numbers created for the pages.  
+   
+   Now it's possible to test the helpfile by pressing ENTER after focusing 
+   the corrosponding topic. A helpwindow will be opend and the helptext 
+   will be displayed. Choose between continuing displaying helptextes 
+   from the topics window or switch to the helpwindow and testing the 
+   helppage links.
+
+   If an error is encounted during compilation, the belonging topic will 
+   be opened and the position of the error will be marked and an error 
+   description will be shown.
+
+
+  Step 4.) Including help into Turbo-Vision
+   Hint: The HelpSys package includes a sample program in the EXAMPLE dir. 
+         See this for a complete example about usage of help inside your
+         Turbo Vision program.  
+  
+   Including help into Turbo-Vision is quite easy: Each TView object and 
+   the descendants own a constant "helpctx". If F1 is pressed, Turbo-Vision 
+   will determine by calling the GETHELPCTX-methode the value of the actual 
+   helpctx.
+
+   So the only thing to do is assigning the constants from the pascal 
+   symbol file made by HelpSys to the belonging objects. A dialog would 
+   look something like this:
+
+     constructor texampledialog.init;
+     {...}
+     begin
+       {...}
+       inherited init(r,'Preferences');
+       helpctx:=hcpreverences_dialog; {.topic preverences_dialog }
+       
+       p:=new(Pinputline, Init(R,100)));
+       p^.helpctx:=hctheinputlinehelp; {.topic theinputlinehelp }
+       insert(p);
+
+       {...}
+       p:=new(Pbutton, Init(R,'Buttontext',cmok,bfdefault)));
+       p^.helpctx:=hcbuttonhelp; {.topic buttonhelp }
+       insert(p);
+
+       r.assign(01,06,49,07);
+       p:=new(PCheckboxes, Init(R,
+           NewSItem('a Tcheckboxs field',
+           NewSItem('a Tcheckboxs field',
+           NewSItem('a Tcheckboxs field',
+           NewSItem('a Tcheckboxs field',Nil)))));
+       p^.helpctx:=hc1000;
+       insert(p);
+
+       SelectNext(False);
+     end;
+
+   TCheckboxes and TRadiobuttons will give back "helpnumber" for the first
+   item, "helpnumber+1" for the next item and so one. This is very nice, if
+   help is needed for each item, but mostly it is not usefull. To deal with
+   this problem, there is only ONE solution:
+
+     function tsetupdialog.gethelpctx;
+     Var tmp : word;
+     begin
+       tmp:=inherited gethelpctx;
+       case tmp of
+         hc1000..hc1010-1 : tmp:=hchelpforcheckboxes;
+       end;
+       gethelpctx:=tmp;
+     end;
+
+   Attention: The way of defining a multi-topic line will not work. It
+              might work most times, but is not sure to assume, that
+              HelpSys generates consecutive topic numbers.
+
+              (It will not. HelpSys will try to create consecutive
+               numbers, but it also will try to fill gaps. It won't work,
+               neither TVHC nor HelpSys can do that job. So its better to
+               be one the sure side....)
+               
+   If help is needed for every item, I suggest the following workaround:
+               
+     function tsetupdialog.gethelpctx;
+     Var tmp : word;
+     begin
+       tmp:=inherited gethelpctx;
+       case tmp of
+         hc1000+00 : tmp:=hc_help_for_item1;
+         hc1000+01 : tmp:=hc_help_for_item2;
+         hc1000+02 : tmp:=hc_help_for_item3;
+         hc1000+03 : tmp:=hc_help_for_item4;
+         hc1000+04 : tmp:=hc_help_for_item5;
+         hc1000+05 : tmp:=hc_help_for_item6;
+        else
+         tmp:=hc_generaldialoghelp 
+       end;
+       gethelpctx:=tmp;
+     end;
+
+
+   Now a quite important step: REGISTERHELPFILE!! You must register the 
+   streams HELPFILE uses. If this is not done, all HELPFILE objects will
+   FAIL, if a constructor is called. So: Include the REGISTERHELPFILE 
+   statement into your applications init constructor.
+
+   The next step is to complement the applications GETEVENT-methode: It 
+   must get the helpcontext, open the helpfile (include all the error-
+   handling) insert or execute the helppage and so one...
+   
+   Why is this done within TPROGRAM.GETEVENT and not TPROGRAM.HANDLEEVENT? 
+   Good question: It is not sure to assume, that a Turbo Vision program will 
+   call the HANDLEEVENT, if it does not know what to do with the actual 
+   event (why should it??).
+   An example is a TMENUVIEW.EXECUTE (that methode, that handles the 
+   menubar): It will go into a "repeat {...} getevent {...} until"-loop 
+   that will only end with closing the menu. It will never call any 
+   HANDLEEVENT... 
+   
+   The code would look like this:
+
+   procedure tmyapp.GetEvent(var event : tevent);
+   var   W         : PHelpWindow;
+         HFile     : PHelpFile;
+         HelpStrm  : PDosStream;
+         helpfound : PHelpWindow;
+         hlpctx    : word;
+
+         modal     : boolean;
+
+   Const nonmodal      : boolean = false;
+         helpopenerror : boolean = false;
+
+     function isdialoghelp:boolean;
+     begin
+       (*
+       isdialoghelp:=modal;
+       *)
+       isdialoghelp:=(hlpctx>hc0firstcounterend) or (hlpctx<1);
+     end;
+
+     procedure openhelpstream;
+     begin
+       w:=nil;
+   { you should use your helpfilename here... }
+       HelpStrm := New(PDosStream, Init('example.hlp',stOpenRead));
+       if (HelpStrm^.Status<>stOk) then begin
+   { help not found or not opend }
+         MessageBox(^c'Unable to open help', nil, mfError+mfOkButton);
+         ClearEvent(Event);
+         helpopenerror:=true;
+         exit;
+       end;
+       HFile:=New(PHelpFile, Init(HelpStrm));
+   { will be nil, if not REGISTERHELPFILE }
+       if (hfile<>nil) and (not hfile^.modified) then begin
+         W:=New(PHelpWindow,Init(HFile,HlpCtx,isdialoghelp));
+         disposestr(w^.title);
+         w^.title:=newstr('Demo Help');
+        end else begin
+   { didn't look like a Turbo Vision help or not REGISTERHELPFILE }
+         MessageBox(^c'Not a valid helpfile!', nil, mfError+mfOkButton);
+         ClearEvent(Event);
+         helpopenerror:=true;
+         exit;
+       end;
+     end;
+
+     procedure callhelp;
+     Var deskcalc : byte;
+
+       procedure quickcalcdesktop(p : pview); far;
+       begin
+         inc(deskcalc);
+       end;
+
+       procedure findhelpfile(P: PView); far;
+       begin
+   { if helpwindow already on desktop: focus and switch to page }
+         if (p<>nil) and (p^.Valid(cmClose)) and (typeof(p^)=typeof(thelpwindow)) and
+            (phelpwindow(p)=myhelpwin) then begin
+           helpfound:=phelpwindow(p);
+
+           phelpwindow(p)^.focus;
+           phelpwindow(p)^.phv^.SwitchToTopic(hlpctx);
+         end;
+       end;
+
+       procedure gotomodalpage(P: PView); far;
+       begin
+   { if helpwindow already modal on desktop: switch to page }
+         if (p<>nil) and {(p^.Valid(cmClose)) and}
+            (typeof(p^)=typeof(thelpwindow)) and
+            (phelpwindow(p)^.ismodal) then begin
+           phelpwindow(p)^.phv^.SwitchToTopic(hlpctx);
+         end;
+       end;
+
+     begin
+       deskcalc:=0;
+       desktop^.foreach(@quickcalcdesktop);
+   { desktop empty and no helpctx? }
+       if (deskcalc=1) and (hlpctx=0) then
+         hlpctx:=0{hcmenudesktop};
+
+       if (not nonmodal) and (not isdialoghelp) and (not helpopenerror) then begin { ein Fenster ruft...}
+   { non modal }
+         helpfound:=nil;
+         desktop^.foreach(@findhelpfile);
+
+         if (helpfound=nil) or (helpfound<>myhelpwin) then begin
+           openhelpstream;
+           if (not helpopenerror) and (ValidView(W)<>nil) then begin
+             desktop^.insert(W);
+             ClearEvent(Event);
+             myhelpwin:=w;
+           end;
+          end else
+           ClearEvent(Event);
+        end else begin
+   { modal }
+         if (not nonmodal) then begin
+           nonmodal:=true;
+
+           openhelpstream;
+           if (not helpopenerror) and (ValidView(W)<>nil) then begin
+             execview(W);
+             dispose(w,done);
+           end;
+
+           nonmodal:=false;
+           ClearEvent(Event);
+         end;
+       end;
+     end;
+
+
+   begin
+     inherited GetEvent(Event);
+
+     if (Event.What=evCommand) and (Event.Command = cmHelp) then begin
+   { helpwindow open? }
+       if (desktop^.current<>nil) and (typeof(desktop^.current^)=typeof(thelpwindow))
+   {  yes: help about help }
+         then hlpctx:=hcabout
+        else
+   { no: check overridehelp }
+         if (overridehelp<>0)
+           then hlpctx:=overridehelp
+           else begin
+   { ok, get help. see Notice 2 }
+             if (desktop^.current=nil) and (current=pview(menubar))
+               then hlpctx:=0
+               else hlpctx:=gethelpctx;
+         end;
+       callhelp;
+     end;
+
+   { open helpindex, if help not on desktop }
+     if ((Event.What=evkeydown) and (Event.keycode=kbshiftf1)) or
+        ((Event.What=evcommand) and (Event.command=cmhindexcall)) then begin
+       hlpctx:=hcindexpage;
+       callhelp;
+     end;
+   end;
+
+     Notice: OVERRIDEHELP can hold a helpctx, if assigning it to a dialog or
+             something other is not possible. A good example is the
+             messageboxfunction:
+
+             i.e.:
+              overridehelp:=hcHelp_for_messagebox;
+              messagebox('Hello! You made a mistake:....
+              overridehelp:=0;
+
+             Attention: Don't forget: Reset to zero immediate after use!!!
+             
+     Notice: Why the way of assigning help to the desktop via 
+               if (desktop^.current=nil) and (current=pview(menubar))
+                 then hlpctx:=0
+                 else hlpctx:=gethelpctx;
+             and not by defining the HELPCTX of TPROGRAM?
+             
+             If a page is assigned to TPROGRAM, you will get this helpctx
+             every time the actual item has no help. So if you have forgotten
+             to assign help to any item, the user would get a WRONG helppage,
+             if TPROGRAM.HELPCTX is defined.
+             
+             By this way the user will get the "No help avail"-string, if no
+             help is availible and the desktop-help, if desktop is empty. Or
+             anything you want. But no WRONG help.
+
+
+  Step 5.) Using the new HELPFILE.PAS
+
+   HELPFILE.PAS defines some constants that must be redefined. They will 
+   be expained here.
+
+   indexpagenummer       : word = 100;
+     INDEXPAGENUMMER defines the page, help will jump if Shift+F1 is pressed.
+     Needs redefinition!!
+
+   hilfeueberhilfe       : word = 99;
+     HILFEUEBERHILFE defines the page, help will jump, if F1 is pressed 
+     within help. Needs redefinition!!
+     
+   cmhelplast            = 65001;
+   cmhelpindex           = 65002;
+     Two new commands, help uses internal.
+
+   resizeabledialog      : boolean = false;
+     Set this to true, if a resizable helpdialog is wanted.
+
+   createcompressedhelp  : boolean = false;
+     Only used by HelpSys. Changes have no effects.
+
+   helpdialogtitle       : string80 = 'Help-Dialog';
+     This text is displayed as dialogtitle, if a non-modal help is opend.
+ 
+   helpwindowtitle       : string80 = 'Help';
+     This text is displayed as dialogtitle, if a modal help is opend.
+     
+   nohelpInvalidStr      : string80 = #13' No help for this topic link.';
+     This text is displayed, if a link has no helptext.
+     
+   emptyhelpInvalidStr   : string80 = #13' This helppage is empty.';
+     This text is displayed, if the page is empty.
+     
+
+   Best place for redefinition would be the init-constructor of your 
+   application object.  
+
+     
+
+  Step 6.) Optimizations 
+   - Define directorys for symbol- and helpfile with F10|Options|Project.
+     Every time, the helpfile has been compiled errorfree, HelpSys will 
+     copy the symbolfile and the helpfile into that directorys. So it's 
+     easy to have the pascal-project up to date.
+  
+     Hint: Multiple directorys can be entered by separating them with
+           ";".
+           It can be choosen between "COPY" and "COPY + RENAME".
+
+           i.e.:
+
+           If TEST.PAS is the file and the directory entry looks like 
+                C:\DOS\;F:\TEST\PROJ\TEST.DAT;G:\PROJECT\NEW.PAS
+           it will
+           -> copy to c:\dos\test.pas
+           -> copy to f:\test\proj\test.dat
+           -> copy to g:\project\new.pas
+
+
+   - automatic index generation
+     Use the .INDEX-keyword to create an index page. The syntax of .INDEX 
+     is similar to link definition: 
+     .INDEX {about:about}
+     .INDEX {about HelpSys:about}
+
+     HelpSys will generate a helppage (-> F10|Options|Compiler) that is 
+     sorted alphabetical and will look something like this:
+
+     i.e.:
+       Contents
+       ﬂﬂﬂﬂﬂﬂﬂﬂ
+
+       #fA#!
+       {about:about}             
+
+       #fC#!
+       {copyrights:copyrights}        
+
+
+   - Define DEFAULT.IC
+     If a new topic is created, the contents of DEFAULT.IC will be copied 
+     into the new topic. This makes it easy to create topic that have an 
+     unique style and are consistent all over the helpfile.
+     
+     HelpSys will search for the file in the project directory first, 
+     after that in the HelpSys directory.
+
+
+  ˛ Warnings and Errors
+
+  An error is a fatal mistake that aborts compiling. A warning is only a
+  hint, that something is not that way the writer might expect it is. 
+  Normaly warnings are caused by links that point to not existing help 
+  pages. This can be normal because the linked page will be created later,
+  but finaly all pages should have links to existing pages.
+
+  
+
+  ˛ non-modal versus modal help
+
+  I like non-modal help. It's easier for the user: help stays on desktop
+  and can be read during work. But sometimes it is not possible to insert
+  a non-modal help: every time a modal TVIEW is opend, help must be modal, 
+  too.
+
+  But there is no way to detect, wether the open dialog/window is modal or 
+  not. So the solution must be found in a different way, one possible
+  solution is:
+
+    - define a certain range of topic numbers, that is only assigned to
+      modal windows and
+    - define another one, that is only assigned to non-modal windows.
+
+  To meet that point, HelpSys uses two different internal topic counters,
+  that are used during topic number generation. The first counter generates
+  topic numbers for modal windows, the other for non-modal windows.
+    
+  The independent counters are a bit strange to access: via "=+".
+
+   I.e.:
+      autofirst           -> automatic generation
+      autofirst=200       -> define 200 as first topic counter 
+      autosecond=+        -> automatic generation
+      autosecond=+400     -> define 400 as second topic counter
+
+      foo, baa=+, foo2=200, baa2=+
+
+
+
+  ˛ HelpSys's HELPFILE.PAS enhancments
+
+  Although HelpSys helpfiles can be compatible with Borlands Turbo 
+  Vision 2.0 HELPFILE.PAS, HelpSys implements some additional features:
+
+    - color support
+    - Alt+F1 (previous topic)
+    - Shift+F1 (index)
+    - compressed help
+    - ultra-fast movement on pages with lots of links
+    - keyboard sensitiv topic links: type in linktext
+
+  To uses these features, it is needed to uses the HELPFILE.TPU (.TPP) 
+  include with HelpSys instead of Borlands HELPFILE.PAS. 
+  
+  It possible to use Borland's original HELPFILE.PAS but then helpfiles 
+  can not use
+
+    - color support    (won't harm, will look funny :-)
+    - compressed help  (won't work at all... )	
+  
+  The other features won't work, too. But this is not a problem, because 
+  the helpfiles are compatible. The function will only be missing...
+
+
+  ˛ HelpSys and color support
+
+  One of the main improvement is color support: By inserting special 
+  colorsequences into the topictext, text can be displayed in every color
+  availible in textmode.
+
+  A colorsequence is started with a "#" followed by a colorcode from 
+  "0" to "f" or "!".
+
+      dark colors:  Name        Code  Name         Code
+                    Black       0     Blue         1
+                    Green       2     Cyan         3
+                    Red         4     Magenta      5
+                    Brown       6     LightGray    7
+
+      light colors: DarkGray    8     LightBlue    9
+                    Lightgreen  a     LightCyan    b
+                    LightRed    c     LightMagenta d
+                    Yellow      e     White        f
+
+      reset to default:         !
+
+  I.e.: #eThis text will be yellow, #fand now white#! and normal again.
+ 
+  After inserting a colorcode, all following text will be display in that 
+  color, until a new colorcode or a reset-to-default code is inserted.
+
+
+
+  ˛ Escaping
+  
+  "Escaping" is used for inserting special characters into helptext, 
+  that can't be inserted on normal ways or would cause trouble, if 
+  inserted. 
+
+  The characters are   and can be replaced by
+         {                     \{
+         }                     \}
+         #                     ##
+
+  and within a link definition
+         :                     \:
+
+  and finaly, at the begin of a line
+         .                     \.
+
+  Special Escape-Sequences:
+  unwrapable space
+        " "                   "\ "
+
+  escape-escaper
+         \                     \\
+
+
+
+  ˛ Compressed helpfiles
+
+  HelpSys uses a simple compression scheme to compress the help pages. It 
+  is an enhanced version of the methode Borland (and various other manu- 
+  factors) uses in their helpfiles: a reduced bit-length with a static 
+  look-up table for the most used characters, detection of repeating 
+  characters and escaping of rare characters.
+
+  The efficiency of this implemention is highly depending on the size of 
+  a topicpage and paragraph and the number of paragraphs within a page. 
+  (A parapgraph is a piece of text, that is limited by empty lines.)
+
+  Short pages and paragraphs will have no or a bad compression ratio, longer 
+  paragraphs will have a better one. Index-, context- and referencetables 
+  will not be compressed.
+
+  Avarage ratio is typicly from 20 to 30 percent (the compressed help is 
+  20 to 30 percent smaller).
+
+  Hint: Compression needs time. Turn of compression during debugging!
+        (Compressing needs something about 50% more time.)
+
+  Hint: When using file compressors like PKZIP or ARJ, compressed 
+        helpfiles will sometimes be GREATER than uncompressed helpfiles.
+
+
+
+  ˛ Shareware, Ordering HelpSys
+
+  HelpSys is shareware. That means that this version is limited. The 
+  limitation are:
+
+   - use is limited to a periode of 21 day after first installation.
+     Longer use requires registration.
+
+   - maximal number of topics is limited to 100 (creating and editing 
+     will be impossible, all other functions are not affected)
+
+  I think this limitations are a fair chance to test the program and to 
+  make a decision, wether this program is worth its money.
+
+  If you want to order HelpSys, please send me a printout of the file 
+  ORDER.DOK via mail, fax or call me:
+
+    Voice: +49-531-334676
+    Fax:   +49-531-126627
+
+
+
+  ˛ History
+
+    V <0.9z  internal use only, for betatesters, preversions
+    V  1.0a  initial release
+
+
+
+  ˛ HelpSys V2.0
+
+  Yes, HelpSys 2.0 will come. It's new features are designed and waiting
+  for implementation, give me a few seconds...
+
+  Please send any ideas for new features...  Send bug reports, too. 
+
+
+
+  ˛ Copyrights
+  
+  All or some words or combinations of words might be copyrighted by anyone. 
+  It is not sure to assume, that if it is not stated, that there is a copy-
+  right, that there is no copyright.
+
+  Borland, Borland Pascal, Turbo Vision, HL etc. are copyrighted by Borland.
+
+  Dos, Windows, HC30, HC31 etc. are copyrighted by Microsoft.

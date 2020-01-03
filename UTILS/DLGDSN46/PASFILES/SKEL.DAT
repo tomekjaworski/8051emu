@@ -1,0 +1,83 @@
+unit @XX4;
+
+interface
+
+uses Drivers, Objects, Views, Dialogs@XX6;
+
+type
+@ZZ2
+
+  { @XX1 }
+
+  @XX0 = ^@XX1;
+  @XX1 = object(@XX2)
+@ZZ1
+    constructor Init;
+    constructor Load(var S: TStream);
+    procedure HandleEvent(var Event: TEvent); virtual;
+    procedure Store(var S: TStream);
+    function Valid(Command : word): boolean; virtual;
+    destructor Done; virtual;
+  end;
+
+const
+  @XX3 : TStreamRec = (
+    ObjType: 12345;            {<--- Insert a unique number >= 100 here!!}
+    VmtLink: Ofs(Typeof(@XX1)^);
+    Load : @@XX1.Load;
+    Store : @@XX1.Store);
+
+implementation
+
+{ @XX1 }
+
+constructor @XX1.Init;
+var
+  R: TRect;
+  Control@XX5 : PView;
+begin
+@ZZ0
+SelectNext(False);
+end;
+
+constructor @XX1.Load(var S: TStream);
+begin
+inherited Load(S);
+@ZZ3
+end;
+
+procedure @XX1.HandleEvent(var Event: TEvent);
+begin
+(*---
+if Event.What and evMessage <> 0 then
+  case Event.Command of
+    end;    --*)
+
+inherited HandleEvent(Event);
+(*---
+if Event.What and evMessage <> 0 then
+  case Event.Command of
+    end;    --*)
+
+end;
+
+procedure @XX1.Store(var S: TStream);
+begin
+inherited Store(S);
+@ZZ4
+end;
+
+function @XX1.Valid(Command : word): boolean;
+var
+  Result : boolean;
+begin
+Result := inherited Valid(Command);
+Valid := Result;
+end;
+
+destructor @XX1.Done;
+begin
+inherited Done;
+end;
+
+end.

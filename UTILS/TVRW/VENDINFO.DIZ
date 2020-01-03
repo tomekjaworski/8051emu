@@ -1,0 +1,328 @@
++-------------------------------------------ƒƒƒƒƒƒƒƒ-----ƒƒƒƒƒƒƒƒ----+
+| This VENDINFO Product Information File contains both readable text |
+| and tools-accessible data about a product.  See the last text      |
+| section, below, for more information about VENDINFO and its tools. |
++--------------------------------------------------------------------+
+VENDINFO standard v1.04, produced by VendEdit v1.30, 19-Jun-1997
+
+===== Product Information ==============================
+   Product:             Turbo Vision Resource Workshop 
+   Version:             3.60
+   Version Date:        29-Apr-1997
+   Product Type:        Software
+   Basic Distribution Policy (see License, below, for details):
+      Shareware, subject to distribution restrictions
+
+   Product Description: Turbo Vision Resource Workshop v3.60 -- A 
+                        Turbo Vision developer's toolkit that allows 
+                        you to quickly and easily develop programs 
+                        using Borland's application framework. It 
+                        allows you to create dialogs, menus, status 
+                        lines and even use your own custom controls, 
+                        all in an interactive manner. Generates 
+                        Pascal and C++ source code. Full undo-redo 
+                        and clipboard features. Bitsoft Development, 
+                        L.L.C. -- $29/$39/$49
+   Reason for version:  Fixes code generation bugs and minor user 
+                        interface problems
+
+   Category:            Computer programming; Programming utilities
+   Keywords:            turbo vision resource workshop dialogs menus 
+                        status
+   Required Packages:   TVRW360B
+   This Package:        TVRW360B
+   Registration Fee:    29.00-49.00 ($)
+
+   Required Configuration
+      Processor Family: Intel 80x86 (minimum 80286 (AT))
+      Minimum OS:       MS-DOS 3.0
+      Standard RAM:     400K
+      Extended Memory:  2000K
+      Hard Drive Space: 1250K
+      Required:
+         Extended Memory
+         Hard drive
+         Monochrome monitor
+         Keyboard
+
+   Orders:
+      Address:          BitSoft Development, L.L.C.
+                        P.O. Box 8483
+                        Moscow, Idaho 83843
+                        U.S.A.
+      Internet:         sales@bitsoft.com
+
+   Support:
+      Address:          BitSoft Development, L.L.C.
+                        P.O. Box 8483
+                        Moscow, ID 83843
+                        U.S.A.
+      Internet:         tech-support@bitsoft.com
+
+
+===== Information for Users ("READ-ME") ================
+
+This package contains Turbo Vision Resource Workshop(TM) v3.60 by BitSoft
+Development, L.L.C.  This document contains only a very brief description
+of the package and its features, along with instructions for its
+installation.  Quite detailed documentation is included in the package,
+but it is in archived form, and is more easily read after installation.
+
+Turbo Vision Resource Workshop is a shareware program.  This evaluation
+version includes all features of the program, and is not crippled in any
+way.  You may use it for up to 30 days, without charge.  If you would
+like to continue to use Turbo Vision Resource Workshop after this
+evaluation period, you are required to purchase the licensed version of
+the software (see "Purchasing the Licensed Version" in the README.EXE
+file).  Any fee you may have paid to others (disk vendors, dealers, etc.)
+to obtain this evaluation version was a fee for their copying and
+distribution services, rather than a payment for continued use of the
+program.
+
+
+===== Packing List =====================================
+
+As released by the author or publisher, this package contained the
+following files in addition to this VENDINFO.DIZ:
+
+        Filename      Size     Date       Time     CRC32
+      READ_ME.BAT      413  29-Apr-1997  03:06a   20ABC708
+      FILE_ID.DIZ      430  29-Apr-1997  03:06a   D1490C03
+       VENDOR.DOC      216  29-Apr-1997  03:06a   13796CEE
+      INSTALL.EXE    79358  29-Apr-1997  03:06a   1D1FC36E
+          LHA.EXE    34283  29-Apr-1997  03:06a   2C68A172
+      INSTALL.INF     2329  29-Apr-1997  03:06a   33E8B94F
+      INSTALL.LZH   394359  29-Apr-1997  03:06a   8E95BF51
+     INSTCP1B.LZH     6034  29-Apr-1997  03:06a   955E6818
+     INSTCP1S.LZH     6235  29-Apr-1997  03:06a   B6330755
+     INSTCP2B.LZH    23462  29-Apr-1997  03:06a   29890EFA
+     INSTCP2S.LZH    14893  29-Apr-1997  03:06a   9882EC85
+      INSTPAS.LZH      429  29-Apr-1997  03:06a   AD556F07
+     INSTPASB.LZH     5902  29-Apr-1997  03:06a   1758109B
+     INSTPASH.LZH     7689  29-Apr-1997  03:06a   D29016F9
+     INSTPASS.LZH     8572  29-Apr-1997  03:06a   4AF30CD3
+
+
+===== Installation =====================================
+
+The installation procedure for Turbo Vision Resource Workshop is quite
+simple. The package includes a program, "INSTALL.EXE", which automates
+the entire process.  You will need about 1250k of available disk space on
+the hard drive on which you plan to install TVRW, for a complete
+installation.
+
+The exact steps you need to take will depend on how you received
+Turbo Vision Resource Workshop.
+
+
+INSTALLING FROM DISKETTES
+
+To install from diskette(s), you need to perform the following steps.
+
+   o  Place the Turbo Vision Resource Workshop distribution diskette
+      in the appropriate diskette drive.
+
+   o  Execute the "INSTALL.EXE" program on the distribution diskette.
+      For example, if the distribution diskette is on drive A:, type
+      the MS-DOS command, "a:install".
+
+   o  Follow the instructions presented by the installation program.
+      You will have a chance to approve installation before any changes
+      are actually made to the contents of your hard drive.  The
+      program will ask you for a destination directory, and will copy
+      the Turbo Vision Resource Workshop files to that directory.  It
+      will make no other changes; specifically, it will not modify
+      your autoexec.bat or config.sys files.
+
+
+INSTALLING FROM A HARD DRIVE
+
+If you downloaded Turbo Vision Resource Workshop from a BBS or an
+Internet FTP site (or received it in the form of archive files from some
+other source) you will need to perform the following steps.
+
+   o  Extract the contents of the archive file(s) in a temporary
+      directory on your hard drive.  The procedure for doing this
+      varies, depending on the form in which you received the package.
+      In all likelihood, the fact that you are reading this text means
+      that you already have the necessary tools and knowledge to
+      perform this step.  If not, you should be able to obtain
+      directions for this from the same source from which you received
+      the package.
+
+   o  Execute the "INSTALL.EXE" program which you have extracted.  For
+      example, if the temporary directory into which you have extracted
+      the Turbo Vision Resource Workshop package is C:\TEMPDIR, you
+      would execute the MS-DOS command, "c:\tempdir\install".
+
+   o  Follow the instructions presented by the installation program.
+      You will have a chance to approve installation before any changes
+      are actually made to the contents of your hard drive.  The
+      program will ask you for a destination directory, and will copy
+      the Turbo Vision Resource Workshop files to that directory.  It
+      will make no other changes; specifically, it will not modify
+      your autoexec.bat or config.sys files.
+
+When you're satisfied that the installation was successful, you should
+delete the temporary directory FROM which you installed Turbo Vision
+Resource Workshop (C:\TEMPDIR, in the above example), including all
+its contents.
+
+
+READY TO GO
+
+Once you've complete the installation, you should consult the README.EXE
+file.  In particular, you should read at least the "About Turbo Vision
+Resource Workshop" and "Using TVRW the first time" sections of the
+README.EXE file.  That document will tell you what you need to do to
+start using the program and provides other information that you need to
+properly evaluate Turbo Vision Resource Workshop.  We hope you enjoy the
+software!
+
+
+UNINSTALLING TVRW
+
+To uninstall the shareware version of Turbo Vision Resource Workshop,
+simply remove the directory where you installed it, along with all the
+files and subdirectories contained in that directory.  By default, the
+directory where Turbo Vision Resource Workshop is installed is
+C:\BitSoft\TVRW.
+
+
+===== Warranty =========================================
+
+LIMITED WARRANTY
+
+BITSOFT DEVELOPMENT, L.L.C. MAKES NO REPRESENTATIONS ABOUT
+THE SUITABILITY OF THIS SOFTWARE OR ABOUT ANY CONTENT OR
+INFORMATION MADE ACCESSIBLE BY THE SOFTWARE, FOR ANY PURPOSE.
+THE SOFTWARE IS PROVIDED 'AS IS' WITHOUT WARRANTIES OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE.  BITSOFT DEVELOPMENT, L.L.C. SHALL NOT BE
+LIABLE UNDER ANY THEORY FOR ANY DAMAGES SUFFERED BY YOU OR ANY
+USER OF THE SOFTWARE, WHICH MAY RESULT FROM THE USE OF THE
+SOFTWARE.
+
+BITSOFT DEVELOPMENT, L.L.C OR ITS SUPPLIERS SHALL NOT BE LIABLE
+FOR (a) INCIDENTAL, CONSEQUENTIAL, SPECIAL OR INDIRECT DAMAGES
+OF ANY SORT, WHETHER ARISING IN TORT, CONTRACT OR OTHERWISE,
+EVEN IF BITSOFT DEVELOPMENT, L.L.C. HAS BEEN INFORMED OF THE
+POSSIBILITY OF SUCH DAMAGES, OR (b) FOR ANY CLAIM BY ANY OTHER
+PARTY.  SOME STATES DO NOT ALLOW THE EXCLUSION OR LIMITATION OF
+INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THIS LIMITATION AND
+EXCLUSION MAY NOT APPLY TO YOU.
+
+This License shall be governed by and construed in accordance
+with the laws of the State of Idaho and, as to matters affecting
+copyrights, trademarks and patents, by U.S. federal law.  It
+shall inure to the benefit of BitSoft Development, L.L.C. and any
+successors, administrators, heirs and assigns.  Any action or
+proceeding brought by either party against the other arising out
+of or related to this agreement shall be brought only in a STATE
+or FEDERAL COURT of competent jurisdiction located in Idaho.  The
+parties hereby consent to in personam jurisdiction of said courts.
+
+
+===== License for Use and Distribution =================
+
+LICENSE TERMS APPLICABLE TO USE AND DISTRIBUTION
+
+BitSoft Development, L.L.C. ("BitSoft") grants to you a
+non-exclusive, non-sublicensable, license to use this version
+of Turbo Vision Resource Workshop (the "Software"), in binary
+form for evaluation and trial use purposes only.  You can use
+the Software for evaluation purposes for a period of 30 days.
+If you use the Software after the 30 day evaluation period, you
+must purchase the licensed version of the Software.  Use of the
+non-licensed Shareware version of the Software after the 30 day
+evaluation period is a violation of U.S. and international
+copyright laws.
+
+The Software and all associated documentation are copyrighted
+products of BitSoft and are protected by United States copyright
+law and also by international treaty provisions.  Though
+copyrighted, these materials are made freely available for use
+by all.  The materials may not be modified in any way.
+
+All rights not expressly granted here are reserved to BitSoft.
+The use or distribution of these products is expressly prohibited,
+except as authorized by the terms of this agreement.
+
+Title, ownership rights, and intellectual property rights in
+and to the Software shall remain in BitSoft and/or its suppliers.
+You agree to abide by the copyright law and all other applicable
+laws of the United States including, but not limited to, export
+control laws.  You also agree not to modify the Software or
+attempt to decipher, decompile, disassemble or reverse engineer
+the Software, except to the extent applicable laws specifically
+prohibit such restriction.
+
+BitSoft may terminate this License at any time by delivering
+notice to you and you may terminate this License at any time by
+destroying or erasing your copy of the Software.  Upon termination
+of this License you agree to destroy or erase the Software.
+
+This License sets forth the entire agreement between you and
+BitSoft.  By using the Software, you acknowledge that you have read
+this license, understand it and agree to be bound by its terms as
+the complete and exclusive statement of the agreement between you
+and BitSoft Development, L.L.C.
+
+
+LIMITED DISTRIBUTION LICENSE
+
+Permission is granted to any individual or business to distribute
+the Software, provided they convey a complete and unaltered copy of
+the entire package (except that the complete set of files, with no
+additions, deletions, or changes, may be recompressed using other
+compression algorithms and tools), and provided they claim no
+ownership of these products.  The attached VENDINFO data record is
+hereby incorporated by reference.  Any distribution satisfying all
+the distribution requirements expressed in that data record is
+hereby authorized.
+
+Permission to distribute the Software is not transferable,
+assignable, saleable, or franchisable.  Each vendor wishing to
+distribute the package must independently satisfy the terms of
+this license.
+
+U.S. Government Information:  Use, duplication, or disclosure by the
+U.S. Government of the computer software and documentation in this
+package shall be subject to the restricted rights applicable to
+commercial computer software as set forth in subdivision (b)(3)(ii) of
+the Rights in Technical Data and Computer Software clause at
+252.227-7013 (DFARS 52.227-7013).  The Contractor/manufacturer is
+BitSoft Development, L.L.C., P.O. Box 8483, Moscow, ID 83843.
+
+
+===== About VENDINFO Files =============================
+
+Each VENDINFO.DIZ file contains extensive information about a product.
+This "human-readable" section is followed by a compressed data record
+useable by automated tools.  The data record allows BBSes and other
+distributors to automate package handling, and provides users with a
+wealth of product information.  VENDINFO tools (free viewer for users,
+free or inexpensive processors for distributors, editors for authors)
+are available from many sources, including the originators of VENDINFO:
+  Rams' Island Software    Voice: 303-841-2848  CompuServe: 76244,324
+  7644 E. Lakecliff Way      BBS: 303-841-6269     FidoNet: 1:104/333
+  Parker, CO 80134-5904 USA  FAX: 303-841-6269        RIME: 1235
+
+
+===== Compressed Data Record Follows ===================
+
+PK
+   Ùn”" ∂‰K·  Ú$  	   VENDDATA.Ñ
+	)	N/%'		'			'	O			4	ˇ			o/			ﬂ	_	O		Øü	?	_?+#	H
+
+J
+
+
+#7w'&˜ß—„ÁÊ≈…ç+¸í4©∑≥4`)Éö¯<á‡‚Ûhh¡r`JŒÛ©ÚàA…Jt∆Ëß˙˝—◊qΩÛ˝ç∑üˆ˜£›)sÃ∫ˇÅ4ìùALoçÚ∆øﬂÌ˝Ï7øÈÑoΩœˇ1oø∫Œw˙˝¯¶øŒ√õj˚W¶[_^utJFbD=ZA“¢g©ƒba|¯ÜNFŒè'ﬁvN\∫REyﬂa/tX÷Ü√ö¨»a€a-¸æUáeB–YC¯¶Ó»%‚ç˝≠÷O¯•ÜÿÈn/„-∑Ú¶‡è∏w…\á_C±séq?%Û0√	ßô
+˛ t∫T3ÉÌtÂ◊?d√?ñÂñ«ü~{´ˇAÎ◊=sI«©øc\ót«
+=mˆtTGU}ù≥Ç;-Lo¸G•≤¨; ﬂ;›—ø≤Qá-"¨aÈõÊÚN◊πƒœ\‘N◊πàüπÏˇq”Ãfüﬁ1ºø≠«r≥«ˆØæπg¯q8Üˆóu~L“ÃVíÖª”øÂ˘Ô˝8‹*¨|¶ªåm⁄›PŒıí“é}X3ﬁØ≥∫\ˇ„ÍK{Æ/k‰Ø5ÍÙÒz«ÔÁÌ∂¶∑]≥}Y+ı{L€ØÅı~z#‘'XáÒ÷Üü≥ÎÉBè›å›≥iû&N^\`çƒ©=_–ÒùÆîÇ˙Pä7ÔÇN¸Ä∫”t˚Äé˘~é‹È∫&˘Ô:?¨˛1ßˇ[˙€áN§’®"æ¨PüV{wãw∫p—â8≤∂.8›[<v]Áqx«ÊD%ﬂ/?í>Søõ{7I√G(ó|˜ûâí'ûÓù9ªD’5|líà+µ˚≠2ÙÚ:d˝Ω1_ﬁê:›N◊ﬁP>Ω1?Öç=ﬁ˘X¬m˝ßÄ˛ÍõˆU‰v∫*:—O∑ˆFñÂ}ΩÈ¸ª>˙¯^Òe’˝åc] µ4∑¶“KÄ˚\Bß´≠P∏<°≠êJ¥“T\[—H5Æá¢Èxˇã2ò∑qîLòg‹^õå2ﬁﬁœƒ:mæ÷ì±yrù˜;U.\}»zUÜ‘·uE1ÖK˙—x˘h˘Ïzø.CkùE+ß∂Ó,õ$¬.BÏnBƒö˝Xÿ?ôà¢”Ω5‡öK_z†|¸jøkk¡∑öäû‹TlT‰c_Ï‰ÜÎ¢w∫jµ6çÜ»©Úõ7}~ˇh#N˝ä&mbrm˝Y›ç!RH≠”}€:\‡nrè˙∫¨C:îıÿ6•3ée›≠Ê◊Ò+˝‡G„ VOˇ’;=~ôûN7ï*AvNÅ≥ùVh¯I"rÈy"@ûgÑ4“(◊∏4™Bàœ3bÍà©AˆÇ˝òTí∂D≤∏BÛ ´yçºˆ’‡É’àt§ í…>QyÜ)©ÏC!Èy*œ3xûj4®¬1Q$®…9ÕXM>ä£¸¸F~Å„Tw‹oπ˝„‰˝¸Ç¸Ü–®°5c66J¯ˇL‡˛dn¨‹¯÷ñ¢Ü4Ûv!c√a÷πvÉ[∑ß∂¶'ıÇÀ)p"Õå¥ﬂé¨ã≠î¥‚OÅC)≠-Ó‘åa®Ñï<yπ\njÚs?pùÛ¥§>ÎPa'NÓRÏ˜˝U5¢	∏WrÓ^úﬂ<Bt^“ïöò!;œ~‡ù»?c[‘tjöDﬂqZ¬ö≤çã–6B¶!pJŒ_B‹‹).+O‘aZÎΩÆè)%jZÉÌóL•>›i„/LkLõ‚·ÌY-ñR”&BÉYG<zpÿQYg8íÁáã·y@ec√t÷1ü:zA‰ÓÿM9ˆıq˜ê?u—S 0W∆™`©Tl/PíÕÃ)p˙OÅÅ*Ÿ$›ı06√|S£∑l@Ú±gŒ∑ºº-õ≥˚[+^X^ô^∆z¡ÿg0Rçm'˙9cÏD?f^.Ë2x• ,∂Q‹HA√Òh#08ôi)Èhó
+6~iKª¿á#$¿«C∞>Ål˛Jπ°^6∏∑Á3rN_á‡¸SËÚZ>¶.ÂıÈò“˝È§ÇdIäíÈMÁÇ"tnˇQí$Fd∑òf¸È·hÂµ
+Öçñ0Õ¢kÿ≠d ü¥ qyôƒd6ﬂdY	íê‡BP>NA	¡ùPK
+ 
+   Ùn”" ∂‰K·  Ú$  	                 VENDDATA.PK      *       

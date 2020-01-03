@@ -1,0 +1,57 @@
+ษออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออป
+บ                         EXTRASCR.TPx - ORDER FORM                          บ
+ศออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออผ
+ฺฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฟ
+ณ                                                                            ณ
+ณ    NAME:      _____________________________________________________        ณ
+ณ                                                                            ณ
+ณ    ADDRESS:   _____________________________________________________        ณ
+ณ                                                                            ณ
+ณ               _____________________________________________________        ณ
+ณ                                                                            ณ
+ณ    COUNTRY:   _____________________________________________________        ณ
+ณ                                                                            ณ
+ณ    COMMENTS: (e.g. EMAIL address...)                                       ณ
+ณ                                                                            ณ
+ณ    ________________________________________________________________        ณ
+ณ                                                                            ณ
+ณ    ________________________________________________________________        ณ
+ณ                                                                            ณ
+ณ    MY CHOICE OF MEDIA TYPE:                                                ณ
+ณ    ฺฤฟ 3,5 "     ฺฤฟ 5,25 "    ฺฤฟ EMAIL                                   ณ
+ณ    ภฤู           ภฤู           ภฤู                                         ณ
+รฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤด
+ณ    INFORMATION:                                                            ณ
+ณ                                                                            ณ
+ณ    You will get the newest available release of EXTRASCR.TPx, in all       ณ
+ณ    currently available versions (TP 6.0, BP 7.0, BP 7.0 protected...)      ณ
+ณ    You will also get discounts on future updates.                          ณ
+ณ    Let us know if you would like some special feature or a new version,    ณ
+ณ    (e.g. C++ version). If the interest on different version is high        ณ
+ณ    enough, we will sure enough port the tool.                              ณ
+ณ    We will provide, as far as possible, free support and major bug fix.    ณ
+ณ    Please read the following product warranty.                             ณ
+ณ                                                                            ณ
+ณ    WE DO NOT WARRANT THAT THE SOFTWARE IS ERROR FREE.                      ณ
+ณ    WE DISCLAIM ALL WARRANTIES WITH RESPECT TO THE SOFTWARE, EITHER         ณ
+ณ    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES     ณ
+ณ    OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND                ณ
+ณ    NONINFRINGEMENT OF THIRD PARTY RIGHTS.                                  ณ
+ณ    NO LIABILITY FOR CONSEQUENTIAL DAMAGES.  IN NO EVENT SHALL              ณ
+ณ    WE BE LIABLE FOR CONSEQUENTIAL, INCIDENTAL OR INDIRECT DAMAGES OF       ณ
+ณ    ANY KIND ARISING OUT OF THE DELIVERY, PERFORMANCE OR USE OF THE         ณ
+ณ    SOFTWARE, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH       ณ
+ณ    DAMAGES. IN NO EVENT WILL WE BE LIABLE FOR ANY CLAIM, WHETHER IN        ณ
+ณ    CONTRACT, TORT OR ANY OTHER THEORY OF LIABILITY, EXCEED THE LICENSE     ณ
+ณ    FEE PAID BY THE REGISTERED USER.                                        ณ
+รฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤด
+ณ    I do understand the above warranties. Please mail me your newest        ณ
+ณ    version of EXTRASCR.TPx on the media of my choice. I am including       ณ
+ณ    $20.- or DM30.- in banknotes, checks or money orders, or the            ณ
+ณ    equivalent amount in any major currency unit (no coins, please...).     ณ
+ณ    Delivery will be done by regular AIR MAIL or SURFACE MAIL for           ณ
+ณ    local customers.                                                        ณ
+ณ                                                                            ณ
+ณ    _____________________________          _______________________________  ณ
+ณ    DATE                                   SIGNATURE                        ณ
+ภฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤู

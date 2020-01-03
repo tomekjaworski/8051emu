@@ -1,0 +1,713 @@
+ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
+º                  EXTRASCR.TPx v1.20 - DOCUMENTATION FILE                   º
+º                           release may. 11. 1993                            º
+ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+
+                              (C) Copyright 1993 Rier Andreas, Moar Christoph
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ I. INTRODUCTION
+
+    This Turbo Pascal unit (6.0 / 7.0 / 7.0 protected mode) allows you to
+    easily write Turbo Vision (R) programs with support for all enhanced
+    text modes of graphic cards.
+
+    { TURBO C++ LIBRARIES? SEE (V) - REGISTRATION NOTES! }
+
+    Why using enhanced text modes?
+
+    Well, dialog-oriented programs written with Turbo Vision allow you
+    to show the user an awful amount of windows, dialogs, lists and
+    other objects on the screen.
+    That's a neat thing, but the only problem is that you will sometimes
+    have problems finding a free place on the screen.
+    Wouldn't it be nice to have more than just a standard 80x25 or
+    80x43 resolution in every application?
+
+    Nowadays every cheap-o graphic card does support special text modes,
+    say it 132x43, 100x60 or anything else. They really do look neat with
+    the sample programs that come with your graphic card, but they do
+    not usually work with third-party-programs.
+    That's because you can bet that the programmer that wrote the
+    application you would like to use did include drivers for lots of
+    graphic cards, but she/he sure did not include one that would work with
+    your vga card.
+    We found that out ourselves, that's why we decided to write a package
+    that would make it easy for both programmers and end users to write
+    and use applications which virtually support every graphic card ever
+    built on this planet.
+    The concept was really simple: the programmer writing the application
+    shouldn't have to worry about different graphic cards, neither should
+    she/he have to learn new programming technics, nor should she/he have
+    to change a lot just to have the video support included in already
+    finished programs.
+    On the other side, every end user should have the opportunity to
+    easily make the application work with her/his specific graphic card.
+
+    That's the idea behind our EXTRASCR.TPx Turbo Pascal (R) Unit.
+    Whenever you write a Turbo Vision program, you just include our
+    unit and derive your application from TSCRAPPLICATION instead of
+    TAPPLICATION. That's it. You don't have to worry about anything else.
+    From now on your application will support every graphic card the
+    end user possesses.
+    On the other side, if you are an end user, you will just need a quick
+    glance at the manual that came with your graphic card to tell the
+    application how to support YOUR favourite text mode.
+    Your xyz card supports a strange thing like 97x41 text mode?
+    No problem! The application you just got will easily support it, too!
+    You don't have the original user's manual of your graphic card?
+    No problem! You start another little tool of our package and you
+    will easily find out what text modes your card (and your monitor)
+    support.
+
+ Page 2                                     EXTRASCR.TPx ver. 1.20 - May 1993
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    That all sounds pretty simple. Well, actually it even would be that
+    simple, IF ... well if it wouldn't be for the original Turbo Vision
+    Application code...
+    It wasn't that hard to change Turbo Vision so that we could have
+    different screen modes, but different Mouse Drivers, even if they
+    are so-called Microsoft compatible, just didn't seem to like the
+    new enhanced screen environment. For example, the Microsoft (R) mouse
+    driver, the one that comes with MS-DOS or MS-WINDOWS, assumes that
+    any video mode except the standard 80x25/80x43 one is a graphic
+    video mode! This messes up the screen, since the driver tries to
+    map a graphic mouse cursor to a text mode screen.
+    The only way to avoid such problems was to write a whole new Mouse
+    Event Handler to use in our own programs, disabling the one that
+    comes with Turbo Vision...
+    And then there was the protected mode version, where we had to find
+    out that some interrupts do not work any more, and that some
+    Protected Mode Interfaces do not work as they should...
+
+    Even writing a whole new assembler event handler wouldn't have been
+    that hard, but the stupid thing was that the whole application
+    shouldn't notice anything about the changes.
+    Neither Turbo Vision nor the programmer should know that something
+    changed. The whole thing would have to be completely transparent
+    to the outer world.
+    Well, it was though. But we think we made it. No one will notice
+    that something changed way down there in the heart of Turbo Vision,
+    but it did. We hope that every graphic card / mouse combination will
+    work in enhanced text modes, and we can almost guarantee that if
+    the mouse, well actually the mouse driver, really is Microsoft/
+    Logitech/Mouse Systems compatible, then the whole thing will work.
+    If some weird mouse driver should not make it (which we don't
+    believe), then the whole thing should work if you use the original
+    Microsoft Mouse Driver that comes with MS-DOS or MS-WINDOWS.
+                               
+    How the whole thing works? Well, briefly, that's the way:
+    The application you will write with our unit automatically looks
+    for a file called STANDARD.DRV, where it will find the information
+    about the specific graphic card the end user has installed. If that
+    file exists, it will switch into the mode the user did select,
+    if not the whole thing will continue with the standard Turbo Vision
+    automatic video mode detect. In fact, if the file does not exist, or
+    the user will select standard Turbo Vision mode, then our unit kind
+    of deactivates itself and the whole thing will be default Turbo Vision.
+
+    As a programmer you don't have to worry about different screen sizes.
+    Just let Turbo Vision do it for you. A centerd dialog will always be
+    centered, say you are in 80x25 mode or in 132x60. Even switching
+    between video modes while running the application is completely
+    transparent for the program code. A TWindow will actually
+    resize (!) itself. If the windows was, say, aligned to the right
+    border and filled up about 2/3 of the screen, and you switch to
+    higher resolution, the same window will increase in size to mantain
+    the same aspect ratio respect to the whole screen size.
+
+ Page 3                                     EXTRASCR.TPx ver. 1.20 - May 1993
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    With our tools, MAKEDRV.EXE and TESTMODE.EXE (Public Domain, you can
+    freely distribute these with the application you wrote with
+    EXTRASCR.TPx) it is made totally simple to create a new driver for
+    every known and unknown graphic card. As a programmer, you can
+    distribute your application with pre-defined graphic card drivers
+    (each of the size of a couple hundred bytes), or let the end user use
+    MAKEDRV.EXE to create a driver for her/his graphic card.
+    An empty screen driver (BUILTIN.DRV, for example) is needed so that
+    the user can still select between 80x25 and 80x43/50 video modes.
+    If no STANDARD.DRV is found, then our unit completely deactivates
+    itself. No video mode selection box is built upon call.
+    We furnish an empty driver file (BUILTIN.DRV) which can be copied to
+    the name of STANDARD.DRV. The same effect can be generated by starting
+    MAKEDRV.EXE and creating a new driver file with no special modes, just
+    title line and version character (as of now, still 'a').
+
+
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+II. COPYRIGHT NOTES
+
+    EXTRASCR.TPx (C) is copyrighted 1993 by
+
+    Rier Andreas                                   Moar Christoph
+       c/o KWK                                        c/o KWK
+       Kaulbachstr. 29/a                              Kaulbachstr. 29/a
+       8000 Munich 22                                 8000 Munich 22
+       Germany                                        Germany
+
+       ...or...                                       ...or...
+
+       Plojerweg 12                                   Langrain 21
+       39040 Kastelruth                               39043 Chiusa
+       Italy                                          Italy
+
+
+    EMAIL TO
+
+    rier@lan.informatik.tu-muenchen.de
+    moar@lan.informatik.tu-muenchen.de
+    (technical university of Munich, Germany)
+
+    We gladly accept bug reports and try, if possible, to answer all
+    questions regarding our product.
+
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Page 4                                     EXTRASCR.TPx ver. 1.20 - May 1993
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+III. DISTRIBUTION POLICY
+
+    (A) SHAREWARE VERSION
+
+    If you are looking at the Shareware version, please feel free to
+    use the unit and share it with your friends, as you please.
+    You are allowed to copy this package as long as it remains in its
+    original distribution package, an archive file with all of
+    the following parts (documentation and sample program):
+
+      EXTRASCR.TPU (Turbo Pascal 7.0 real mode shareware unit)
+      EXTRASC6.TPU (Turbo Pascal 6.0 real mode shareware unit)
+                   {if you use TP 6.0, rename EXTRASC6.TPU to EXTRASCR.TPU}
+      EXTRASCR.DOC (This documentation file)
+      ORDER.TXT    (Order form)
+      EXM.PAS      (source code example program)
+      EXM.EXE      (compiled sample program)
+      MAKEDRV.EXE  (MakeDriver - driver generation tool)
+      TESTMODE.EXE (TestMode - find out screen modes tool)
+      *.DRV        (some sample drivers)
+
+    (B) REGISTERED VERSION
+
+    If you own the registered version, which you can get by mailing
+    $20 or 30DM to the above address, you are free to use it in programs
+    showing your copyright, and you can freely distribute the MAKEDRV
+    tools together with your application, so that the end user will be
+    able to create his graphic driver. You CANNOT distribute the
+    registered Turbo Pascal Unit if not as a part of a compiled program.
+    Registered version archive contents:
+
+      EXTRASCR.TPP (Turbo Pascal 7.0 protected mode unit)
+      EXTRASCR.TPU (Turbo Pascal 7.0 real mode unit)
+      EXTRASC6.TPU (Turbo Pascal 6.0 real mode unit)
+                   {if you use TP 6.0, rename EXTRASC6.TPU to EXTRASCR.TPU}
+      EXTRASCR.DOC (This documentation file)
+      EXM.PAS      (source code example program)
+      EXM.EXE      (compiled sample program)
+      MAKEDRV.EXE  (MakeDriver - driver generation tool)
+      TESTMODE.EXE (TestMode - find out screen modes tool)
+      *.DRV        (some sample drivers)
+
+      If you are working in both REAL / PROTECTED mode of TP 7.0, then
+      ABSOLUTELY READ part (VIII) of this documentation to know
+      about the specifications of the protected mode unit.
+
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Page 5                                     EXTRASCR.TPx ver. 1.20 - May 1993
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+IV. PRODUCT WARRANTY
+
+    WE DO NOT WARRANT THAT THE SOFTWARE IS ERROR FREE.
+    WE DISCLAIM ALL WARRANTIES WITH RESPECT TO THE SOFTWARE, EITHER
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES
+    OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+    NONINFRINGEMENT OF THIRD PARTY RIGHTS.
+
+    NO LIABILITY FOR CONSEQUENTIAL DAMAGES.  IN NO EVENT SHALL
+    WE BE LIABLE FOR CONSEQUENTIAL, INCIDENTAL OR INDIRECT DAMAGES OF
+    ANY KIND ARISING OUT OF THE DELIVERY, PERFORMANCE OR USE OF THE SOFTWARE,
+    EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+    IN NO EVENT WILL WE BE LIABLE FOR ANY CLAIM, WHETHER IN CONTRACT, TORT
+    OR ANY OTHER THEORY OF LIABILITY, EXCEED THE LICENSE FEE PAID BY
+    THE REGISTERED USER.
+
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+V.  REGISTRATION NOTES
+
+    Get registered!
+
+    By mailing 20$ or 30DM along with your address and your choice
+    of diskette type (or, if you wish, your EMAIL account) you will
+    get the newest release of the software, along with information,
+    discounts on future upgrades and free major bug fixes, as far as
+    possible.
+
+    Use the ORDER.TXT order form for product order/information.
+    Deliver times may delay when your orders reach us in march, april,
+    august or september. In such cases, you might prefer to write
+    to our address in Italy.
+ 
+    You are also encouraged to report any improvement or idea concerning
+    the EXTRASCR package. This will help to release improved future
+    versions, and you will actively participate in the evolution process
+    of the unit.
+
+    !!! C++ VERSION !!!
+
+    Are you programming with Turbo C++ and you would like to use this
+    unit in C programs? Let us know about it, there might be a C++
+    version of this unit soon!
+
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Page 6                                     EXTRASCR.TPx ver. 1.20 - May 1993
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+VI. UNIT INTERFACE
+
+    The following objects, functions and/or type definitions are defined
+    in our EXTRASCR.TPx unit.
+
+    const
+      CfgNoError            = 0;
+      CfgFileNotFound       = 1;
+      CfgFileError          = 2;
+      CfgWrongVersion       = 3;
+
+    type
+      drivertype = record
+        mode:             byte;
+        x_video,y_video:  integer;
+        name:             string[27];
+      end;
+
+      cfFile=file of drivertype;
+
+      TScrApplication=object(TApplication)
+        cfgError:         integer;
+        cfgName:          string;
+        cfgFile:          file of drivertype;
+        constructor Init;
+        function OpenCfgFile: integer;
+        procedure SetScreenMode (mode:word); virtual;
+        function SetDefaultScreenMode (mode:integer): integer;
+        function GetScreenError: integer;
+        procedure SelectAMode;
+        destructor done; virtual;
+        procedure HandleScreenError; virtual;
+        procedure SetScrHelpContext (listCont, InfoCont:word);
+        function  GetCurrentMode:integer;
+        procedure MouseReset;
+      end;
+ 
+      PModeSelection=^TModeSelection;
+      TModeSelection=object(TListViewer)
+        cfgFile:file of DriverType;
+        procedure getData(var Rec); virtual;
+        procedure SetData(var Rec); virtual;
+        function  Datasize:word; virtual;
+        constructor Init(var Bounds: TRect; ANumCols: Integer;
+          AHScrollBar, AVScrollBar: PScrollBar;AFile: string);
+        destructor done; virtual;
+        function GetText(Item:integer; MaxLen:integer):string; virtual;
+      end;
+
+      procedure HideMouse;
+      procedure ShowMouse;
+
+
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Page 7                                     EXTRASCR.TPx ver. 1.20 - May 1993
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+VII. DESCRIPTION
+
+    To use the tools provided by EXTRASCR.TPx do the following steps:
+    { for protected-mode programs also read part (VIII) }
+
+    (1) Use EXTRASCR.TPx in your source {*.TPU or *.TPP}.
+    (2) Derive your application from TSCRAPPLICATION instead of TAPPLICATION.
+    (3) If you want, include the method SelectAMode in your menubar,
+        say, for example, in a 'preferences' menu.
+    (4) If you want, use SETSCRHELPCONTEXT if you'd like our pre-defined
+        video mode dialog to change the desired HELPCTX value.
+    (5) Use MAKEDRV.EXE to generate the driver for your graphic card.
+    (6) Put the driver for your graphic card in the same directory where
+        the application is located and name it 'standard.drv'. Don't worry
+        if you start the application in a batch-job or if the application
+        is in your system path, our unit alway looks for the 'standard.drv'
+        driver in the same directory as the main program.
+        If the unit does not find 'standard.drv', then the init procedure
+        continues with default Turbo Vision automatic video mode selection.
+        We recommend leaving at least an empty STANDARD.DRV file for the
+        user. If an empty file is found, then the user will still be able
+        to select between 80x25 and 80x43/50 mode.
+        Without any STANDARD.DRV, no video mode selection box is built
+        upon call.
+
+    (!) This unit, like the original DRIVERS.TPx, CANNOT BE OVERLAID!
+        Likewise, it must be put in a fixed, permanent segment and
+        CANNOT be moved around in memory. Why this? Well, since
+        a new mouse event handler is installed in this unit, it
+        has always to be present in memory. Since the overhead produced
+        by this unit is just a few thousand bytes (we counted something
+        like 3800 bytes!!!), we don't think this should really be a problem.
+        The protected mode version of the unit was compiled with the
+        options:
+                  FIXED PRELOAD PERMANENT.
+
+        (actually the same effect as no overlay...)
+
+
+    For more details about the unit, look at the sample program
+    'exm.pas' or at the following specifications.
+
+    The following isn't a complete unit description, it's just a brief
+    look at the most important things you might want, but that you don't
+    have to know. In fact, the purpose of our unit was to provide a
+    transparent, easy-to-use unit to support enhanced screen modes. We
+    think that is done by simply following the above 6 points.
+    If you really would like to trick around, you have the possibility
+    to work around the heart of EXTRASCR. We do not recommend it.
+
+ Page 8                                     EXTRASCR.TPx ver. 1.20 - May 1993
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    (A) THE RECORD 'DRIVERTYPE'
+        mode:      containes the mode number for each enhanced
+                   text mode entered with MAKEDRV.EXE.
+        x_video:   containes the number of rows of the mode.
+        y_video:   containes the number of lines of the mode.
+        name:      a string[27] with a brief description of the mode.
+
+        TScrApplication.CfgFile is a file of drivertype.
+        In the first record of CfgFile the record elements are
+        differently occupied:
+
+        mode:      containes the driver version. For all releases less or
+                   equal to version 1.20, this is always 'a'.
+        x_video:   the record number within the CfgFile that will be the
+                   default startup mode. If this is set to -1, the default
+                   Turbo Vision mode is selected.
+        y_video:   not used.
+        name:      a string[27] with the name of the driver, say
+                   'Speedstar', 'ET4000', 'Trident', 'Oak' ...
+
+    (B) CONSTRUCTOR INIT
+        Puts the whole path to standard.drv into TScrApplication.CfgName.
+        Assigns TScrApplication.CfgName to TScrApplication.CfgFile.
+        Sets TScrApplication.CfgError to CfgNoError.
+        Selects the Default Mode found in standard.drv.
+
+    (C) PROCEDURE SETSCREENMODE
+        The core of the whole unit. Be careful NOT to overwrite this
+        procedure when deriving from it.
+        Switches to Default Mode, resets mouse functionality and does an
+        awful lot of more things you don't need to know.
+
+        You can use this procedure just as easy as Turbo Vision's own
+        SetScreenMode procedure in order to keep compatibility.
+
+        If you first set the default video mode to Turbo Vision with
+        a call of SETDEFAULTSCREENMODE (-1), then you will be able to
+        make calls like
+           SETSCREENMODE(smBW80) etc.
+
+        If the default video mode is different than -1 (standard 80) or
+        -2 (EGA/VGA 80x43) then the parameter is simply ignored and
+        our routine switches to the default enhanced video mode.
+
+
+    (D) FUNCTION OPENCFGFILE
+        Opens the CfgFile. Returns one of the CfgConstants as a error code.
+        You might want to read this, but it's more efficient to use
+        the HANDLESCREENERROR procedure later described.
+
+    (E) FUNCTION SETDEFAULTSCREENMODE
+        The parameter 'mode' indicates the record number containing the
+        video mode that will be marked as default. See (A). Calling this
+        function with argument '-1' would select the Turbo Vision default
+        mode.
+        Returns one of the CfgConstants as an error code.
+
+ Page 9                                     EXTRASCR.TPx ver. 1.20 - May 1993
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    (F) FUNCTION GETSCREENERROR
+        Returns the last error code and sets CfgError to CfgNoError.
+        You can use this whereever you want in your application to
+        find out whether some error occurred while installing the
+        enhanced screen modes.
+        Don't use this in HANDLESCREENERROR (I).
+
+    (G) PROCEDURE SELECTAMODE
+        Calling this procedure will start a pre-defined dialog allowing
+        the user to select a new video mode. If the file standard.drv
+        does not exist, the procedure simply returns.
+        The selected mode will be marked as DefaultMode.
+        Using SETSCRHELPCONTEXT (K) you can tell the dialog which
+        HELPCTX value it should set.
+
+    (H) DESTRUCTOR DONE
+        ... the usual.
+        Switches back to the video mode that was set when the application
+        was started.
+
+    (I) PROCEDURE HANDLESCREENERROR
+        This is a abstract method that is called whenever a Cfg Error
+        happens. You can overwrite it for handling the different
+        errors, but you can also don't care about them. In such a case,
+        our unit goes on its way and sets the default Turbo Vision modes
+        (e.g. if the driver was not found, or of a wrong version, or
+        defective ...). We DO recomend NOT to overwrite this procedure,
+        since the whole unit runs perfectly transparent in any error
+        event. But if you want to, you can bring up message boxes like
+        'Driver not found' and so on. That was done in the sample
+        program EXM.PAS, just to show you how to do it. But, once again,
+        we think you shouldn't have to care about this procedure.
+
+        ATTENTION:
+        Don't set the CfgError variable to 0 in this procedure. So don't
+        call GetScreenError, for example. If CfgError is set to 0, then
+        our screen initialisation cannot correctly continue to set the
+        video mode to Turbo Vision and will bring up a runtime error.
+
+    (K) PROCEDURE SETSCRHELPCONTEXT
+
+        Use this procedure if you would like the pre-defined change
+        video mode dialog to set a desired HELPTCTX value.
+           ListCont: word    is the HelpCtx for the SelectAMode dialog,
+           InfoCont: word    is the HelpCtx for the Info window.
+
+    (L) FUNCTION GETCURRENTMODE
+
+        You might need this procedure to get the current video mode
+        of your application. This is useful when you have to save
+        the current mode for various reasons.
+        A value of -1 means that standard Turbo Vision mode is active.
+        See the DOS shell example for details.
+
+    (M) PROCEDURE MOUSERESET
+
+        This is useful whenever, for some reasons, the new mouse event
+        handler was deactivated. This might happen when you call
+        doneevents, for example. See the DOS shell example for details.
+
+ Page 10                                    EXTRASCR.TPx ver. 1.20 - May 1993
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    (N) DOS SHELL EXAMPLE
+
+        In your application, you might have to switch to default text
+        mode, for example for calling a DOS shell. This can be easily
+        done, you just have to make sure that you will be able to
+        reconstruct the video mode that is currently set.
+        Take this as an example (Turbo Pascal 6.0 real mode), and keep
+        the points marked with (*) in mind. You will have to use them
+        whenever you do stuff like this.
+        In Borland Pascal 7.0 there is already a DOSSHELL method
+        implemented, keep in mind that you will have to derive from it
+        and include those six (*) lines.
+
+        procedure DosShell;
+
+        var
+          mode:integer;
+        begin
+(*)       mode:=GetCurrentMode;
+(*)       SetDefaultScreenMode(-1);
+(*)       SetScreenMode(0);
+
+          {...the following should be known stuff for you}
+             DoneSysError;
+             DoneEvents;
+             DoneVideo;
+             DoneMemory;
+             SetMemTop(Ptr(BufHeapPtr, 0));
+             PrintStr('Type EXIT to return to the program...');
+             swapvectors;
+             Exec(GetEnv('COMSPEC'), '');
+             swapvectors;
+             SetMemTop(Ptr(BufHeapEnd, 0));
+             InitMemory;
+             InitVideo;
+             InitEvents;
+             InitSysError;
+             Redraw;
+          {...end known stuff}
+
+(*)       MouseReset;
+(*)       SetDefaultScreenMode(mode);
+(*)       SetScreenMode(0);
+        end;
+
+ Page 11                                    EXTRASCR.TPx ver. 1.20 - May 1993
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+VIII. PROTECTED MODE VERSION
+
+    Well, as of now, protected mode is a quite dangerous environment
+    for programming DOS applications. We had to find that out ourselves.
+    Not all DOS/BIOS interrupts are correctly implemented by both Borland's
+    DPMI Server or the MICROSOFT WINDOWS (R) DPMI Interface for the DOS Box.
+    And, worst thing of all, those two DPMI servers do NOT behave the same
+    way...
+
+    In fact, the regular EXTRASCR.TPU uses the interrupt 33H,
+    function 14H to install the new mouse event handler AND to find out
+    the address (segment:offset) of the old, Turbo-Vision event handler.
+    Well, believe it or not, this interrupt causes a general protection
+    fault error when called in protected mode. Same thing happens if you
+    use function 18H or 19H (install alternate event handler, get adress
+    event handler) or most of the other int 33H function calls.
+    We believe that this interrupt probably tries to write in a code
+    segment. Anyway, strange enough, the function 0cH (install
+    event handler), the function that actually DOES something (19H
+    should just READ a value, for example) and that DOES change some
+    memory value, works just fine... :)
+    So we had to find out some way to get the address of the Turbo
+    Vision Event Handler. We tried all sorts of methods, but there
+    doesn't seem to be any possibility to do that completely transparent.
+    We found out a way for getting the address, but, strangely enough,
+    this would work only when the application was started with Borland's
+    DPMI interface. The one implemented by MS WINDOWS would not work.
+    
+    Version 1.00 had different mouse-status-buffer scanning tecniques,
+    and it worked mostly fine, just leaving a "forgotten" mouse cursor
+    sometimes on the screen.
+    
+    Version 1.20 has now complete protected mode support in both Borland
+    and Microsoft DPMI environments.
+    We recommend using the protected mode version just with computers
+    using an 386sx and above chip.
+    Our unit uses special 386 assembler commands to solve some interference
+    problems (mutually excluding more than one mouse drawing task).
+    Using the protected mode version with 286 processors will not cause
+    errors, but it will result in a SLOW MOUSE CURSOR REFRESH RATE.
+    This is not a bug, but a compromise to avoid task interference with
+    processors that do not support interlocked commands as the ones
+    provided by 386 processors.
+    
+    We recommend using the real mode version for such machines.
+    
+    In fact, what we have right now is NOT a real mode unit ported to
+    protected mode, but actually more two completely different unit
+    tecniques.
+    The way the mouse cursor gets drawn in real mode is completely
+    different from the way it gets done in protected mode.
+
+
+ Page 12                                    EXTRASCR.TPx ver. 1.20 - May 1993
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+IX. MAKEDRV DRIVER CREATING TOOL
+
+    This program helps you and the end user to generate new drivers for
+    every graphic card.
+    It is copyrighted 1993 by Rier Andreas, Moar Christoph, but it's
+    Public Domain and can be freely distributed, even together with
+    an application programmed with EXTRASCR.TPx.
+
+    The use of the program is self-explaining, simply remember that,
+    when inputting video mode numbers, the program asks for decimal
+    values. Watch out! The numbers in your vga manual might be hex numbers.
+    The tool 'TESTMODE' always shows video modes in decimal numbers.
+    You can create lots of drivers, say 'speedst.drv', 'trident.drv',
+    'oak.drv' and so on, but always remember that the driver that should
+    be supported by the application has to be called 'standard.drv'.
+
+    So, after creating your driver, say 'mycard.drv', put it in the
+    same directory as the application you would like to start and
+    name it 'standard.drv'.
+
+    Use this program to create at least one empty screen driver if
+    you want to switch at least between 80x25 and 80x43/50 modes.
+    We provide an empty screen driver (BUILTIN.DRV) with our unit,
+    too.
+
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+X. TESTMODE.EXE
+
+    Testmode.exe is a little freeware tool (no copyright, no support, no
+    warranty whatsoever) that is intended to help users that do not have
+    a graphic card manual to find out the screen mode numbers of all
+    the enhanced text modes supported by their graphic card (and monitor).
+    The program is self-explaining and can be freely distributed with
+    any application.
+
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+XI. KNOWN BUGS
+
+    Writing this unit and having it fully compatible wasn't an easy task,
+    so we know that this unit will not be bug-free.
+    
+    Using this unit with 386 machines or above shouldn't produce those
+    forgotten mouse cursors as of release 1.00.
+    Using 286 or less will - rather rarely - cause a interrupt interference
+    that sometimes leaves a mouse cursor on the screen. This happens if
+    a mouse interrupt happens in between two assembler commands without
+    having a 386 processor.
+    Just move a window over it or refresh the screen to get rid of it :).
+    Sorry about that...
+    And, once again, standard mode still is fully compatible and does not
+    provide any errors.
+    
+    We recommend using the protected mode version just with machines with
+    a 386 processor or above. Using it with 286 will cause a slow mouse
+    refresh rate. This is not a bug, it's a compromise we had to make
+    with machines that do not support memory-read-interlocked commands.
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Page 13                                    EXTRASCR.TPx ver. 1.20 - May 1993
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+XII. REVISION HISTORY FOR VERSION 1.20
+
+
+    Major changes since revision 1.00 are:
+    --------------------------------------
+    
+    (1)  Full protected mode support with 386(sx)-class-machines and above.
+         Compatible protected mode support for 286-class-machines, problems
+         with 'forgotten' mouse cursors might happen.
+         We recommend using protected mode WITH enhanced video modes only
+         on 386(sx)-class-machines.
+         Protected mode works fine in both Borland's and MS-WINDOWS'
+         Dos Protected Mode.
+    (2)  EGA/VGA 80x43/50 video mode included in mode selection box.
+         Version 1.00 just didn't show up the mode selection box if no
+         driver file was found.
+         We recommend having an empty driver file (BUILTIN.DRV is provided)
+         in order to still be able to select EGA/VGA modes.
+    (3)  Solved mutually-exclusive problems.
+         Version 1.00 sometimes kind of 'forgot' the mouse cursor on the
+         screen while in enhanced screen modes.
+         We fully solved this problem with 386(sx)-class-machines and
+         above, and we diminished the occurence of those conflicts on
+         286 and lower.
+    (4)  Got rid of GPF's (general protection faults) in protected mode
+         version caused by some interrupt services not provided by
+         Borland's or Microsoft's Dos Protected Mode Interface's.
+         The way the mouse cursor is drawn in real mode is completely
+         different from the one in protected mode.
+         The different mouse-status-buffer scanning tecniques used in
+         version 1.00 are no longer necessary.
+    (5)  Got rid of some minor bugs.
+         
+    
+
+
+
+
+                                 EXTRASCR.TPx release 1.20 documentation file
+                                                    06.07.1993  1:30 P.M. CET

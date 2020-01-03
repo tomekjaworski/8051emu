@@ -1,0 +1,93 @@
+EXTRASCR.TPx, Version 1.20 - SYSOP.DOC
+
+
+
+                      EXTRASCR.TPx
+                      ------------
+                      Version 1.20
+                      
+                      
+                     BBS DESCRIPTION
+                 -----------------------    
+                 Last updated: MAY, 1993
+            
+                  
+            ARCHIVE FILE NAME: EXTSHR12.ZOO
+            
+                               
+PREVIOUS VERSION WERE RELEASED UNDER DIFFERENT NAME: EXTSHR.ZOO
+            
+
+
+----------------------------------------------------------------------
+                         Program Information:
+----------------------------------------------------------------------
+
+PROGRAM NAME         : EXTRASCR.TPx (Turbo Pascal Unit)
+VERSION              : 1.20
+PUBLISHER            : Rier Andreas & Moar Christoph
+PREFERED BBS FILENAME: EXTSHR12.ZOO
+SOFTWARE REQUIREMENTS: Borland's Turbo Pascal (R) 6.0 - 7.0
+KEYWORDS             : DOS, PASCAL, TURBO VISION, ENHANCED SCREEN MODES
+
+----------------------------------------------------------------------
+                         Short Description:
+----------------------------------------------------------------------
+
+This Turbo Pascal unit (6.0 / 7.0 / 7.0 protected mode) allows you to
+easily write Turbo Vision (R) programs with support for all enhanced
+text modes of graphic cards.
+The programmer will never have to worry about strange graphic cards
+or about new programming tecniques, the end user will not have to
+worry about his strange graphics card not being supported by
+his favourite application.
+Programs written in Turbo Pascal (R) with this unit will support
+virtually any graphic card.
+The programmer just includes one menu option, and his application
+magically supports every graphic card ever built on this planet (!).
+The end user uses a provided tool to create a configuration file
+for his specific graphic card.
+Fool-proof!
+
+----------------------------------------------------------------------
+                         Long Description:
+----------------------------------------------------------------------
+
+Wouldn't it be nice to have more than just a standard 80x25 or
+80x43 resolution in every application?
+Nowadays every cheap-o graphic card does support special text modes,
+say it 132x43, 100x60 or anything else. They really do look neat with
+the sample programs that come with your graphic card, but they do
+not usually work with third-party-programs.
+That's because you can bet that the programmer that wrote the
+application you would like to use did include drivers for lots of
+graphic cards, but she/he sure did not include one that would work with
+your vga card.
+Our package provides both PROGRAMMERS and END USERS support for
+applications which virtually support every graphic card ever
+built on this planet.
+The concept was really simple: the programmer writing the application
+shouldn't have to worry about different graphic cards, neither should
+she/he have to learn new programming technics, nor should she/he have
+to change a lot just to have the video support included in already
+finished programs.
+
+That's the idea behind our EXTRASCR.TPx Turbo Pascal (R) Unit.
+Whenever you write a Turbo Vision program, you just include our
+unit and derive your application from TSCRAPPLICATION instead of
+TAPPLICATION. That's it. You don't have to worry about anything else.
+From now on your application will support every graphic card the
+end user possesses.
+On the other side, if you are an end user, you will just need a quick
+glance at the manual that came with your graphic card to tell the
+application how to support YOUR favourite text mode.
+Your xyz card supports a strange thing like 97x41 text mode?
+No problem! The application you just got will easily support it, too!
+You don't have the original user's manual of your graphic card?
+No problem! You start another little tool of our package and you
+will easily find out what text modes your card (and your monitor)
+support.
+
+
+
+    

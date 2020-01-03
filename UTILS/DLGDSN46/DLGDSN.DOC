@@ -1,0 +1,523 @@
+
+
+
+                                                          October 30, 1994
+
+                               Dialog Design
+                                     
+                A Dialogbox Design Program for Turbo Vision
+                                     
+                                Version 4.6
+                                     
+                 (C) Copyright 1990-4 by L. David Baldwin.
+                           All Rights Reserved.
+
+Further copyright information given below.
+
+
+OVERVIEW
+
+Dialog Design takes some of the pain out of designing dialog boxes for
+Borland's Turbo Vision package.  With Dialog Design, dialog controls can be
+easily added, edited, rearranged, and the dialog itself sized, moved, etc.
+Once the design is satisfactory, Dialog Design can produce source code to
+be included in your program or a resource file for use by your program.
+Both the Pascal and C++ languages are supported.
+
+
+REQUIREMENTS
+
+  Borland (R) Pascal version 7.0 (Turbo Vision 2.0)
+    and/or
+  Borland C++ version 3.1  (Turbo Vision 1.x)
+    and/or
+  Borland C++ version 4.02 ..(Turbo Vision 2.0)
+     (Dialog Design version 2.x supports Turbo Pascal 6.0)
+  Some familiarity with the Turbo Vision package
+  VGA Monitor
+  A mouse is desirable
+
+
+
+GETTING STARTED
+
+Dialog Design uses a number of external conversion programs to generate
+source code and resources for the two languages and Turbo Vision versions
+supported.  You will first have to compile and link the source for these
+conversion programs before you can generate source code.  See the
+accompanying READ.ME file for information on how to do this.
+
+When first starting Dialog Design, a Configuration Information dialog will
+come up.  Enter your preliminary configuration here, in particular the
+language you will be using.  The default names for the conversion files
+will already be listed but you should probably add the complete path to
+these names unless they will always be in the default directory.
+
+On leaving the this dialog, you will be given the opportunity to save the
+configuration.  Once saved, you won't have to fill it out each time you
+start the program.  However, you can change the configuration at any time
+using the Options/Configuration menu selection.
+
+
+A NOTE TO C++ USERS
+
+Dialog Design supports both Turbo Vision 1.x and 2.0 for C++.  When C++ TV1
+is selected, Turbo Vision 2.0 options will be grayed or otherwise made
+inaccessible.
+
+
+DESIGNING A DIALOG BOX
+
+Dialog Design has three modes of operation:
+
+  Design Mode
+
+  Dialog Design begins in design mode and this is the mode that you use
+  for all layout work and editing.  In design mode, the dialog doesn't
+  look or act quite like it will in the final design.  Here's some of the
+  differences:
+
+     A 'canvas' background is used to better delineate the actual space
+     occupied by each control.
+
+     Controls are colored red when selected.
+     
+     Multiple controls may be selected.
+     
+     All controls may be selected even those not normally selectable.
+
+  Try Mode
+  
+  Try mode is entered using the F9 key.  In try mode, the dialog behaves
+  as it's supposed to.  You can check the Tab order, make temporary
+  entries, and push buttons to actually check how things will work.  Exit
+  try mode with the escape key or click on the close box.
+  
+  Ordering Mode
+
+  Ordering mode allows you to change the Tab order of your dialog
+  controls. The method for doing this is discussed further below.  The F8
+  key toggles you into and out of ordering mode.
+
+While there is no fixed way to design a dialog, here's one suggested
+sequence:
+
+1.In design mode, work with the dialogbox large enough so that you won't
+  be crowded.
+
+2.From the Add menu, select a control to add.  This will bring up a dialog
+  where you can enter the necessary information.  Use the online help (F1
+  key) if you have a question as to what goes in a particular field.  When
+  the OK button is pushed, the control will appear in the lower right
+  corner of the design box.  The control is then positioned by dragging it
+  with the mouse, or by using the arrow keys (Shift+arrow moves a little
+  faster). Work in the upper left corner of the box. A faster way to add
+  controls is to use the Toolbox.  See Toolbox below for more details.
+
+3.Continue adding controls as desired.  At any time, controls can be
+  repositioned or sized with the mouse (further details below).  If
+  something other than position or size needs changing, select the control
+  and from the Edit menu choose Edit Selected (or use F7).  This will
+  bring up its dialogbox for changes.
+
+4.When all the controls have been added and positioned, size the box to
+  fit and move it to the desired location on the desktop.  Be sure and add
+  a title (Edit Dialog from the Edit menu).
+
+5.Enter Try Mode with the F9 key and test the dialog.  Be sure to check
+  how  the controls sequence using the Tab key.  Exit Try mode with Esc or
+  click on the close box.
+
+6.If the Tab sequence needs changing, use F8 to enter ordering mode.  With
+  the mouse, click on each control to establish the desired order.  Exit
+  back to design mode with F8.
+
+  Changing the sequence without a mouse is a little more complicated.  Use
+  the Tab key to select (highlight) the next control to be sequenced.
+  Then press the Enter key to enter the selected control into the
+  sequence. After all controls have been entered, exit back to design mode
+  with F8.
+
+  Some controls (such as Static Text, and Labels) don't enter into the tab
+  sequence of a dialogbox.  You can order these if it's convenient, but
+  the order won't effect the final results.
+  
+  Be sure to recheck the tab order in Try mode.
+
+7.This is a good time to save your work.  Choose Save or Save As from the
+  File menu to create or update a .DLG file.  Any file with the same name
+  will be renamed with a .BKP extension.
+
+8.You can preview the source code to be generated by choosing one of the
+  Write Source selections from the Operations menu, and then choosing the
+  Screen button.  The code will appear in a viewer window.
+
+9.To create source code for your dialogbox, choose one of the Write Source
+  selections from the Operations menu and then choose the File button.
+  See the section below on Conversion Programs for a discussion of the
+  source code generated.
+
+10.To generate a resource file or add the new dialogbox to an existing
+  resource or EXE file, choose Write Resource from the Operation menu.
+  Both a filename and a resource ID name will be requested.  If the file
+  already exists, it will be renamed with a .BKP extension.  If the
+  existing file is a resource or EXE file, it will be copied, and the new
+  resource added to the copy.  Any existing resource with the same ID will
+  be deleted.  Note that the resource ID name is case sensitive.
+
+
+SELECTING, CLICKING, DRAGGING, SIZING, ETC.
+
+To select a control, click and release on it with the left button or use
+the Tab key.
+
+To select multiple controls, select the first, then hold down the shift key
+while clicking on the others.  Note that, in this mode, clicking toggles
+selection on and off so it's possible to deselect as well as select.
+
+You can also select a block of controls by using the mouse to define an
+enclosing rectangle.  Position the mouse to one corner of the desired
+rectangle (the start position must not be on a control).  Hold the left
+button down and drag to the opposite corner of the rectangle before
+releasing the button.  During the drag operation, a shaded area will show
+the rectangle.  Those controls completely enclosed by the rectangle will be
+selected.  If the shift key is held down during this operation, any
+previously selected controls will remain selected.
+
+To select all controls, use the F4 key.
+
+To move controls, select the controls to be moved, then click on any one of
+them and, without releasing the button, drag the group to the desired
+position.  The group may also be moved using the arrow keys.
+
+To resize a control, first select it then click and drag on its lower right
+corner.  Note that some controls only size in one dimension and all have a
+minimum size.
+
+To edit a control, click it with the right button.  Or select it with the
+Tab key and press F7.  Either way brings up the control's Add/Edit dialog.
+To edit the dialog itself, click on the caption line with the right button.
+Or use the Edit/Dialog menu selection.
+
+
+TOOLBOX
+
+The toolbox provides a quick method for adding controls to the dialogbox.
+If the toolbox isn't visible, toggle it on with Ctrl-F6.  The toolbox may
+be repositioned by dragging its caption bar.
+
+To add a control using the toolbox, click and release on the appropriate
+icon with the left button.  The control will pop off the toolbox and follow
+the mouse.  When you reach the desired location, click once more to drop
+the control.  At this point, the mouse will be properly positioned to size
+the control.
+
+If you pick up a control from the toolbox and then decide not to use it,
+drop it outside of the dialog or move the mouse off screen.
+
+From top to bottom, left to right, the control icons are:
+
+     TInputLine     TStaticText
+     TInputLong     TButton
+     TCheckbox      TListBox
+     TRadioButton   TScrollbar (Vertical)
+     TMemo          TScrollbar (Horizontal)
+
+TLabel and TMultiCheckBox have no representation in the toolbox.
+
+Once you've added controls from the toolbox, you'll need to edit them to
+supply further information.
+
+
+SOME DETAILS
+
+Command Line
+
+The command line used to load Dialog Design is:
+
+   DLGDSN [<dlgfile> [/S<scriptfile> ]] [ /C<configfile> ]
+
+where:
+
+  <dlgfile> is an optional dialog filename (.dlg is the default
+         extension).  It specifies the dialog to be edited.
+  <scriptfile> is an optional script filename (.scp is the default
+         extension).  It specifies the output script filename.
+  <configfile> is an optional configuration filename (.cfg is the default
+         extension).  It specifies the configuration filename.
+
+No space is allowed between the /S, /C and the specified filename.  Either
+'/' or '-' may be used for the switch character.
+
+For the case where both dialog and script filenames are specified, Dialog
+Design operates in a DOS (non Turbo Vision) mode.  This allows Dialog
+Design to be used in Batch or Make files.
+
+
+Duplicating Controls
+
+Sometimes it is desirable to make a series of similar controls as might be
+found in a column of TInputLines, for instance.
+
+Controls may be duplicated by holding down the control key and left
+clicking with the mouse.  A copy of the control will appear directly below
+the copied control.
+
+You can also duplicate a control by selecting it and using the Edit|Copy
+Control menu command.
+
+
+@ Operator for Text Entry
+
+The '@' operator may be used almost anywhere text input is required to
+indicate a variable reference is desired rather than a quoted string.  To
+indicate a variable reference, just enter '@' as the first character
+following it with the variable name.
+
+As an example, suppose (for a TStaticText entry) you enter 'This is a line
+of text.'  Dialog Design will generate code which looks like:
+
+   Control := New(PStaticText,
+     Init(R, 'This is a line of text.'));      {for Pascal}
+   control = new TStaticText(TRect(8, 3, 25, 4),
+     "This is a line of text.");               //for C++
+
+But if you enter '@theText', you'll get code which looks like:
+
+   Control := New(PStaticText,
+     Init(R, theText));                 {for Pascal}
+   control = new TStaticText(
+     TRect(8, 5, 23, 6), theText);      //for C++
+
+where 'theText' presumably refers to a string defined elsewhere.
+
+
+Options Button
+
+Most of the Add/Edit dialogs have an Options button.  This button brings up
+another dialog which will let you change the default ofXXXX and evXXXX flag
+and mask bits.  In most cases, you'll want to stick with the defaults but
+some bits do have interesting uses.  In particular, the ofFramed bit can be
+used for framing controls.  Also, with a little effort, you can frame
+groups of controls or divide the dialog into panes.  The context sensitive
+help (F1) for the options dialog has some hints on this.
+
+Extras Button
+
+Many of the Add/Edit dialogs also have an Extras button.  This button
+brings up a dialog where you can add parameters or other information about
+non-standard controls (controls that you have derived).  This information
+is only of use if you are customizing your own conversion programs.  (See
+SCRIPT.DOC).
+
+Help Context
+
+Many of the Add/Edit dialogs have fields labeled Help Context and Value. By
+default, these contain hcNoContext and 0.  Dialog Design uses the help
+context symbol when generating source code and the value when producing a
+resource.
+
+For small projects, it may be convenient just to enter this information by
+hand.  However, if you're using Borland's demo help compiler, TVHC, Dialog
+Design can work with the help definition file it produces.  To do this,
+choose Load Help Ctx file from the Options menu and supply the filename of
+the help definition file.  Then clicking on the '*' box next to the help
+context field (or typing '*' in the field) will bring up a pick list of the
+definitions from which to choose.
+
+You can also automatically load your help definition file at startup by
+entering the information in the Configuration dialog (Options/Configuration
+on the menu).
+
+During the various iterations of writing a help file, the numerical values
+associated with the help symbols are often changed.  However, once a help
+context symbol has been entered for a control, Dialog Design will keep its
+associated help value current.  Updating occurs whenever:
+
+       A .DLG file is already loaded and a help context file is loaded
+  or
+       A help context file has been loaded and a new .DLG file is loaded.
+
+During the course of designing a dialog, it's often convenient to enter a
+help context symbol that's not yet defined.  To do this, enter it's value
+as -1.  Once you feel that you've entered as many undefined symbols as you
+need, you can use "Options|Write undefined help ctx's..." to write out a
+file of skeleton topics to be added to your help text file.  To make best
+use of this feature, help context symbols should begin with the letters
+"hc" as:
+
+     hcAHelpContext
+
+
+Reading Pascal TDialog Resources  (Operations/Load Pascal Resource File)
+
+You can read Pascal (not C++, unfortunately) TDialog resources from
+compatible resource files generated by Dialog Design or other design
+programs such as Blaise' Turbo Vision Development Toolkit(tm).  You'll be
+asked for the resource filename and then given a list of resource ID's from
+which to choose.
+
+Dialog Design will read only TDialog resources with controls that it
+supports.  In the read process, the following conversions are made:
+
+     TListViewer  to TListBox
+     TParamText   to TStaticText
+     TView        to TStaticText (with no text)
+
+Note:  You should always save your design in .DLG files.  Storing them as
+resources and reading them as resources will result in loss of information.
+
+
+CONVERSION PROGRAMS AND SOURCE CODE
+
+In this version of Dialog Design, all source code and resource generation
+is done by external conversion programs.  When you select one of the source
+code options from the menu, the following process occurs:
+
+  1. A temporary ASCII script file is written to disk.
+  2. The appropriate conversion program is called with parameters telling
+     it the script filename, the output filename, and an error filename.
+  3. The conversion program produces the desired conversion from script
+     file to source code (or resource), or possibly returns error messages.
+  4. Dialog Design displays any error messages and deletes the temporary
+     files.
+
+The above process is largely transparent to the user but because it uses
+external programs, it allows for user customization of these programs.
+(Customization is covered in separate documentation, SCRIPT.DOC.)
+
+Here's a summary of the conversion programs supplied with Dialog Design:
+
+
+PasSrc1, CppSrc1
+
+The source output for these two programs is similar (except for the
+language, of course) and closely resembles the source generated by older
+versions of Dialog Design.  Source is in the form of a function
+(MakeDialog/makeDialog) which defines the dialog and returns a pointer to
+it.  A data record/structure is also defined to assist in transferring data
+into and out of the dialog.  The generated source code may be included in
+the files TestCase.Pas/TestCase.Cpp (at the line of asterisks) to form a
+test program for the dialog.
+
+PasSrc2
+
+Output from PasSrc2 is in the form of a Pascal unit with the dialog object
+being defined in the Interface section and the actual dialog construction
+done in the dialog's constructor.  This form is probably more suitable for
+dialogs which require overridden methods such as HandleEvent.  PasSrc2 uses
+an auxiliary (ASCII) file, Skel.Dat, to layout the unit structure.  When
+using PasSrc2, you should change the default PDialog pointer name as you're
+really defining a TDialog descendent.
+
+CppSrc2
+
+CppSrc2 produces both a module and header file for a TDialog descendent
+with the dialog construction done in the constructor.  This form is
+probably more suitable for dialogs which require overridden methods such as
+handleEvent.  CppSrc2 uses an auxiliary (ASCII) file, CppSkel.Dat, to
+layout the file structure.  Be sure and change the dialog's class name from
+TDialog to something appropriate for your new class.
+
+When choosing a filename for the CppSrc2 output, keep in mind that two
+files will be produced. Thus choosing MYFILE.CPP will output both
+MYFILE.CPP and MYFILE.H.  When viewed on the screen, the file generated by
+CppSrc2 contains a line, "cut here", showing where it will be divided to
+form an .H and a .CPP file.
+
+PasRsrc, CppRsrc
+
+These files generate Pascal and C++ TDialog resources.  Resources can be
+added to an existing resource or EXE file, or a new resource file started.
+You will be asked to enter a resource ID string (case sensitive and must
+not contain spaces).  Any existing resource or EXE file will be renamed
+with a .BKP extension, copied, and the resource added to the copy.  If the
+ID corresponds to an existing resource, that resource will be deleted.
+
+User
+
+A space where you may include your own conversion program.
+
+
+COPYRIGHT AND REGISTRATION
+
+Documentation and Program (C) Copyright 1990-4 by L. David Baldwin. All
+Rights Reserved.
+
+Dialog Design may be copied and distributed freely (including uploading it
+to bulletin boards), providing:
+
+ 1. No fee is charged and it is not part of a package for which a charge
+    is made.
+ 2. The package is not modified in any way.
+
+If you do upload this package to a bulletin board,  I'd appreciate it if
+you would make an attempt to keep the upload current.
+
+If you use Dialog Design professionally (to assist in program creation for
+your employer or for sale) please send $30 along with your registration to
+the appropriate address listed below.  Registration entitles you to a free
+update to the most recent version or an update to the next release.  No
+usage fee is required for hobbyists, students, beginners, occasional users,
+etc.
+
+Please report any problems, suggestions, etc.  Contact me on Compuserve or
+Internet (the best way) or at one of the addresses below.
+
+Dave Baldwin
+CompuServe ID #76327,53.
+Internet address: 76327.53@compuserve.com
+
+ACKNOWLEDGMENTS
+
+Help file modifications from Peter Brandstrom's TVTOYS.ZIP.
+
+                               REGISTRATION
+
+
+      Name: __________________________________________________________
+
+      CompuServe ID:__________________________________________________
+
+      Address: _______________________________________________________
+
+      Address: _______________________________________________________
+
+      City: __________________________________________________________
+
+      State/Country:______________________ Postal Code: ______________
+
+
+      Present Dialog Design Vers.:_____  Pascal:__ C++TV1:__ C++TV2:__
+
+
+Bugs, Problems, Comments: ____________________________________________
+
+   ___________________________________________________________________
+
+   ___________________________________________________________________
+
+   ___________________________________________________________________
+
+   ___________________________________________________________________
+
+   ___________________________________________________________________
+
+   ___________________________________________________________________
+
+   ___________________________________________________________________
+
+
+Professional users:  Please send along with $30 to:
+
+David Baldwin,
+22 Fox Den Rd.,
+Hollis, NH 03049        (Approx May 15 to Oct 15)
+(603) 465-7857
+
+David Baldwin,
+144 13th St. East,
+Tierra Verde, FL 33715  (Approx Oct 15 to May 15)
+(813) 867-3030
+
+Since mail is forwarded, either address may be used.
