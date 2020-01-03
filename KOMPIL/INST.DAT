@@ -1,0 +1,143 @@
+;instrukcja, kod, ilo˜† parametrow, param1, param2, param3, czy mozna zaufac?
+;znacznik 'czy mozna zaufac' odnosi sie do instrukcji z parametrem
+;tpData16, tpCode8, tpCode11, tpCode16
+acall,	11h,	1,	tpCode11,	tpNieznany,	tpNieznany,	t
+ajmp,	01h,	1,	tpCode11,	tpNieznany,	tpNieznany,	t
+
+add,	28h,	2, 	tpACC,		tpRn,		tpNieznany,	n
+add,	25h,	2,	tpACC,		tpRAMAddr,	tpNieznany,	n
+add,	26h,	2,	tpACC,		tpRi,		tpNieznany,	n
+add,	24h,	2,	tpACC,		tpData8,	tpNieznany,	n
+
+addc,	38h,	2, 	tpACC,		tpRn,		tpNieznany,	n
+addc,	35h,	2,	tpACC,		tpRAMAddr,	tpNieznany,	n
+addc,	36h,	2,	tpACC,		tpRi,		tpNieznany,	n
+addc,	34h,	2,	tpACC,		tpData8,	tpNieznany,	n
+
+anl,	58h,	2, 	tpACC,		tpRn,		tpNieznany,	n
+anl,	55h,	2,	tpACC,		tpRAMAddr,	tpNieznany,	n
+anl,	56h,	2,	tpACC,		tpRi,		tpNieznany,	n
+anl,	54h,	2,	tpACC,		tpData8,	tpNieznany,	n
+anl,	52h,	2,	tpRAMAddr,	tpACC,		tpNieznany,	n
+anl,	53h,	2,	tpRAMAddr,	tpData8,	tpNieznany,	n
+anl,	82h,	2,	tpC,		tpBit,		tpNieznany,	n
+anl,	B0h,	2,	tpC,		tpNegBit,	tpNieznany,	n
+
+cjne,	B5h,	3,	tpACC,		tpRAMAddr,	tpCode8,	t
+cjne,	B4h,	3,	tpACC,		tpData8,	tpCode8,	t
+cjne,	B8h,	3,	tpRn,		tpData8,	tpCode8,	t
+cjne,	B6h,	3,	tpRi,		tpData8,	tpCode8,	t
+
+clr,	E4h,	1,	tpACC,		tpNieznany,	tpNieznany,	n
+clr,	C3h,	1,	tpC,		tpNieznany,	tpNieznany,	n
+clr,	C2h,	1,	tpBit,		tpNieznany,	tpNieznany,	n
+
+cpl,	F4h,	1,	tpACC,		tpNieznany,	tpNieznany,	n
+cpl,	B3h,	1,	tpC,		tpNieznany,	tpNieznany,	n
+cpl,	B2h,	1,	tpBit,		tpNieznany,	tpNieznany,	n
+
+da,	D4h,	1,	tpACC,		tpNieznany,	tpNieznany,	n
+
+dec,	14h,	1,	tpACC,		tpNieznany,	tpNieznany,	n
+dec,	18h,	1,	tpRn,		tpNieznany,	tpNieznany,	n
+dec,	15h,	1,	tpRAMAddr,	tpNieznany,	tpNieznany,	n
+dec,	16h,	1,	tpRi,		tpNieznany,	tpNieznany,	n
+
+djnz,	D8h,	2,	tpRn,		tpCode8,	tpNieznany,	t
+djnz,	D5h,	2,	tpRAMAddr,	tpCode8,	tpNieznany,	t
+
+inc,	04h,	1,	tpACC,		tpNieznany,	tpNieznany,	n
+inc,	08h,	1,	tpRn,		tpNieznany,	tpNieznany,	n
+inc,	05h,	1,	tpRAMAddr,	tpNieznany,	tpNieznany,	n
+inc,	06h,	1,	tpRi,		tpNieznany,	tpNieznany,	n
+inc,	A3h,	1,	tpDPTR,		tpNieznany,	tpNieznany,	n
+
+jb,	20h,	2,	tpBit,		tpCode8,	tpNieznany,	t
+jbc,	10h,	2,	tpBit,		tpCode8,	tpNieznany,	t
+jc,	40h,	1,	tpCode8,	tpNieznany,	tpNieznany,	t
+jnb,	30h,	2,	tpBit,		tpCode8,	tpNieznany,	t
+jnc,	50h,	1,	tpCode8,	tpNieznany,	tpNieznany,	t
+jnz,	70h,	1,	tpCode8,	tpNieznany,	tpNieznany,	t
+jz,	60h,	1,	tpCode8,	tpNieznany,	tpNieznany,	t
+
+jmp,	73h,	1,	tpPtrADPTR,	tpNieznany,	tpNieznany,	n
+
+lcall,	12h,	1,	tpCode16,	tpNieznany,	tpNieznany,	t
+ljmp,	02h,	1,	tpCode16,	tpNieznany,	tpNieznany,	t
+
+mov,	e8h,	2,	tpACC,		tpRn,		tpNieznany,	n
+mov,	e5h,	2,	tpACC,		tpRamAddr,	tpNieznany,	n
+mov,	e6h,	2,	tpACC,		tpRi,		tpNieznany,	n
+mov,	74h,	2,	tpACC,		tpData8,	tpNieznany,	n
+mov,	f8h,	2,	tpRn,		tpACC,		tpNieznany,	n
+mov,	a8h,	2,	tpRn,		tpRamAddr,	tpNieznany,	n
+mov,	78h,	2,	tpRn,		tpData8,	tpNieznany,	n
+mov,	f5h,	2,	tpRamAddr,	tpACC,		tpNieznany,	n
+mov,	88h,	2,	tpRamAddr,	tpRn,		tpNieznany,	n
+mov,	85h,	2,	tpRamAddr,	tpRamAddr,	tpNieznany,	n
+mov,	86h,	2,	tpRamAddr,	tpRi,		tpNieznany,	n
+mov,	75h,	2,	tpRamAddr,	tpData8,	tpNieznany,	n
+mov,	f6h,	2,	tpRi,		tpACC,		tpNieznany,	n
+mov,	a6h,	2,	tpRi,		tpRamAddr,	tpNieznany,	n
+mov,	76h,	2,	tpRi,		tpData8,	tpNieznany,	n
+mov,	a2h,	2,	tpC,		tpBit,		tpNieznany,	n
+mov,	92h,	2,	tpBit,		tpC,		tpNieznany,	n
+mov,	90h,	2,	tpDPTR,		tpData16,	tpNieznany,	t
+
+movc,	93h,	2,	tpACC,		tpPtrADPTR,	tpNieznany,	n
+movc,	83h,	2,	tpACC,		tpPtrAPC,	tpNieznany,	n
+
+movx,	e2h,	2,	tpACC,		tpRi,		tpNieznany,	n
+movx,	e0h,	2,	tpACC,		tpPtrDPTR,	tpNieznany,	n
+movx,	f2h,	2,	tpRi,		tpACC,		tpNieznany,	n
+movx,	f0h,	2,	tpPtrDPTR,	tpACC,		tpNieznany,	n
+
+mul,	a4h,	1,	tpAB,		tpNieznany,	tpNieznany,	n
+div,	84h,	1,	tpAB,		tpNieznany,	tpNieznany,	n
+
+nop,	00h,	0,	tpNieznany,	tpNieznany,	tpNieznany,	n
+
+orl,	48h,	2, 	tpACC,		tpRn,		tpNieznany,	n
+orl,	45h,	2,	tpACC,		tpRAMAddr,	tpNieznany,	n
+orl,	46h,	2,	tpACC,		tpRi,		tpNieznany,	n
+orl,	44h,	2,	tpACC,		tpData8,	tpNieznany,	n
+orl,	42h,	2,	tpRAMAddr,	tpACC,		tpNieznany,	n
+orl,	43h,	2,	tpRAMAddr,	tpData8,	tpNieznany,	n
+orl,	72h,	2,	tpC,		tpBit,		tpNieznany,	n
+orl,	A0h,	2,	tpC,		tpNegBit,	tpNieznany,	n
+
+pop,	d0h,	1,	tpRamAddr,	tpNieznany,	tpNieznany,	n
+push,	c0h,	1,	tpRamAddr,	tpNieznany,	tpNieznany,	n
+
+ret,	22h,	0,	tpNieznany,	tpNieznany,	tpNieznany,	n
+reti,	32h,	0,	tpNieznany,	tpNieznany,	tpNieznany,	n
+
+rl,	23h,	1,	tpACC,		tpNieznany,	tpNieznany,	n
+rlc,	33h,	1,	tpACC,		tpNieznany,	tpNieznany,	n
+rr,	03h,	1,	tpACC,		tpNieznany,	tpNieznany,	n
+rrc,	13h,	1,	tpACC,		tpNieznany,	tpNieznany,	n
+
+setb,	d3h,	1,	tpC,		tpNieznany,	tpNieznany,	n
+setb,	d2h,	1,	tpBit,		tpNieznany,	tpNieznany,	n
+
+sjmp,	80h,	1,	tpCode8,	tpNieznany,	tpNieznany,	t
+
+subb,	98h,	2, 	tpACC,		tpRn,		tpNieznany,	n
+subb,	95h,	2,	tpACC,		tpRAMAddr,	tpNieznany,	n
+subb,	96h,	2,	tpACC,		tpRi,		tpNieznany,	n
+subb,	94h,	2,	tpACC,		tpData8,	tpNieznany,	n
+
+swap,	c4h,	1,	tpACC,		tpNieznany,	tpNieznany,	n
+
+xch,	c8h,	2, 	tpACC,		tpRn,		tpNieznany,	n
+xch,	c5h,	2,	tpACC,		tpRAMAddr,	tpNieznany,	n
+xch,	c6h,	2,	tpACC,		tpRi,		tpNieznany,	n
+
+xchd,	d6h,	2,	tpACC,		tpRi,           tpNieznany,	n
+
+xrl,	68h,	2, 	tpACC,		tpRn,		tpNieznany,	n
+xrl,	65h,	2,	tpACC,		tpRAMAddr,	tpNieznany,	n
+xrl,	66h,	2,	tpACC,		tpRi,		tpNieznany,	n
+xrl,	64h,	2,	tpACC,		tpData8,	tpNieznany,	n
+xrl,	62h,	2,	tpRAMAddr,	tpACC,		tpNieznany,	n
+xrl,	63h,	2,	tpRAMAddr,	tpData8,	tpNieznany,	n
