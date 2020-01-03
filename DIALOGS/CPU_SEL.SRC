@@ -1,0 +1,44 @@
+type
+  TListBoxRec = record    {<-- omit if TListBoxRec is defined elsewhere}
+    PS : PStringCollection;
+    Selection : Integer;
+    end;
+
+var
+  WyborProckaDataRec : record
+    ListaProckow : TListBoxRec;
+  end;
+
+function MakeWyborProckaDlg : PDialog;
+var
+  Dlg : PDialog;
+  R : TRect;
+  Control : PView;
+
+begin
+R.Assign(18, 5, 62, 17);
+New(Dlg, Init(R, 'Wyb¢r mikroprocesora'));
+Dlg^.Options := Dlg^.Options or ofCenterX or ofCenterY;
+
+R.Assign(28, 3, 29, 10);
+Control := New(PScrollBar, Init(R));
+Dlg^.Insert(Control);
+
+R.Assign(4, 3, 28, 10);
+Control := New(PListBox, Init(R, 1, PScrollbar(Control)));
+Dlg^.Insert(Control);
+
+  R.Assign(3, 2, 29, 3);
+  Dlg^.Insert(New(PLabel, Init(R, 'Lista dost©pnych ~u~kˆad¢w:', Control)));
+
+R.Assign(32, 2, 42, 4);
+Control := New(PButton, Init(R, '~O~k', cmOK, bfDefault));
+Dlg^.Insert(Control);
+
+R.Assign(32, 5, 42, 7);
+Control := New(PButton, Init(R, 'Anuluj', cmOK, bfNormal));
+Dlg^.Insert(Control);
+
+Dlg^.SelectNext(False);
+MakeWyborProckaDlg := Dlg;
+end;

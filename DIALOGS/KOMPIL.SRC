@@ -1,0 +1,63 @@
+function MakeKompilacjaDlg : PDialog;
+var
+  Dlg : PDialog;
+  R : TRect;
+  Control : PView;
+
+begin
+R.Assign(15, 6, 65, 17);
+New(Dlg, Init(R, 'Kompilacja'));
+Dlg^.Options := Dlg^.Options or ofCenterX or ofCenterY;
+Dlg^.Flags := Dlg^.Flags and not(wfMove or wfClose);
+
+R.Assign(3, 2, 9, 3);
+Control := New(PStaticText, Init(R, 'Plik:'));
+Dlg^.Insert(Control);
+
+R.Assign(10, 2, 23, 3);
+Control := New(PColoredText, Init(R, '12345678.123', $74));
+Dlg^.Insert(Control);
+
+R.Assign(3, 3, 48, 4);
+Control := New(PColoredText, Init(R, 'Gotowe.', $70));
+Dlg^.Insert(Control);
+
+R.Assign(3, 5, 14, 6);
+Control := New(PStaticText, Init(R, 'Platforma:'));
+Dlg^.Insert(Control);
+
+R.Assign(17, 5, 26, 6);
+Control := New(PColoredText, Init(R, 'AT89Cx051', $7E));
+Dlg^.Insert(Control);
+
+R.Assign(3, 6, 18, 7);
+Control := New(PStaticText, Init(R, 'Wolnej pami©ci:'));
+Dlg^.Insert(Control);
+
+R.Assign(19, 6, 27, 7);
+Control := New(PColoredText, Init(R, '64000kB', $7E));
+Dlg^.Insert(Control);
+
+R.Assign(30, 5, 42, 6);
+Control := New(PStaticText, Init(R, 'Numer linii:'));
+Dlg^.Insert(Control);
+
+R.Assign(30, 6, 42, 7);
+Control := New(PStaticText, Init(R, 'Ilo˜† linii:'));
+Dlg^.Insert(Control);
+
+R.Assign(43, 5, 48, 6);
+Control := New(PColoredText, Init(R, '00000', $71));
+Dlg^.Insert(Control);
+
+R.Assign(43, 6, 48, 7);
+Control := New(PColoredText, Init(R, '00000', $71));
+Dlg^.Insert(Control);
+
+R.Assign(1, 9, 49, 10);
+Control := New(PColoredText, Init(R, 'Kompilacja zakoäczona pomy˜lnie', $1F));
+Dlg^.Insert(Control);
+
+Dlg^.SelectNext(False);
+MakeKompilacjaDlg := Dlg;
+end;

@@ -1,0 +1,339 @@
+function MakeDialog : PDialog;
+var
+  Dlg : PDialog;
+  R : TRect;
+  Control : PView;
+  FlagaCY : PColoredText;
+  FlagaAC : PColoredText;
+  FlagaF0 : PColoredText;
+  FlagaRS1 : PColoredText;
+  FlagaRS0 : PColoredText;
+  FlagaOV : PColoredText;
+  FlagaUNDEF : PColoredText;
+  FlagaP : PColoredText;
+  NumerBanku : PColoredText;
+
+begin
+R.Assign(0, 0, 80, 23);
+New(Dlg, Init(R, 'Dialog Design'));
+Dlg^.Palette := dpCyanDialog;
+
+R.Assign(61, 1, 62, 15);
+Control := New(PColoredText, Init(R, '³³³³³³³³³³³³³³', $3F));
+Dlg^.Insert(Control);
+
+R.Assign(62, 1, 64, 2);
+Control := New(PColoredText, Init(R, 'A=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(67, 1, 69, 2);
+Control := New(PColoredText, Init(R, 'B=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(62, 2, 67, 3);
+Control := New(PColoredText, Init(R, 'DPTR=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(62, 3, 65, 4);
+Control := New(PColoredText, Init(R, 'PC=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(62, 4, 65, 5);
+Control := New(PColoredText, Init(R, 'R0=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(68, 4, 71, 5);
+Control := New(PColoredText, Init(R, 'R1=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(62, 5, 65, 6);
+Control := New(PColoredText, Init(R, 'R2=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(68, 5, 71, 6);
+Control := New(PColoredText, Init(R, 'R3=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(62, 6, 65, 7);
+Control := New(PColoredText, Init(R, 'R4=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(68, 6, 71, 7);
+Control := New(PColoredText, Init(R, 'R5=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(68, 7, 71, 8);
+Control := New(PColoredText, Init(R, 'R7=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(62, 7, 65, 8);
+Control := New(PColoredText, Init(R, 'R6=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(62, 8, 65, 9);
+Control := New(PColoredText, Init(R, 'P1=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(68, 8, 71, 9);
+Control := New(PColoredText, Init(R, 'P3=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(62, 9, 65, 10);
+Control := New(PColoredText, Init(R, 'SP=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(62, 10, 65, 11);
+Control := New(PColoredText, Init(R, 'T0=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(62, 11, 65, 12);
+Control := New(PColoredText, Init(R, 'T1=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(62, 14, 67, 15);
+Control := New(PColoredText, Init(R, 'SCON=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(62, 13, 67, 14);
+Control := New(PColoredText, Init(R, 'SBUF=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(62, 12, 67, 13);
+Control := New(PColoredText, Init(R, 'TCON=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(75, 1, 79, 2);
+FlagaCY := New(PColoredText, Init(R, 'cy', $30));
+FlagaCY^.EventMask := FlagaCY^.EventMask and not(evKeyDown or evCommand);
+Dlg^.Insert(FlagaCY);
+
+R.Assign(75, 2, 79, 3);
+FlagaAC := New(PColoredText, Init(R, 'ac', $30));
+FlagaAC^.EventMask := FlagaAC^.EventMask and not(evKeyDown or evCommand);
+Dlg^.Insert(FlagaAC);
+
+R.Assign(75, 3, 79, 4);
+FlagaF0 := New(PColoredText, Init(R, 'f0', $30));
+FlagaF0^.EventMask := FlagaF0^.EventMask and not(evKeyDown or evCommand);
+Dlg^.Insert(FlagaF0);
+
+R.Assign(75, 4, 79, 5);
+FlagaRS1 := New(PColoredText, Init(R, 'rs1', $30));
+FlagaRS1^.EventMask := FlagaRS1^.EventMask and not(evKeyDown or evCommand);
+Dlg^.Insert(FlagaRS1);
+
+R.Assign(75, 5, 79, 6);
+FlagaRS0 := New(PColoredText, Init(R, 'rs0', $30));
+FlagaRS0^.EventMask := FlagaRS0^.EventMask and not evCommand;
+Dlg^.Insert(FlagaRS0);
+
+R.Assign(75, 6, 79, 7);
+FlagaOV := New(PColoredText, Init(R, 'ov', $30));
+FlagaOV^.EventMask := FlagaOV^.EventMask and not(evKeyDown or evCommand);
+Dlg^.Insert(FlagaOV);
+
+R.Assign(75, 7, 79, 8);
+FlagaUNDEF := New(PColoredText, Init(R, '----', $30));
+FlagaUNDEF^.EventMask := FlagaUNDEF^.EventMask and not(evKeyDown or evCommand);
+Dlg^.Insert(FlagaUNDEF);
+
+R.Assign(75, 8, 79, 9);
+FlagaP := New(PColoredText, Init(R, 'p', $30));
+FlagaP^.EventMask := FlagaP^.EventMask and not(evKeyDown or evCommand);
+Dlg^.Insert(FlagaP);
+
+R.Assign(74, 9, 79, 10);
+Control := New(PColoredText, Init(R, 'Bank:', $30));
+Dlg^.Insert(Control);
+
+R.Assign(75, 10, 77, 11);
+NumerBanku := New(PColoredText, Init(R, '0', $31));
+Dlg^.Insert(NumerBanku);
+
+R.Assign(73, 1, 74, 11);
+Control := New(PColoredText, Init(R, '³³³³³³³³³³', $3F));
+Dlg^.Insert(Control);
+
+R.Assign(73, 11, 79, 12);
+Control := New(PColoredText, Init(R, 'ÃÄÄÄÄÄ', $3F));
+Dlg^.Insert(Control);
+
+R.Assign(73, 12, 74, 22);
+Control := New(PColoredText, Init(R, '³³³³³³³³³³', $3F));
+Dlg^.Insert(Control);
+
+R.Assign(61, 15, 73, 16);
+Control := New(PColoredText, Init(R, 'ÃÄÄÄÄÄÄÄÄÄÄÄ', $3F));
+Dlg^.Insert(Control);
+
+R.Assign(61, 16, 62, 22);
+Control := New(PColoredText, Init(R, '³³³³³³', $3F));
+Dlg^.Insert(Control);
+
+R.Assign(74, 12, 77, 13);
+Control := New(PColoredText, Init(R, 'SP=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(74, 13, 77, 14);
+Control := New(PColoredText, Init(R, '-1=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(74, 14, 77, 15);
+Control := New(PColoredText, Init(R, '-2=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(74, 15, 77, 16);
+Control := New(PColoredText, Init(R, '-3=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(74, 16, 77, 17);
+Control := New(PColoredText, Init(R, '-4=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(74, 17, 77, 18);
+Control := New(PColoredText, Init(R, '-5=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(74, 18, 77, 19);
+Control := New(PColoredText, Init(R, '-6=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(74, 19, 77, 20);
+Control := New(PColoredText, Init(R, '-7=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(74, 20, 77, 21);
+Control := New(PColoredText, Init(R, '-8=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(74, 21, 77, 22);
+Control := New(PColoredText, Init(R, '-9=', $30));
+Dlg^.Insert(Control);
+
+R.Assign(64, 1, 66, 2);
+Control := New(PColoredText, Init(R, '00', $3E));
+Dlg^.Insert(Control);
+
+R.Assign(69, 1, 71, 2);
+Control := New(PStaticText, Init(R, '00'));
+Dlg^.Insert(Control);
+
+R.Assign(67, 2, 71, 3);
+Control := New(PColoredText, Init(R, '0000', $3A));
+Dlg^.Insert(Control);
+
+R.Assign(65, 3, 69, 4);
+Control := New(PColoredText, Init(R, '0000', $3A));
+Dlg^.Insert(Control);
+
+R.Assign(65, 4, 67, 5);
+Control := New(PColoredText, Init(R, '00', $34));
+Dlg^.Insert(Control);
+
+R.Assign(65, 5, 67, 6);
+Control := New(PColoredText, Init(R, '00', $34));
+Dlg^.Insert(Control);
+
+R.Assign(65, 6, 67, 7);
+Control := New(PColoredText, Init(R, '00', $34));
+Dlg^.Insert(Control);
+
+R.Assign(65, 7, 67, 8);
+Control := New(PColoredText, Init(R, '00', $34));
+Dlg^.Insert(Control);
+
+R.Assign(71, 4, 73, 5);
+Control := New(PColoredText, Init(R, '00', $34));
+Dlg^.Insert(Control);
+
+R.Assign(71, 5, 73, 6);
+Control := New(PColoredText, Init(R, '00', $34));
+Dlg^.Insert(Control);
+
+R.Assign(71, 6, 73, 7);
+Control := New(PColoredText, Init(R, '00', $34));
+Dlg^.Insert(Control);
+
+R.Assign(71, 7, 73, 8);
+Control := New(PColoredText, Init(R, '00', $34));
+Dlg^.Insert(Control);
+
+R.Assign(65, 8, 67, 9);
+Control := New(PColoredText, Init(R, '00', $31));
+Dlg^.Insert(Control);
+
+R.Assign(71, 8, 73, 9);
+Control := New(PColoredText, Init(R, '00', $31));
+Dlg^.Insert(Control);
+
+R.Assign(77, 12, 79, 13);
+Control := New(PColoredText, Init(R, '00', $35));
+Dlg^.Insert(Control);
+
+R.Assign(65, 9, 67, 10);
+Control := New(PColoredText, Init(R, '00', $35));
+Dlg^.Insert(Control);
+
+R.Assign(77, 13, 79, 14);
+Control := New(PColoredText, Init(R, '00', $35));
+Dlg^.Insert(Control);
+
+R.Assign(77, 14, 79, 15);
+Control := New(PColoredText, Init(R, '00', $35));
+Dlg^.Insert(Control);
+
+R.Assign(77, 15, 79, 16);
+Control := New(PColoredText, Init(R, '00', $35));
+Dlg^.Insert(Control);
+
+R.Assign(77, 16, 79, 17);
+Control := New(PColoredText, Init(R, '00', $35));
+Dlg^.Insert(Control);
+
+R.Assign(77, 17, 79, 18);
+Control := New(PColoredText, Init(R, '00', $35));
+Dlg^.Insert(Control);
+
+R.Assign(77, 18, 79, 19);
+Control := New(PColoredText, Init(R, '00', $35));
+Dlg^.Insert(Control);
+
+R.Assign(77, 19, 79, 20);
+Control := New(PColoredText, Init(R, '00', $35));
+Dlg^.Insert(Control);
+
+R.Assign(77, 20, 79, 21);
+Control := New(PColoredText, Init(R, '00', $35));
+Dlg^.Insert(Control);
+
+R.Assign(77, 21, 79, 22);
+Control := New(PColoredText, Init(R, '00', $35));
+Dlg^.Insert(Control);
+
+R.Assign(67, 13, 69, 14);
+Control := New(PColoredText, Init(R, '00', $38));
+Dlg^.Insert(Control);
+
+R.Assign(67, 12, 69, 13);
+Control := New(PColoredText, Init(R, '00', $3E));
+Dlg^.Insert(Control);
+
+R.Assign(67, 14, 69, 15);
+Control := New(PColoredText, Init(R, '00', $3E));
+Dlg^.Insert(Control);
+
+R.Assign(65, 10, 69, 11);
+Control := New(PColoredText, Init(R, '0000', $36));
+Dlg^.Insert(Control);
+
+R.Assign(65, 11, 69, 12);
+Control := New(PColoredText, Init(R, '0000', $36));
+Dlg^.Insert(Control);
+
+R.Assign(60, 1, 61, 22);
+Control := New(PScrollBar, Init(R));
+Dlg^.Insert(Control);
+
+Dlg^.SelectNext(False);
+MakeDialog := Dlg;
+end;
