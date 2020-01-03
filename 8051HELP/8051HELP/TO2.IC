@@ -1,0 +1,428 @@
+; %COMBINED%  -> Do not REMOVE or MODIFY this line!!
+.topic 1051
+ Kostka 89C1051.
+ Nie posiada ukˆadu licznikowego T1 oraz ˆ¥cza szeregowego RS
+
+            ÚÄÄÄÄÂÄÄÂÄÄÄÄ¿
+     RESET Ä´1   ÀÄÄÙ  20ÃÄ Ucc
+      P3.0 Ä´2         19ÃÄ P1.7
+      P3.1 Ä´3         18ÃÄ P1.6
+     XTAL2 Ä´4         17ÃÄ P1.5
+     XTAL1 Ä´5         16ÃÄ P1.4
+ {INT0:INT0}/P3.2 Ä´6         15ÃÄ P1.3
+ {INT1:INT0}/P3.3 Ä´7         14ÃÄ P1.2
+   {T0:T0}/P3.4 Ä´8         13ÃÄ P1.1/{AIN-:AINminus}
+      P3.5 Ä´9         12ÃÄ P1.0/{AIN+:AINplus}
+       GND Ä´10        11ÃÄ P3.7
+            ÀÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+.topic 2051
+ Kostka 89C2051. 2KB pami©ci Flash.
+
+            ÚÄÄÄÄÂÄÄÂÄÄÄÄ¿
+     RESET Ä´1   ÀÄÄÙ  20ÃÄ Ucc
+      P3.0 Ä´2         19ÃÄ P1.7
+      P3.1 Ä´3         18ÃÄ P1.6
+     XTAL2 Ä´4         17ÃÄ P1.5
+     XTAL1 Ä´5         16ÃÄ P1.4
+ {INT0:INT0}/P3.2 Ä´6         15ÃÄ P1.3
+ {INT1:INT0}/P3.3 Ä´7         14ÃÄ P1.2
+   {T0:T0}/P3.4 Ä´8         13ÃÄ P1.1/{AIN-:AINminus}
+   {T1:T1}/P3.5 Ä´9         12ÃÄ P1.0/{AIN+:AINplus}
+       GND Ä´10        11ÃÄ P3.7
+            ÀÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+;
+; topic created 15.03.00 20:59:10
+;
+.TOPIC 4051
+ Kostka 89C4051. 4KB pami©ci Flash.
+
+            ÚÄÄÄÄÂÄÄÂÄÄÄÄ¿
+     RESET Ä´1   ÀÄÄÙ  20ÃÄ Ucc
+      P3.0 Ä´2         19ÃÄ P1.7
+      P3.1 Ä´3         18ÃÄ P1.6
+     XTAL2 Ä´4         17ÃÄ P1.5
+     XTAL1 Ä´5         16ÃÄ P1.4
+ {INT0:INT0}/P3.2 Ä´6         15ÃÄ P1.3
+ {INT1:INT0}/P3.3 Ä´7         14ÃÄ P1.2
+   {T0:T0}/P3.4 Ä´8         13ÃÄ P1.1/{AIN-:AINminus}
+   {T1:T1}/P3.5 Ä´9         12ÃÄ P1.0/{AIN+:AINplus}
+       GND Ä´10        11ÃÄ P3.7
+            ÀÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+.topic AINminus
+ AIN-
+ ßßßß
+Wej˜cie odwracaj¥ce komparatora analogowego.
+
+  {Wej˜cie AIN+:AINplus}
+.topic AINplus
+ AIN+
+ ßßßß
+Wej˜cie nieodwracaj¥ce komparatora komparatora analogowego.
+Komparator ten operuje w zakresie napi©† od 0V do +5V DC.
+
+  {Wej˜cie AIN-:AINminus}
+.topic BudowaProgramu
+ Budowa programu Ü
+ ßßßßßßßßßßßßßßßßß
+Program napisany w asemblerze rodziny 8051 skˆada si© z wierszy o
+postaci:
+
+     {[Etykieta]:Etykiety}:   {Rozkaz:Rozkaz}     ;[Komentarz]
+ lub {[Etykieta]:Etykiety}:   {Dyrektywa:Dyrektywa}  ;[Komentarz]
+
+Komentarz jest ci¥giem znak¢w rozpoczynaj¥cym si© od znaku ˜rednika
+';'. Wyst¥pienie etykiety i komentarza nie jest wymagane. Przykˆadowy
+program zamieszczono poni¾ej:
+
+ Led     {Bit:DyrektywaBIT} P3.0      ;deklaracja staˆej Led
+
+         {Org:DyrektywaORG} 0         ;pocz¥tek programu
+         Orl IE,#84h   ;odblokowanie przerwania od INT1
+         Jmp P©tla     ;skocz do p©tli
+
+         Org 13h       ;adres obsˆugi przerwania INT1
+         Cpl Led
+         Reti          ;powr¢t z obsˆugi przerwania
+
+ P©tla:  Jmp $         ;p©tla
+         {END:DyrektywaEND}
+
+.topic Dyrektywa
+topic t20006
+
+.topic DyrektywaBIT
+Za pomoc¥ dyrektywy BIT mo¾na zadeklarowa† staˆ¥, kt¢ra b©dzie
+u¾ywana w dalszej cz©˜ci programu jako adres bitowy.
+
+      SDA   bit     P1.1
+      SCL   bit     P1.2
+
+      AJmp  Start
+
+      .... kod ....
+
+      Start:
+            SetB    SDA
+            SetB    SCL
+            acall   I2C_Delay
+            Clr     SCL
+
+Deklaracja bitu mo¾e zawiera† jedynie jawn¥ warto˜†, np.
+P3.2 lub 40h. Staˆe zadleklarowane dyrektyw¥ BIT mog¥ bra†
+udziaˆ w obliczniu staˆych {EQURAM:DyrektywaEQURAM} i {EQUROM:DyrektywaEQUROM}
+.TOPIC DyrektywaEND
+
+
+.topic DyrektywaEQURAM
+topic DyrektywaEQU
+
+.topic DyrektywaORG
+topic t20067
+
+.topic Etykiety
+ Etykiety Ü
+ ßßßßßßßßßß
+Etykieta jest identyfikatorem opatruj¥cym rozkaz lub dyrektyw©. Jest
+jej przypisany adres miejsca wywoˆania. Gdy u¾ytkownik pragnie
+skierowa† wykonywanie programu w miejsce oznaczone etykiet¥, posˆuguje
+si© jej nazw¥, a nie jej fizycznym adresem. Etykieta skˆada si© z
+ci¥gu liter i cyfr rozpoczynaj¥cego si© od litery. W skˆad etykiety
+mog¥ wej˜† znaki: 'a'..'z', '¥'..'«', '_', '@'. Wielko˜† liter nie ma
+znaczenia. Etykieta powinna by† zakoäczona znakiem ':'. W programie
+dana etykieta mo¾e wyst¥pi† tylko raz, ale mo¾e by† do niej wiele
+odwoˆaä.
+
+ np.
+           JC P©tla
+           Add A,R7
+ P©tla:    Jmp $
+           .
+           Cjne A,#99,P©tla
+
+.TOPIC FunkcjaAND
+
+
+.TOPIC FunkcjaMOD
+
+
+.TOPIC FunkcjaOR
+
+
+.TOPIC FunkcjaSHL
+
+
+.TOPIC FunkcjaSHR
+
+
+.TOPIC FunkcjaXOR
+
+
+.topic INT0
+ INTn
+ ßßßß
+Wej˜cie przerwania zewn©trznego nr n.
+
+.topic LCD
+ Rozkazy sterownika HD44780 wy˜wietlacza LCD Ü
+ ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³        Rozkaz        ³                Opis                            ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³0  0  0  0  0  0  0  1³ CLEAR DISPLAY - kasuj dane wy˜wietlacza i ustaw³
+ ³                      ³                 kursor pod adres 0.            ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³0  0  0  0  0  0  1  x³ RETURN HOME - ustaw kursor pod adres 0. Ustaw  ³
+ ³                      ³ dane o adresie 0 na pozycji 1 wy˜wietlacza.    ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³0  0  0  0  0  1 I/D S³ ENTRY MODE SET                                 ³
+ ³                      ³  I/D - Increment/Decrement zwi©kszaj/zmniejszaj³
+ ³                      ³        (1/0) adres kursora po ka¾dym wpisie    ³
+ ³                      ³        lub odczycie danych                     ³
+ ³                      ³  S=1 - jednoczesny obr¢t danych wy˜wietlacza   ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³0  0  0  0  1  D  C  B³ DISPLAY ON/OFF CONTROL                         ³
+ ³                      ³  D - wˆ¥cz/wyˆ¥cz (1/0) caˆy wy˜wietlacz       ³
+ ³                      ³  C - wˆ¥cz/wyˆ¥cz (1/0) kursor                 ³
+ ³                      ³  B - wˆ¥cz/wyˆ¥cz (1/0) mruganie kursora       ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³0  0  0  1 S/C R/L x x³ CURSOR AND DISPLAY SHIFT                       ³
+ ³                      ³  S/C - obr¢t danych wy˜wietlacza/przesuni©cie  ³
+ ³                      ³        kursora (1/0)                           ³
+ ³                      ³  R/L - obr¢t(przesuni©cie) w prawo/lewo (1/0)  ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³0  0  1 DL  N  F  x  x³ FUNCTION SET                                   ³
+ ³                      ³  DL - 8/4 bitowa szyna steruj¥ca (1/0)         ³
+ ³                      ³  N  - 2 linie/1 linia wy˜wietlacza (1/0)       ³
+ ³                      ³  F  - znaki 5x10/5x7 punkt¢w (1/0)             ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³0  1 A5 A4 A3 A2 A1 A0³ SET CG_RAM ADDRESS - ustawienie adresu genera- ³
+ ³                      ³ tora znak¢w (A5..A0) w liczniku adres¢w. Po tej³
+ ³                      ³ operacji mo¾na pisa†/czyta† generator znak¢w.  ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³1 A6 A5 A4 A3 A2 A1 A0³ SET DD_RAM ADDRESS - ustawienie adresu danych  ³
+ ³                      ³                     (A6..A0) w liczniku adres¢w³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+.topic Literaly
+ Literaˆy Ü
+ ßßßßßßßßßß
+Literaˆy s¥ nazwami staˆych. Asembler dopuszcza caˆkowite literaˆy
+arytmetyczne dziesi©tne, heksadecymalne (szesnastkowe), ¢semkowe i
+binarne (dw¢jkowe).
+
+Literaˆ dziesi©tny skˆada si© z ci¥gu cyfr dziesi©tnych 0..9. Na koäcu
+literaˆu dziesi©tnego mo¾na postawi† znak 'd' lub 'D'. Cyfra w kodzie
+dziesi©tnym nie mo¾e przekracza† 2147483647.
+
+Literaˆ heksadecymalny skˆada si© z ci¥gu cyfr heksadecymalnych 0..F.
+Na koäcu literaˆu heksadecymalnego nale¾y postawi† znak 'h' lub 'H'.
+Cyfra w kodzie heksadecymalnym nie mo¾e przekracza† 7FFFFFFFh.
+
+Literaˆ ¢semkowy skˆada si© z ci¥gu cyfr ¢semkowych 0..7. Na koäcu
+literaˆu ¢semkowego nale¾y postawi† znak 'o' lub 'O'. Cyfra w kodzie
+¢semkowym nie mo¾e przekracza† 17777777777o.
+
+Literaˆ binarny skˆada si© z ci¥gu cyfr binarnych 0..1. Na koäcu
+literaˆu binarnego nale¾y postawi† znak 'b' lub 'B'. Cyfra w kodzie
+binarnym nie mo¾e przekracza† 11111111111111111111b.
+
+.topic NC_GND
+ NC/GND
+ ßßßßßß
+W zale¾no˜ci od producenta wyprowadzenie to nie ma poˆ¥czenia z
+wewn©trzn¥ struktur¥ lub jest podˆ¥czone do masy.
+
+.topic PriorytetyOperatorow
+ Priorytet operator¢w Ü
+ ßßßßßßßßßßßßßßßßßßßßßß
+W programie zaimplementowano cztery poziomy priorytet¢w operator¢w:
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³Operatory/Funkcje³ Priorytet  ³         Uwagi          ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³      {@:Malpka}, {#:Hash}       ³ najwy¾szy  ³adres po˜r.,arg.bezpo˜r.³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³       -         ³  wy¾szy    ³ minus przed argumentem ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³      *  /       ³            ³                        ³
+ ³ {OR():FunkcjaOR} {AND():FunkcjaAND} {XOR():FunkcjaXOR}³  ni¾szy    ³                        ³
+ ³{MOD():FunkcjaMOD} {SHL():FunkcjaSHL} {SHR():FunkcjaSHR}³            ³                        ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³      +  -       ³ najni¾szy  ³dodawanie i odejmowanie ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+.topic Rodzina8051
+ Rodzina mikroprocesor¢w 8051
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÄÄÂÄÄÄÄÂÄÄÄÂÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ ³   Typ ukˆadu     ³ROM³RAM³ I/O  ³Licz³RS ³IRQ ³ Inne
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÅÄÄÄÅÄÄÄÅÄÄÄÄÄÅÄÄÄÄÅÄÄÄÅÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ C51 LCC LCC_AMD QFP³ 4 ³128³ 32  ³  2 ³1  ³ 5/2³
+ C51FA LCC QFP      ³ 8 ³256³ 32  ³  3 ³1' ³ 7/2³ PCA
+ C51FB LCC QFP      ³16 ³256³ 32  ³  3 ³1' ³ 7/4³ PCA
+ C51FC LCC QFP      ³32 ³256³ 32  ³  3 ³1' ³ 7/4³ PCA
+ C51GB              ³ 8 ³256³ 48  ³  3 ³2' ³15/4³ 2*PCA  AC 8/8
+ CL51 LCC QFP       ³ 4 ³128³ 32  ³  2 ³1  ³13/2³
+ L51FA LCC QFP      ³ 8 ³256³ 32  ³  3 ³1' ³ 7/2³ PCA
+ L51FB LCC QFP      ³16 ³256³ 32  ³  3 ³1' ³ 7/2³ PCA
+ LV51 LCC QFP       ³ 4 ³128³ 32  ³  2 ³1  ³ 5/2³
+ C52 LCC QFP        ³ 8 ³256³ 32  ³  3 ³1' ³ 6/2³
+ C52T2 LCC          ³ 8 ³256³ 32  ³  2 ³1' ³ 5/2³
+ CL52 LCC QFP       ³ 8 ³256³ 32  ³  3 ³1  ³14/2³
+ LV52 LCC QFP       ³ 8 ³256³ 32  ³  3 ³1  ³ 6/2³
+ C54 LCC QFP        ³16 ³256³ 32  ³  3 ³1' ³ 6/4³
+ C55 LCC QFP        ³20 ³256³ 32  ³  3 ³1  ³ 6/2³
+ C58 LCC QFP        ³32 ³256³ 32  ³  3 ³1' ³ 6/4³
+ C154 LCC QFP       ³ 8 ³256³ 32  ³  3 ³1' ³ 6/2³
+ C310 LCC QFP       ³ - ³256³ 32  ³  3 ³1' ³10/2³ 2*DPTR
+ C320 LCC QFP       ³ - ³256³ 32  ³  3 ³2' ³13/3³ 2*DPTR
+ C323 LCC QFP       ³ - ³256³ 32  ³  3 ³2' ³13/3³ 2*DPTR
+ C324 LCC           ³ - ³256³ 32  ³  2 ³1  ³ 5/2³ 2*DPTR
+ CL410 LCC QFP      ³ 4 ³128³ 32  ³  2 ³-  ³13/2³ IıC
+ CL411 LCC QFP      ³ 4 ³256³ 32  ³  2 ³1  ³13/2³
+ C451               ³ 4 ³128³44-48³  2 ³1  ³ 5/2³
+ C453               ³ 8 ³256³ 48  ³  2 ³1' ³ 7/2³
+ C501 LCC QFP       ³ 8 ³256³ 32  ³  3 ³1  ³ 6/2³
+ C502 LCC QFP       ³16 ³256³ 32  ³  3 ³1  ³ 6/2³ 256B XRAM, 8*DPTR
+ C503               ³ 8 ³256³ 32  ³  3 ³1  ³ 7/2³ AC 10/8
+ C504 LCC QFP       ³16 ³256³ 32  ³  2 ³1' ³ 5/2³ MDU
+ C508 LCC QFP       ³32 ³256³ 32  ³  2 ³1' ³ 5/2³ MDU
+ C515               ³ 8 ³256³ 48  ³  2 ³1  ³12/4³ AC 8/8,CCU
+ C515A              ³32 ³256³ 48  ³  2 ³1  ³12/4³ AC 10/8,CCU,1KB XRAM
+ C517               ³ 8 ³256³ 56  ³  2 ³2  ³14/4³ MDU,AC 8/12,CCU,8*DPTR
+ C517A              ³32 ³256³ 56  ³  2 ³2  ³17/4³ MDU,AC 10/12,CCU,2KB XRAM,8*DPTR
+ C520 LCC QFP       ³16 ³256³ 32  ³  3 ³2' ³13/3³ 1KB XRAM,2*DPTR
+ C521 LCC           ³ 8 ³256³ 32  ³  2 ³1  ³ 5/2³ 2*DPTR
+ C524 LCC QFP       ³16 ³256³ 32  ³  3 ³1  ³ 7/2³ IıC,256B XRAM
+ C528 LCC QFP       ³32 ³256³ 32  ³  3 ³1  ³ 7/2³ IıC,256B XRAM
+ CE528_LCC QFP      ³32 ³256³ 32  ³  3 ³1  ³ 7/2³ IıC,256B XRAM
+ C530               ³16 ³256³ 32  ³  3 ³2' ³14/3³ IıC,1KB XRAM,RTC,2*DPTR
+ C541 LCC           ³16 ³256³ 32  ³  2 ³1  ³ 5/2³ 2*DPTR
+ C550 LCC           ³ 4 ³128³ 32  ³  2 ³1  ³ 7/2³ AC 8/8
+ C552               ³ 8 ³256³ 40  ³  2 ³1  ³15/2³ AC 10/8,IıC,CCU,2*PWM
+ CE558              ³32 ³256³ 40  ³  2 ³1  ³15/2³ AC 10/8,IıC,CCU,2*PWM,768B XRAM
+ CE559              ³48 ³256³ 40  ³  2 ³1  ³15/2³ AC 10/8,IıC,CCU,2*PWM,1280B XRAM
+ C562               ³ 8 ³256³ 40  ³  2 ³1  ³14/2³ AC 8/8,CCU,2*PWM
+ {C1051:1051}              ³ 1 ³ 64³ 15  ³  1 ³ - ³ 3/2³ COMP
+ {C2051:2051}              ³ 2 ³128³ 15  ³  2 ³ 1 ³ 5/2³ COMP
+ {C4051:4051}              ³ 4 ³128³ 15  ³  2 ³ 1 ³ 5/2³ COMP
+
+
+ U W A G A:
+
+  - na rysunkach nie zaznaczono rodzaju aktywno˜ci sygnaˆ¢w,
+  - na obudowach LCC i QFP nie zaznaczono
+    RxD, TxD, INT0, INT1, T0, T1, WR i RD.
+
+  ROM   - w KB,
+  RAM   - w bajtach,
+  I/O   - ilo˜ci linii,
+  Licz  - ilo˜† licznik¢w,
+  RS    - ilo˜† ˆ¥czy szeregowych,
+  IRQ   - ilo˜† przerwaä/ilo˜† poziom¢w przerwaä,
+  AC    - przetwornik analogowo-cyfrowy, ilo˜† bit¢w/ilo˜† wej˜†,
+  CCU   - ukˆad por¢wnuj¥co-zatrzaskuj¥cy,
+  COMP  - zesp¢ˆ komparator¢w,
+  DPTR  - wska«nik danych,
+  EEPROM- pami©† staˆa programowalna elektrycznie,
+  MDU   - szybki ukˆad arytmetyki wielokrotnej precyzji,
+  PWM   - wyj˜cie przetwornika cyfrowo-analogowego,
+  RTC   - zegar czasu rzeczywistego,
+  SPI   - interfejs szeregowy do transmisji w trybie synchronicznym,
+  XRAM  - wewn©trzna pami©† RAM widziana przez uP jako pami©† zewn©trzna.
+  IıC   - sprz©towa obsˆuga magistrali IıC (IIC)
+
+.topic Rozkaz
+Rozkaz
+
+.topic RxD
+ RxD
+ ßßß
+Wej˜cie szeregowe.
+
+.TOPIC SP
+
+
+.topic Stale
+ Staˆe Ü
+ ßßßßßßß
+Staˆa (etykieta staˆej) jest identyfikatorem reprezentuj¥cym warto˜†
+liczbow¥. Skˆada si© z ci¥gu liter i cyfr rozpoczynaj¥cego si© od
+litery. W skˆad staˆej mog¥ wej˜† znaki: 'a'..'z', '¥'..'«', '_', '@'.
+Wielko˜† liter nie ma znaczenia. Do deklaracji warto˜ci staˆej sˆu¾¥
+dyrektywy {EQU:DyrektywaEQU} i {BIT:DyrektywaBIT}. W programie deklaracja danej staˆej mo¾e wyst¥pi†
+tylko raz, ale mo¾e by† do niej wiele odwoˆaä
+
+ np.   Led1   BIT P3.2
+              Setb Led1
+              Clr Led1
+
+.topic T0
+ T0
+ ßß
+Wej˜cie doprowadzaj¥ce impulsy do ukˆadu czasowo-licznikowego nr 0.
+
+.topic T1
+ T1
+ ßß
+Wej˜cie doprowadzaj¥ce impulsy do ukˆadu czasowo-licznikowego nr 1.
+
+.topic TrybyAdresowania
+ Tryby adresowania Ü
+ ßßßßßßßßßßßßßßßßßßß
+Asembler rodziny 8051 dopuszcza 5 tryb¢w adresowania:
+ - rejestrowe - adresowanie przez nazw©:
+   - rejestr¢w roboczych {R0..R7:R0R7},
+   - akumulatora {A:Akumulator},
+   - wska«nika danych {DPTR:DPTR},
+ - bezpo˜rednie - 8-bitowy adres w tre˜ci rozkazu obejmuj¥cy:
+   - pami©† wewn©trzn¥ RAM, adresy 0..127,
+   - obszar rejestr¢w specjalnych SFR, adresy 128...255,
+ - bezpo˜rednie bit¢w - 8-bitowy adres bitu w tre˜ci rozkazu obejmuj¥cy
+   obszar pami©ci wewn©trznej RAM o adresach 20h..2Fh i rejestry specjalne
+   (o ile istniej¥) o adresach: 80h, 88h, 90h, 98h, A0h, A8h, B0h, B8h,
+   C0h, C8h, D0h, D8h, E0h, E8h, F0h, F8h,
+ - natychmiastowe - operand jest staˆ¥ umieszczon¥ w pami©ci programu,
+ - po˜rednie zawarto˜ci¥ rejestru - adres zawarty jest we wska«niku danych
+   {R0ÿlubÿR1:Ri},
+ - po˜rednie zawarto˜ci¥ rejestru bazowego i indeksowego - do 16-bitowego
+   adresu bazowego ({DPTR:DPTR} lub {PC:PC}) jest dodawana 8-bitowa zawarto˜†
+   akumulatora {A:Akumulator}.
+
+.topic TxD
+ TxD
+ ßßß
+Wyj˜cie szeregowe.
+
+.topic UPP
+ Upp
+ ßßß
+Wej˜cie napi©cia programuj¥cego wewn©trzn¥ pami©† EPROM, odnosi si©
+tylko do mikrokomputer¢w wyposa¾onych w tak¥ pami©†, warto˜† Upp
+zale¾y od typu mikrokomputera i wynosi najcz©˜ciej 12 lub 21 V.
+
+;
+; topic imported: D:\8051_EMU.!!!\HELP\HC\EMU.TXT
+; topic created 15.03.00 20:35:28
+;
+.topic ZasobyProcka
+ Nazwy zasob¢w procesora Ü
+ ßßßßßßßßßßßßßßßßßßßßßßßßß
+ {A:Akumulator}
+ {B:RejestrB}
+ {C:FlagaC}
+ {DPTR:DPTR}
+ {PC:PC}
+ {R0..R7:R0R7}
+
+ {PSW:PSW}
+ {TMOD:RejestrTMOD}
+ {TCON:RejestrTCON}
+ {IE:RejestrIE}
+ {IP:RejestrIP}
+ {SP:SP}
+ {SCON:RejestrSCON}
+ {PCON:RejestrPCON}

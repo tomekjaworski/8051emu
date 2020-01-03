@@ -1,0 +1,1841 @@
+; %COMBINED%  -> Do not REMOVE or MODIFY this line!!
+;
+; topic imported: D:\8051_EMU.!!!\HELP\HC\EMU.TXT
+; topic created 15.03.00 20:35:24
+;
+.topic ACALL
+ ACALL adr11   SUBROUTINE CALL ON PAGE
+ ßßßßßßßßßßß   wywoˆanie podprogramu na stronie
+
+ Operacje: PC   PC + 2
+           SP   SP + 1
+          (SP)  PC(7-0)
+           SP   SP + 1
+          (SP)  PC(15-8)
+      PC(10-0)  adr11
+
+Licznik rozkaz¢w PC zwi©kszony o 2 ˆadowany jest na stos. Wska«nik
+stosu SP zwi©kszony jest o 2. Do bit¢w 0-10 licznika rozkaz¢w
+wpisywany jest 11-bitowy adres bezpo˜redni. Nast©puje wywoˆanie
+podprogramu o adresie znajduj¥cym si© na tej samej stronie, co
+pierwszy bajt nast©pnego rozkazu.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³a10 a9  a8   1 ³ 0   0   0   1 ³ 11H,31H,51H,71H,91H,B1H,D1H,F1H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 2
+
+.topic ADD
+ ADD A,<argument> Ü   ADD TO ACCUMULATOR
+ ßßßßßßßßßßßßßßßßßß   dodaj do akumulatora
+
+Do akumulatora {A:Akumulator} dodawany jest wskazany argument. Wynik pozostaje w
+akumulatorze. Modyfikowane s¥ {wska«niki:Wskazniki}.
+
+ ADD A,{Rn:Rn}
+ ßßßßßßßß
+ Operacja: A  A + Rn
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   1   0 ³ 1  r2  r1  r0 ³ 28H-2FH
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ ADD A,@{Ri:Ri}
+ ßßßßßßßßß
+ Operacja: A  A + (Ri)
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   1   0 ³ 0   1   1   i ³ 26H,27H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ ADD A,adr8
+ ßßßßßßßßßß
+ Operacja: A  A + (adr8)
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   1   0 ³ 0   1   0   1 ³ 25H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+ ADD A,#n
+ ßßßßßßßß
+ Operacja: A  A + n
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   1   0 ³ 0   1   0   0 ³ 24H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³               n               ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+.topic ADDC
+ ADDC A,<argument> Ü   ADD TO ACCUMULATOR WITH CARRY
+ ßßßßßßßßßßßßßßßßßßß   dodaj do akumulatora z przeniesieniem
+
+Do akumulatora {A:Akumulator} dodawany jest wska«nik przeniesienia CY i wskazany
+argument. Wynik pozostaje w akumulatorze. Modyfikowane s¥ {wska«niki:Wskazniki}
+
+ ADDC A,{Rn:Rn}
+ ßßßßßßßßß
+ Operacja: A  A + Rn + CY
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   1   1 ³ 1  r2  r1  r0 ³ 38H-3FH
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ ADDC A,@{Ri:Ri}
+ ßßßßßßßßßß
+ Operacja: A  A + (Ri) + CY
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   1   1 ³ 0   1   1   i ³ 36H,37H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ ADDC A,adr8
+ ßßßßßßßßßßß
+ Operacja: A  A + (adr8) + CY
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   1   1 ³ 0   1   0   1 ³ 35H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+ ADDC A,#n
+ ßßßßßßßßß
+ Operacja: A  A + n + CY
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   1   1 ³ 0   1   0   0 ³ 34H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³               n               ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+.topic AJMP
+ AJMP adr11   UNCONDITIONAL JUMP ON PAGE
+ ßßßßßßßßßß   skocz bezwarunkowo na stronie
+
+ Operacja: PC(10-0)  adr11
+
+Do bit¢w 0-10 licznika rozkaz¢w PC wpisywany jest 11-bitowy adres
+bezpo˜redni. Nast©puje skok pod adres znajduj¥cy si© na tej samej
+stronie, co pierwszy bajt nast©pnego rozkazu.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³a10 a9  a8   0 ³ 0   0   0   1 ³ 01H,21H,41H,61H,81H,A1H,C1H,E1H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 2
+
+.topic ANL
+ ANL <argument1>,<argument2> Ü   LOGICAL AND
+ ßßßßßßßßßßßßßßßßßßßßßßßßßßßßß   pomn¢¾ logicznie
+
+Wykonywany jest iloczyn logiczny wskazanych argument¢w. Wynik
+wpisywany jest w miejsce argumentu1.
+
+ ANL A,{Rn:Rn}
+ ßßßßßßßß
+ Operacja: A  A and Rn
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   0   1 ³ 1  r2  r1  r0 ³ 58H-5FH
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ ANL A,@{Ri:Ri}
+ ßßßßßßßßß
+ Operacja: A  A and (Ri)
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   0   1 ³ 0   1   1   i ³ 56H,57H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ ANL A,adr8
+ ßßßßßßßßßß
+ Operacja: A  A and (adr8)
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   0   1 ³ 0   1   0   1 ³ 55H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+ ANL A,#n
+ ßßßßßßßß
+ Operacja: A  A and n
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   0   1 ³ 0   1   0   0 ³ 54H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³               n               ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+ ANL adr8,A
+ ßßßßßßßßßß
+ Operacja: (adr8)  (adr8) and A
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   0   1 ³ 0   0   1   0 ³ 52H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+Uwaga: Rozkaz typu {odczyt-modyfikacja-zapis:OdczytModyfikacjaZapis}.
+
+ ANL adr8,#n
+ ßßßßßßßßßßß
+ Operacja: (adr8)  (adr8) and n
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   0   1 ³ 0   0   1   1 ³ 53H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³               n               ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 3
+
+Uwaga: Rozkaz typu {odczyt-modyfikacja-zapis:OdczytModyfikacjaZapis}.
+
+ ANL C,bit   LOGICAL AND CARRY WITH DIRECT BIT
+ ßßßßßßßßß   pomn¢¾ logicznie przez bit
+
+ Operacja: CY  CY and (bit)
+
+{Wska«nik:Wskazniki} przeniesienia CY jest mno¾ony logicznie przez wskazany bit.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   0   0 ³ 0   0   1   0 ³ 82H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³b7  b6  b5  b4  b3  b2  b1  b0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 2
+
+ ANL C,/bit   LOGICAL AND CARRY WITH COMPLEMENT OF DIRECT BIT
+ ßßßßßßßßßß   pomn¢¾ logicznie przez negacj© bitu
+
+ Operacja: CY  CY and (not bit)
+
+{Wska«nik:Wskazniki} przeniesienia CY jest mno¾ony logicznie przez negacj©
+wskazanego bitu.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   1   1 ³ 0   0   0   0 ³ B0H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³b7  b6  b5  b4  b3  b2  b1  b0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 2
+
+.topic CJNE
+ CJNE <argument1>,<argument2>,rel Ü   COMPARE AND JUMP IF NOT EQUAL
+ ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß   por¢wnaj argumenty i skocz,
+                                      gdy nie s¥ r¢wne
+
+Por¢wnywane s¥ wskazane argumenty. Je˜li nie s¥ r¢wne, to do licznika
+rozkaz¢w PC jest dodawane przesuni©cie rel. Skok nast©puje wzgl©dem
+adresu pierwszego bajtu nast©pnego rozkazu. Modyfikowane s¥ {wska«niki:Wskazniki}
+
+ CJNE A,adr8,rel
+ ßßßßßßßßßßßßßßß
+ Operacje: PC  PC + 3
+           Je˜li A <> (adr8), to PC  PC + rel
+           Je˜li A < (adr8), to CY  1 w przeciwnym razie CY  0
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   1   1 ³ 0   1   0   1 ³ B5H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³              rel              ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 3
+
+ CJNE A,#n,rel
+ ßßßßßßßßßßßßß
+ Operacje: PC  PC + 3
+           Je˜li A <> n, to PC  PC + rel
+           Je˜li A < n, to CY  1 w przeciwnym razie CY  0
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   1   1 ³ 0   1   0   0 ³ B4H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³               n               ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³              rel              ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 3
+
+ CJNE {Rn:Rn},#n,rel
+ ßßßßßßßßßßßßßß
+ Operacje: PC  PC + 3
+           Je˜li Rn <> n, to PC  PC + rel
+           Je˜li Rn < n, to CY  1 w przeciwnym razie CY  0
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   1   1 ³ 1  r2  r1  r0 ³ B8H-BFH
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³               n               ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³              rel              ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 3
+
+ CJNE @{Ri:Ri},#n,rel
+ ßßßßßßßßßßßßßßß
+ Operacje: PC  PC + 3
+           Je˜li (Ri) <> n, to PC  PC + rel
+           Je˜li (Ri) < n, to CY  1 w przeciwnym razie CY  0
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   1   1 ³ 0   1   1   i ³ B6H,B7H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³               n               ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³              rel              ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 3
+
+.topic CLR
+ CLR A   CLEAR ACCUMULATOR
+ ßßßßß   wyzeruj akumulator
+
+ Operacja: A  0
+
+Akumulator {A:Akumulator} jest zerowany.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   1   0 ³ 0   1   0   0 ³ E4H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ CLR bit   CLEAR BIT
+ ßßßßßßß   wyzeruj bit
+
+ Operacja: (bit)  0
+
+Wskazany bit jest zerowany.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   0   0 ³ 0   0   1   0 ³ C2H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³b7  b6  b5  b4  b3  b2  b1  b0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+Uwaga: Rozkaz typu {odczyt-modyfikacja-zapis:OdczytModyfikacjaZapis}.
+
+ CLR C   CLEAR CARRY FLAG
+ ßßßßß   wyzeruj wska«nik przeniesienia
+
+ Operacja: CY  0
+
+Zerowany jest {wska«nik:Wskazniki} przeniesienia CY.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   0   0 ³ 0   0   1   1 ³ C3H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+.topic CPL
+ CPL A   COMPLEMENT ACCUMULATOR
+ ßßßßß   neguj akumulator
+
+ Operacja: A  not A
+
+Bity akumulatora {A:Akumulator} s¥ negowane.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   1   1 ³ 0   1   0   0 ³ F4H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ CPL bit   COMPLEMENT BIT
+ ßßßßßßß   neguj bit
+
+ Operacja: (bit)  not (bit)
+
+Wskazany bit jest negowany.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   1   1 ³ 0   0   1   0 ³ B2H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³b7  b6  b5  b4  b3  b2  b1  b0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+Uwaga: Rozkaz typu {odczyt-modyfikacja-zapis:OdczytModyfikacjaZapis}.
+
+ CPL C   COMPLEMENT CARRY FLAG
+ ßßßßß   neguj wska«nik przeniesienia
+
+ Operacja: CY  not CY
+
+Negowany jest {wska«nik:Wskazniki} przeniesienia CY.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   1   1 ³ 0   0   1   1 ³ B3H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+.topic DA
+ DA A   DECIMAL ADJUST
+ ßßßß   korekcja dziesi©tna
+
+ Operacja: Je˜li A(3-0) > 9 lub AC = 1, to A  A + 6
+           Je˜li A(7-4) > 9 lub CY = 1, to A  A + 60H
+
+Je˜li warto˜† bit¢w 0-3 akumulatora {A:Akumulator} jest wi©ksza ni¾ 9 lub jest
+ustawiony wska«nik AC, to akumulator jest zwi©kszany o 6. Je˜li
+warto˜† bit¢w 4-7 akumulatora jest wi©ksza ni¾ 9 lub jest ustawiony
+wska«nik CY, to akumulator jest zwi©kszany o 60h. Je˜li podczas tej
+operacji wyst¥piˆo przeniesienie, to do {wska«nika:Wskazniki} CY jest wpisywana
+jedynka.
+
+Operacja DA A sprowadza zawarto˜† akumulatora (b©d¥c¥ wynikiem
+dodawania dw¢ch upakowanych liczb BCD) do postaci dw¢ch cyfr
+dziesi©tnych. W zwi¥zku z tym rozkaz ten powinien by† u¾yty tylko w
+poˆ¥czeniu z rozkazem {ADD:ADD} lub {ADDC:ADDC}. Przeniesienie CY jest sygnaˆem, ¾e
+wynik przekroczyˆ 99, co umo¾liwia realizacj© dodawania dziesi©tnego
+wielokrotnej precyzji.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   0   1 ³ 0   1   0   0 ³ D4H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+.topic DEC
+ DEC <argument> Ü   DECREMENT
+ ßßßßßßßßßßßßßßßß   zmniejsz o 1
+
+Wskazany argument jest zmniejszany o 1.
+
+ DEC A
+ ßßßßß
+ Operacja: A  A - 1
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   0   1 ³ 0   1   0   0 ³ 14H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ DEC {Rn:Rn}
+ ßßßßßß
+ Operacja: Rn  Rn - 1
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   0   1 ³ 1  r2  r1  r0 ³ 18H-1FH
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ DEC @{Ri:Ri}
+ ßßßßßßß
+ Operacja: (Ri)  (Ri) - 1
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   0   1 ³ 0   1   1   i ³ 16H,17H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ DEC adr8
+ ßßßßßßßß
+ Operacja: (adr8)  (adr8) - 1
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   0   1 ³ 0   1   0   1 ³ 15H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+Uwaga: Rozkaz typu {odczyt-modyfikacja-zapis:OdczytModyfikacjaZapis}.
+
+.topic DIV
+ DIV AB   DIVIDE
+ ßßßßßß   dziel
+
+ Operacje: A  A div B
+           B  A mod B
+
+O˜miobitowa liczba bez znaku, zawarta w akumulatorze {A:Akumulator}, jest dzielona
+przez 8-bitow¥ liczb© bez znaku z rejestru {B:RejestrB}. Cz©˜† caˆkowita ilorazu
+pozostaje w akumulatorze, a reszta w rejestrze B. Modyfikowane s¥
+{wska«niki:Wskazniki}.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   0   0 ³ 0   1   0   0 ³ 84H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  4
+ Liczba bajt¢w: 1
+
+.topic DJNZ
+ DJNZ <argument>,rel Ü   DECREMENT AND JUMP IF NOT ZERO
+ ßßßßßßßßßßßßßßßßßßßßß   zmniejsz o 1 i skocz, gdy nie zero
+
+Wskazany argument jest dekrementowany. Je˜li po tej operacji jest on
+r¢¾ny od zera, to jest wykonywany skok wzgl©dny o przesuni©cie rel.
+Skok nast©puje wzgl©dem adresu pierwszego bajtu nast©pnego rozkazu.
+
+ DJNZ {Rn:Rn},rel
+ ßßßßßßßßßßß
+ Operacje: PC  PC + 2
+           Rn  Rn - 1
+           Je˜li Rn <> 0, to PC  PC + rel
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   0   1 ³ 1  r2  r1  r0 ³ D8H-DFH
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³              rel              ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 2
+
+ DJNZ adr8,rel
+ ßßßßßßßßßßßßß
+ Operacje:  PC  PC + 3
+            (adr8)  (adr8) - 1
+            Je˜li (adr8) <> 0, to PC  PC + rel
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   0   1 ³ 0   1   0   1 ³ D5H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³              rel              ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 3
+
+Uwaga: Rozkaz typu {odczyt-modyfikacja-zapis:OdczytModyfikacjaZapis}.
+
+.topic INC
+ INC <argument> Ü   INCREMENT
+ ßßßßßßßßßßßßßßßß   zwi©ksz o 1
+
+Wskazany argument jest zwi©kszany o 1.
+
+ INC A
+ ßßßßß
+ Operacja: A  A + 1
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   0   0 ³ 0   1   0   0 ³ 04H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ INC {Rn:Rn}
+ ßßßßßß
+ Operacja: Rn  Rn + 1
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   0   0 ³ 1  r2  r1  r0 ³ 08H-0FH
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ INC @{Ri:Ri}
+ ßßßßßßß
+ Operacja: (Ri)  (Ri) + 1
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   0   0 ³ 0   1   1   i ³ 06H,07H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ INC adr8
+ ßßßßßßßß
+ Operacja: (adr8)  (adr8) + 1
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   0   0 ³ 0   1   0   1 ³ 05H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+Uwaga: Rozkaz typu {odczyt-modyfikacja-zapis:OdczytModyfikacjaZapis}.
+
+ INC DPTR   INCREMENT DATA POINTER
+ ßßßßßßßß   zwi©ksz o 1 wska«nik danych
+
+ Operacja: DPTR  DPTR + 1
+
+Do 16-bitowego wska«nika danych {DPTR:DPTR} (DPH.DPL) jest dodawana jedynka.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   1   0 ³ 0   0   1   1 ³ A3H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+.topic JB
+ JB bit,rel   JUMP IF BIT IS SET
+ ßßßßßßßßßß   skocz, gdy bit ustawiony
+
+ Operacje: PC  PC + 3
+           Je˜li (bit) = 1, to PC  PC + rel
+
+Je˜li wskazany bit jest jedynk¥, wykonany zostaje skok wzgl©dny o
+przesuni©cie rel. Skok nast©puje wzgl©dem adresu pierwszego bajtu
+nast©pnego rozkazu. Testowany bit nie ulega zmianie.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   1   0 ³ 0   0   0   0 ³ 20H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³b7  b6  b5  b4  b3  b2  b1  b0 ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³              rel              ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 3
+
+.topic JBC
+ JBC bit,rel   JUMP IF BIT IS SET AND CLEAR BIT
+ ßßßßßßßßßßß   je˜li bit jest ustawiony, to zeruj go i skocz
+
+ Operacje: PC  PC + 3
+           Je˜li (bit) = 1, to (bit)  0 i PC  PC + rel
+
+Je˜li wskazany bit to jedynka, nast©puje jego zerowanie i jest
+wykonywany skok wzgl©dny o przesuni©cie rel. Skok nast©puje wzgl©dem
+adresu pierwszego bajtu nast©pnego rozkazu.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   0   1 ³ 0   0   0   0 ³ 10H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³b7  b6  b5  b4  b3  b2  b1  b0 ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³              rel              ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 3
+
+Uwaga: Rozkaz typu {odczyt-modyfikacja-zapis:OdczytModyfikacjaZapis}.
+
+.topic JC
+ JC rel   JUMP IF CARRY IS SET
+ ßßßßßß   skocz, je˜li jest przeniesienie
+
+ Operacje: PC  PC + 2
+           Je˜li CY = 1, to PC  PC + rel
+
+Je˜li jest ustawiony wska«nik przeniesienia (CY=1), wykonany zostaje
+skok wzgl©dny o przesuni©cie rel. Skok nast©puje wzgl©dem adresu
+pierwszego bajtu nast©pnego rozkazu.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   0   0 ³ 0   0   0   0 ³ 40H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³              rel              ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 2
+
+.topic JmpADptr
+ JMP @A+DPTR   JUMP INDIRECT
+ ßßßßßßßßßßß   skocz po˜rednio
+
+ Operacja: PC  A + DPTR
+
+Do licznika rozkaz¢w PC jest wpisywana suma 16-bitowego rejestru {DPTR:DPTR}
+i akumulatora {A:Akumulator}. Nast©puje skok pod adres umieszczony w DPTR z
+przesuni©ciem zapisanym w akumulatorze. Stan akumulatora, ani
+wska«nika danych DPTR nie ulega zmianie.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   1   1 ³ 0   0   1   1 ³ 73H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 1
+
+ JMP rel, adr11 lub adr16   UNCONDITIONAL JUMP
+ ßßßßßßßßßßßßßßßßßßßßßßßß   skocz bezwarunkowo
+
+W zale¾no˜ci od poˆo¾enia etykiety asembler wykorzystuje jeden z
+rozkaz¢w {SJMP:SJMP}, {AJMP:AJMP} lub {LJMP:LJMP}.
+
+.topic JNB
+ JNB bit,rel   JUMP IF BIT IS NOT SET
+ ßßßßßßßßßßß   skocz, je˜li bit jest zerowy
+
+ Operacje: PC  PC + 3
+           Je˜li (bit) = 0, to PC  PC + rel
+
+Je˜li wskazywany bit jest zerem, wykonany zostaje skok wzgl©dny o
+przesuni©cie rel. Skok nast©puje wzgl©dem adresu pierwszego bajtu
+nast©pnego rozkazu. Testowany bit nie ulega zmianie.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   1   1 ³ 0   0   0   0 ³ 30H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³b7  b6  b5  b4  b3  b2  b1  b0 ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³             rel               ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 3
+
+.topic JNC
+ JNC rel   JUMP IF CARRY IS NOT SET
+ ßßßßßßß   skocz, je˜li nie ma przeniesienia
+
+ Operacje: PC  PC + 2
+           Je˜li CY = 0, to PC  PC + rel
+
+Je˜li wska«nik przeniesienia jest zerem (CY=0), wykonany zostaje skok
+wzgl©dny o przesuni©cie rel. Skok nast©puje wzgl©dem adresu pierwszego
+bajtu nast©pnego rozkazu.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   0   1 ³ 0   0   0   0 ³ 50H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³              rel              ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 2
+
+.topic JNZ
+ JNZ rel   JUMP IF ACCUMULATOR NOT ZERO
+ ßßßßßßß   skocz, je˜li akumulator nie jest zerowy
+
+ Operacje: PC  PC + 2
+           Je˜li A <> 0, to PC  PC + rel
+
+Je˜li akumulator jest r¢¾ny od zera, wykonany zostaje skok wzgl©dny o
+przesuni©cie rel. Skok nast©puje wzgl©dem adresu pierwszego bajtu
+nast©pnego rozkazu.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   1   1 ³ 0   0   0   0 ³ 70H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³              rel              ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 2
+
+.topic JZ
+ JZ rel   JUMP IF ACCUMULATOR ZERO
+ ßßßßßß   skocz, je˜li akumulator jest zerowy
+
+ Operacje: PC  PC + 2
+           Je˜li A = 0, to PC  PC + rel
+
+Je˜li akumulator jest r¢¾ny od zera, wykonany zostaje skok wzgl©dny o
+przesuni©cie rel. Skok nast©puje wzgl©dem adresu pierwszego bajtu
+nast©pnego rozkazu.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   1   0 ³ 0   0   0   0 ³ 60H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³              rel              ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 2
+
+.topic LCALL
+ LCALL adr16   SUBROUTINE CALL
+ ßßßßßßßßßßß   wywoˆanie podprogramu
+
+ Operacje: PC  PC + 3
+           SP  SP + 1
+         (SP)  PC(7-0)
+           SP  SP + 1
+         (SP)  PC(15-8)
+           PC  adr16
+
+Licznik rozkaz¢w PC zwi©kszony o 3 ˆadowany jest na stos. Wska«nik
+stosu SP jest zwi©kszany o 2, a do licznika rozkaz¢w zostaje wpisany
+16-bitowy adres bezpo˜redni. Nast©puje wywoˆanie podprogramu
+znajduj¥cego si© w dowolnym miejscu 64 kB obszaru pami©ci programu.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   0   1 ³ 0   0   1   0 ³ 12H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a15 a14 a13 a12 a11 a10 a9  a8 ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 3
+
+.topic LJMP
+ LJMP adr16   UNCONDITIONAL JUMP
+ ßßßßßßßßßß   skocz bezwarunkowo
+
+ Operacja: PC  adr16
+
+Do licznika rozkaz¢w PC jest wpisywany 16-bitowy adres bezpo˜redni.
+Nast©puje skok pod adres znajduj¥cy si© w dowolnym miejscu 64 kB
+obszaru pami©ci programu.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   0   0 ³ 0   0   1   0 ³ 02H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a15 a14 a13 a12 a11 a10 a9  a8 ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 3
+
+ a15..a8, a7..a0 - starszy i mˆodszy bajt 16-bitowego adresu bezpo˜redniego
+
+.topic MOV
+ MOV <argument1>,<argument2> Ü   MOVE DATA
+ ßßßßßßßßßßßßßßßßßßßßßßßßßßßßß   prze˜lij dane
+
+O˜miobitowe dane z miejsca wskazanego przez argument2 s¥ przesyˆane do
+miejsca wskazanego przez argument1.
+
+ MOV A,{Rn:Rn}
+ ßßßßßßßß
+ Operacja: A  Rn
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   1   0 ³ 1  r2  r1  r0 ³ E8H-EFH
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ MOV A,@{Ri:Ri}
+ ßßßßßßßßß
+ Operacja: A  (Ri)
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   1   0 ³ 0   1   1   i ³ E6H,E7H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ MOV A,adr8
+ ßßßßßßßßßß
+ Operacja: A  (adr8)
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   1   0 ³ 0   1   0   1 ³ E5H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+ MOV A,#n
+ ßßßßßßßß
+ Operacja: A  n
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   1   1 ³ 0   1   0   0 ³ 74H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³               n               ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+ MOV {Rn:Rn},A
+ ßßßßßßßß
+ Operacja: Rn  A
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   1   1 ³ 1  r2  r1  r0 ³ F8H-FFH
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ MOV {Rn:Rn},adr8
+ ßßßßßßßßßßß
+ Operacja: Rn  (adr8)
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   1   0 ³ 1  r2  r1  r0 ³ A8H-AFH
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 2
+
+ MOV {Rn:Rn},#n
+ ßßßßßßßßß
+ Operacja: Rn  n
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   1   1 ³ 1  r2  r1  r0 ³ 78H-7FH
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³               n               ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+ MOV @{Ri:Ri},A
+ ßßßßßßßßß
+ Operacja: (Ri)  A
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   1   1 ³ 0   1   1   i ³ F6H,F7H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ MOV @{Ri:Ri},adr8
+ ßßßßßßßßßßßß
+ Operacja: (Ri)  (adr8)
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   1   0 ³ 0   1   1   i ³ A6H,A7H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 2
+
+ MOV @{Ri:Ri},#n
+ ßßßßßßßßßß
+ Operacja: (Ri)  n
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   1   1 ³ 0   1   1   i ³ 76H,77H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³               n               ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+ MOV adr8,A
+ ßßßßßßßßßß
+ Operacja: (adr8)  A
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   1   1 ³ 0   1   0   1 ³ F5H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+ MOV adr8,{Rn:Rn}
+ ßßßßßßßßßßß
+ Operacja: (adr8)  Rn
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   0   0 ³ 1  r2  r1  r0 ³ 88H-8FH
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 2
+
+ MOV adr8,@{Ri:Ri}
+ ßßßßßßßßßßßß
+ Operacja: (adr8)  (Ri)
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   0   0 ³ 0   1   1   i ³ 86H,87H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 2
+
+ MOV adr8_1,adr8_2
+ ßßßßßßßßßßßßßßßßß
+ Operacja: (adr8_1)  (adr8_2)
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   0   0 ³ 0   1   0   1 ³ 85H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7" a6" a5" a4" a3" a2" a2" a0"³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7' a6' a5' a4' a3' a2' a2' a0'³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ a0'..a7' - bity adresu bezpo˜redniego adr8_1
+ a0"..a7" - bity adresu bezpo˜redniego adr8_2
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 3
+
+ MOV adr8,#n
+ ßßßßßßßßßßß
+ Operacja: (adr8)  n
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   1   1 ³ 0   1   0   1 ³ 75H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³               n               ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 3
+
+ MOV bit,C   MOVE CARRY TO DIRECT BIT
+ ßßßßßßßßß   prze˜lij wska«nik CY do bitu
+
+ Operacja: (bit)  CY
+
+Wska«nik przeniesienia CY jest przesyˆany do wskazanego bitu.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   0   1 ³ 0   0   1   0 ³ 92H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³b7  b6  b5  b4  b3  b2  b1  b0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 2
+
+Uwaga: Rozkaz typu {odczyt-modyfikacja-zapis:OdczytModyfikacjaZapis}.
+
+ MOV C,bit   MOVE DIRECT BIT TO CARRY
+ ßßßßßßßßß   prze˜lij bit do wska«nika CY
+
+ Operacja: CY  (bit)
+
+Wskazany bit jest przesyˆany do {wska«nika:Wskazniki} przeniesienia CY.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   1   0 ³ 0   0   1   0 ³ A2H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ MOV DPTR,#nn   LOAD DATA POINTER WITH 16-BIT CONSTANT
+ ßßßßßßßßßßßß   wpisz 16-bitow¥ staˆ¥ do wska«nika danych
+
+ Operacja: DPTR  nn
+
+Do 16-bitowego rejestru {DPTR:DPTR} (DPH.DPL) jest wpisywany 2-bajtowy
+argument bezpo˜redni nn. Starszy bajt jest wpisywany do rejestru DPH,
+a mˆodszy do DPL.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   0   1 ³ 0   0   0   0 ³ 90H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³            n(15-8)            ³ DPH  n(15-8)
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³            n(7-0)             ³ DPL  n(7-0)
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 3
+
+.topic MOVC
+ MOVC A,@A+<rejestr bazowy> Ü   MOVE DATA FROM PROGRAM MEMORY TO ACCUMULATOR
+ ßßßßßßßßßßßßßßßßßßßßßßßßßßßß   prze˜lij bajt z pami©ci programu do akumulatora
+
+Kom¢rka pami©ci programu o adresie b©d¥cym sum¥ akumulatora {A:Akumulator} i
+16-bitowego rejestru bazowego jest przesyˆana do akumulatora.
+
+ MOVC A,@A+DPTR
+ ßßßßßßßßßßßßßß
+ Operacja: A  (A + DPTR)
+
+Kom¢rka pami©ci programu o adresie b©d¥cym sum¥ akumulatora {A:Akumulator} i
+wska«nika danych {DPTR:DPTR} jest przesyˆana do akumulatora.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   0   1 ³ 0   0   1   1 ³ 93H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 1
+
+ MOVC A,@A+PC
+ ßßßßßßßßßßßß
+ Operacja: A  (A + PC)
+
+Kom¢rka pami©ci programu o adresie b©d¥cym sum¥ akumulatora {A:Akumulator} i adresu
+pierwszego bajtu nast©pnego rozkazu jest przesyˆana do akumulatora.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   0   0 ³ 0   0   1   1 ³ 83H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 1
+
+.topic MOVX
+Instrukcja MOVX odnosi si© do zewn©trznej pami©ci. Wywoˆywanie
+tej instrukcji w programie debuggera/emulatora nie spowoduje
+¾adnych bˆ©d¢w - program zignoruje instrukcje. Wykonywanie
+jej natomiast na zwykˆym procesorze AT89Cx051 lub symulatorze
+mo¾e spowodowa† nieprzewidziane skutki!
+
+ MOVX A,@<wska«nik danych> Ü   MOVE DATA FROM EXTERNAL DATA
+ ßßßßßßßßßßßßßßßßßßßßßßßßßßß   MEMORY TO ACCUMULATOR
+                               prze˜lij bajt z zewn©trznej pami©ci
+                               danych do akumulatora
+
+Dane z kom¢rki zewn©trznej pami©ci danych o adresie po˜rednim zawartym
+we wska«niku danych s¥ wpisywane do akumulatora {A:Akumulator}. Na wyj˜ciu RD jest
+generowany impuls b©d¥cy sygnaˆem steruj¥cym odczytywania.
+
+ MOVX A,@DPTR
+ ßßßßßßßßßßßß
+ Operacja: A  (DPTR)
+
+16-bitowy adres jest wysyˆany przez porty P0 (DPL) i P2 (DPH). Rozkaz
+ten umo¾liwia dost©p do 64 kB kom¢rek zewn©trznej pami©ci danych.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   1   0 ³ 0   0   0   0 ³ E0H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 1
+
+ MOVX A,@{Ri:Ri}
+ ßßßßßßßßßß
+ Operacja: A  (Ri)
+
+8-bitowy adres jest wysyˆany przez port P0. Rozkaz ten umo¾liwia
+dost©p do 256 bajt¢w kom¢rek zewn©trznej pami©ci danych.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   1   0 ³ 0   0   1   i ³ E2H,E3H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 1
+
+ MOVX @<wska«nik danych>,A Ü   MOVE DATA FROM ACCUMULATOR TO
+ ßßßßßßßßßßßßßßßßßßßßßßßßßßß   EXTERNAL DATA MEMORY
+                               prze˜lij bajt z akumulatora do
+                               zewn©trznej pami©ci danych
+
+Do kom¢rki zewn©trznej pami©ci danych o adresie po˜rednim zawartym we
+wska«niku danych s¥ wpisywane dane z akumulatora {A:Akumulator}. Na wyj˜ciu WR jest
+generowany impuls b©d¥cy sygnaˆem steruj¥cym zapisywania.
+
+ MOVX @DPTR,A
+ ßßßßßßßßßßßß
+ Operacja: (DPTR)  A
+
+16-bitowy adres jest wysyˆany przez porty P0 (DPL) i P2 (DPH). Rozkaz
+ten umo¾liwia dost©p do 64 kB kom¢rek zewn©trznej pami©ci danych.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   1   1 ³ 0   0   0   0 ³ F0H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 1
+
+ MOVX @{Ri:Ri},A
+ ßßßßßßßßßß
+ Operacja: (Ri)  A
+
+8-bitowy adres jest wysyˆany przez port P0. Rozkaz ten umo¾liwia
+dost©p do 256 bajt¢w kom¢rek zewn©trznej pami©ci danych.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   1   1 ³ 0   0   1   i ³ F2H,F3H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 1
+
+.topic MUL
+ MUL AB   MULTIPLY
+ ßßßßßß   pomn¢¾
+
+ Operacja: B.A  [A x B]
+
+O˜miobitowa liczba bez znaku z akumulatora jest pomno¾ona przez
+8-bitow¥ liczb© bez znaku z rejestru {B:RejestrB}. Szesnastobitowy wynik jest
+wpisywany do akumulatora i rejestru B. Modyfikowane s¥ {wska«niki:Wskazniki}.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   1   0 ³ 0   1   0   0 ³ A4H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  4
+ Liczba bajt¢w: 1
+
+.topic NOP
+ NOP   NO OPERATION
+ ßßß   nic nie r¢b
+
+Nie jest wykonywana ¾adna operacja.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   0   0 ³ 0   0   0   0 ³ 00H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+.topic ORL
+ ORL <argument1>,<argument2> Ü   LOGICAL OR
+ ßßßßßßßßßßßßßßßßßßßßßßßßßßßßß   sumuj logicznie
+
+Wykonywana jest suma logiczna wskazanych argument¢w. Wynik wpisywany
+jest w miejsce argumentu1.
+
+ ORL A,{Rn:Rn}
+ ßßßßßßßß
+ Operacja: A  A or Rn
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   0   0 ³ 1  r2  r1  r0 ³ 48H-4FH
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ ORL A,@{Ri:Ri}
+ ßßßßßßßßß
+ Operacja: A  A or (Ri)
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   0   0 ³ 0   1   1   i ³ 46H,47H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ ORL A,adr8
+ ßßßßßßßßßß
+ Operacja: A  A or (adr8)
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   0   0 ³ 0   1   0   1 ³ 45H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+ ORL A,#n
+ ßßßßßßßß
+ Operacja: A  A or n
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   0   0 ³ 0   1   0   0 ³ 44H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³               n               ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+ ORL adr8,A
+ ßßßßßßßßßß
+ Operacja: (adr8)  (adr8) or A
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   0   0 ³ 0   0   1   0 ³ 42H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+Uwaga: Rozkaz typu {odczyt-modyfikacja-zapis:OdczytModyfikacjaZapis}.
+
+ ORL adr8,#n
+ ßßßßßßßßßßß
+ Operacja: (adr8)  (adr8) or n
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   0   0 ³ 0   0   1   1 ³ 43H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³               n               ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 3
+
+Uwaga: Rozkaz typu {odczyt-modyfikacja-zapis:OdczytModyfikacjaZapis}.
+
+ ORL C,bit   LOGICAL OR CARRY WITH DIRECT BIT
+ ßßßßßßßßß   CY sumuj logicznie z bitem
+
+ Operacja: CY  CY or (bit)
+
+Do {wska«nika:Wskazniki} przeniesienia CY wpisywana jest suma logiczna CY i
+wskazanego bitu.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   1   1 ³ 0   0   1   0 ³ 72H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³b7  b6  b5  b4  b3  b2  b1  b0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 2
+
+ ORL C,/bit   LOGICAL OR CARRY WITH COMPLEMENT OF DIRECT BIT
+ ßßßßßßßßßß   CY sumuj logicznie z negacj¥ bitu
+
+ Operacja: CY  CY or (not bit)
+
+Do {wska«nika:Wskazniki} przeniesienia CY wpisywana jest suma logiczna CY i
+negacji wskazanego bitu.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   1   0 ³ 0   0   0   0 ³ A0H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³b7  b6  b5  b4  b3  b2  b1  b0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 2
+
+.topic POP
+ POP adr8   POP FROM STACK
+ ßßßßßßßß   zdejmij ze stosu
+
+ Operacje: (adr8)  (SP)
+            SP   SP - 1
+
+Dane z wierzchoˆka stosu s¥ wpisywane do kom¢rki wewn©trznej pami©ci
+danych o podanym adresie bezpo˜rednim, nast©pnie wska«nik stosu SP
+jest zmniejszany o 1.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   0   1 ³ 0   0   0   0 ³ D0H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 2
+
+.topic PUSH
+ PUSH adr8   PUSH ONTO STACK
+ ßßßßßßßßß   odˆ¢¾ na stosie
+
+ Operacje: SP   SP + 1
+          (SP)  (adr8)
+
+Wska«nik stosu SP jest zwi©kszany o 1, nast©pnie na wierzchoˆek stosu
+jest wpisywana kom¢rka wewn©trznej pami©ci danych o podanym adresie
+bezpo˜rednim.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   0   0 ³ 0   0   0   0 ³ C0H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 2
+
+.topic RET
+ RET   RETURN FROM SUBROUTINE
+ ßßß   wr¢† z podprogramu
+
+ Operacje: PC(15-8)  (SP)
+           SP  SP - 1
+           PC(7-0)  (SP)
+           SP  SP - 1
+
+Adres powrotu jest wpisywany ze stosu do licznika rozkaz¢w PC.
+Wska«nik stosu SP jest zmniejszany o dwa.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   1   0 ³ 0   0   1   0 ³ 22H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 1
+
+.topic RETI
+ RETI    RETURN FROM INTERRUPT
+ ßßßß    wr¢† z przerwania
+
+ Operacje: PC(15-8)  (SP)
+           SP  SP - 1
+           PC(7-0)  (SP)
+           SP  SP - 1
+
+Adres powrotu jest wpisywany ze stosu do licznika rozkaz¢w PC.
+Wska«nik stosu jest zmniejszany o dwa. Wykonanie rozkazu RETI jest dIa
+systemu przerwaä sygnaˆem zakoäczenia obsˆugi przerwania i powoduje
+wyzerowanie wska«nika, kt¢ry wywoˆaˆ przerwanie (w 8051 IE0, IE1, T0
+lub T1, TI i RI nie s¥ zerowane).
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   1   1 ³ 0   0   1   0 ³ 32H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 1
+
+.topic RL
+ RL A   ROTATE LEFT
+ ßßßß   przesuä cyklicznie w lewo
+
+ Operacja:
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³  ÚÄÄÄÄÄÄÄÄÄÄ¿  ³
+ ÀÄÄ´7   A    0ÃÄÙ
+    ÀÄÄÄÄÄÄÄÄÄÄÙ
+
+Zawarto˜† akumulatora {A:Akumulator} jest przesuwana cyklicznie w lewo o jeden bit.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   1   0 ³ 0   0   1   1 ³ 23H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+.topic RLC
+ RLC A   ROTATE LEFT THROUGH CARRY
+ ßßßßß   przesuä cyklicznie w lewo z CY
+
+ Operacja:
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ ÚÄÄ¿  ÚÄÄÄÄÄÄÄÄÄÄ¿  ³
+ ÀÄ´CYÃÄ´7   A    0ÃÄÙ
+   ÀÄÄÙ  ÀÄÄÄÄÄÄÄÄÄÄÙ
+
+Zawarto˜† akumulatora {A:Akumulator} jest przesuwana cyklicznie w lewo o jeden bit,
+przy czym {wska«nik:Wskazniki} CY przyjmuje warto˜† bitu 7, a bit 0 przyjmuje
+warto˜† wska«nika CY.
+Je¾eli przed instrukcj¥ RLC znacznik CY jest wyzerowany,
+a bit ACC.7 tak¾e jest wyzerowany, to instrukcja RLC A jest r¢wnowa¾na z ACC = ACC * 2
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   1   1 ³ 0   0   1   1 ³ 33H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+.topic RR
+ RR A   ROTATE RIGHT
+ ßßßß   przesuä cyklicznie w prawo
+
+ Operacja:
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³  ÚÄÄÄÄÄÄÄÄÄÄ¿ ³
+ ÀÄ´7   A    0ÃÄÙ
+    ÀÄÄÄÄÄÄÄÄÄÄÙ
+
+Zawarto˜† akumulatora {A:Akumulator} jest przesuwana cyklicznie w prawo o jeden
+bit.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   0   0 ³ 0   0   1   1 ³ 03H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+.topic RRC
+ RRC A   ROTATE RIGHT THROUGH CARRY
+ ßßßßß   przesuä cyklicznie w prawo z CY
+
+ Operacja:
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³  ÚÄÄ¿  ÚÄÄÄÄÄÄÄÄÄÄ¿ ³
+ ÀÄ´CYÃÄ´7   A    0ÃÄÙ
+    ÀÄÄÙ  ÀÄÄÄÄÄÄÄÄÄÄÙ
+
+Zawarto˜† akumulatora {A:Akumulator} jest przesuwana cyklicznie w prawo o jeden
+bit, przy czym bit 7 przyjmuje warto˜† wska«nika CY, a {wska«nik:Wskazniki} CY
+przyjmuje warto˜† bitu 0.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   0   0   1 ³ 0   0   1   1 ³ 13H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+.topic SETB
+ SETB bit   SET BIT
+ ßßßßßßßß   ustaw bit
+
+ Operacja: (bit)  1
+
+Do wskazanego bitu wpisywana jest jedynka.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   0   1 ³ 0   0   1   0 ³ D2H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³b7  b6  b5  b4  b3  b2  b1  b0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+ SETB C   SET CARRY FLAG
+ ßßßßßß   ustaw wska«nik przeniesienia
+
+ Operacja: CY  1
+
+Do {wska«nika:Wskazniki} przeniesienia CY wpisywana jest jedynka.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   0   1 ³ 0   0   1   1 ³ D3H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+.topic SJMP
+ SJMP rel   JUMP RELATIVE
+ ßßßßßßßß   skocz bezwarunkowo wzgl©dem {PC:PC}
+
+ Operacje: PC  PC + 2 + rel
+
+Nast©puje skok wzgl©dny o przesuni©cie rel, gdzie -128 ó rel ó 127.
+Skok liczony jest wzgl©dem adresu pierwszego bajtu nast©pnego rozkazu.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   0   0 ³ 0   0   0   0 ³ 80H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³              rel              ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 2
+
+.topic SUBB
+ SUBB A,<argument> Ü   SUBTRACT FROM ACCUMULATOR WITH BORROW
+ ßßßßßßßßßßßßßßßßßßß   odejmij od akumulatora z po¾yczk¥
+
+Od akumulatora {A:Akumulator} jest odejmowany wskazany argument oraz wska«nik
+przeniesienia CY. Wynik operacji pozostaje w akumulatorze.
+Modyfikowane s¥ {wska«niki:Wskazniki}.
+
+ SUBB A,{Rn:Rn}
+ ßßßßßßßßß
+ Operacja: A  A - Rn - CY
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   0   1 ³ 1  r2  r1  r0 ³ 98H-9FH
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ SUBB A,@{Ri:Ri}
+ ßßßßßßßßßß
+ Operacja: A  A - (Ri) - CY
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   0   1 ³ 0   1   1   i ³ 96H,97H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ SUBB A,adr8
+ ßßßßßßßßßßß
+ Operacja: A  A - (adr8) - CY
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   0   1 ³ 0   1   0   1 ³ 95H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+ SUBB A,#n
+ ßßßßßßßßß
+ Operacja: A  A - n - CY
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   0   0   1 ³ 0   1   0   0 ³ 94H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³               n               ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+.topic SWAP
+ SWAP A   SWAP NIBBLES WITHIN ACCUMULATOR
+ ßßßßßß   wymieä p¢ˆbajty w akumulatorze
+
+ Operacja: A(7-4) - A(3-0)
+
+         ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿        
+ ³ 7   6   5   4 ³ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ³ 3   2   1   0 ³
+                 ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+         ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+Wymieniona zostaj¥ bity 0-3 i bity 4-7 akumulatora {A:Akumulator}.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   0   0 ³ 0   1   0   0 ³ C4H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+.topic XCH
+ XCH A,<argument> Ü   EXCHANGE ACCUMULATOR WITH MEMORY CONTENTS
+ ßßßßßßßßßßßßßßßßßß   wymieä akumulator z zawarto˜ci¥ pami©ci
+
+Zawarto˜† akumulatora {A:Akumulator} jest wymieniana z zawarto˜ci¥ wskazanego
+argumentu.
+
+ XCH A,{Rn:Rn}
+ ßßßßßßßß
+ Operacja: A - Rn
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   0   0 ³ 1  r2  r1  r0 ³ C8H-CFH
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ XCH A,@{Ri:Ri}
+ ßßßßßßßßß
+ Operacja: A - (Ri)
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   0   0 ³ 0   1   1   i ³ C6H,C7H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ XCH A,adr8
+ ßßßßßßßßßß
+ Operacja: A - (adr8)
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   0   0 ³ 0   1   0   1 ³ C5H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+.topic XCHD
+ XCHD A,@{Ri:Ri} Ü   EXCHANGE NIBBLE OF ACCUMULATOR WITH MEMORY
+ ßßßßßßßßßßßß   wymieä p¢ˆbajty z akumulatora i pami©ci
+
+ Operacja: A(3-0) - (Ri)(3-0)
+
+Bity 0-3 akumulatora {A:Akumulator} zostaj¥ wymienione z bitami 0-3 kom¢rki
+wewn©trznej pami©ci danych o adresie zawartym w rejestrze Ri. Bity 4-7
+akumulatora oraz kom¢rki pami©ci pozostaj¥ bez zmiany.
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 1   1   0   1 ³ 0   1   1   i ³ D6H,D7H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+.topic XRL
+ XRL <argument1>,<argument2> Ü   LOGICAL XOR
+ ßßßßßßßßßßßßßßßßßßßßßßßßßßßßß   sumuj modulo 2
+
+Wykonywana jest suma modulo 2 wskazanych argument¢w. Wynik wpisywany
+jest w miejsce argumentu1.
+
+ XRL A,{Rn:Rn}
+ ßßßßßßßß
+ Operacja: A  (A mod 2 Rn)
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   1   0 ³ 1  r2  r1  r0 ³ 68H-6FH
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ XRL A,@{Ri:Ri}
+ ßßßßßßßßß
+ Operacja: A  (A mod 2 (Ri))
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   1   0 ³ 0   1   1   i ³ 66H,67H
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 1
+
+ XRL A,adr8
+ ßßßßßßßßßß
+ Operacja: A  (A mod 2 (adr8))
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   1   0 ³ 0   1   0   1 ³ 65H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+ XRL A,#n
+ ßßßßßßßß
+ Operacja: A  (A mod 2 n)
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   1   0 ³ 0   1   0   0 ³ 64H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³               n               ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+ XRL adr8,A
+ ßßßßßßßßßß
+ Operacja: (adr8)  ((adr8) mod 2 A)
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   1   0 ³ 0   0   1   0 ³ 62H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  1
+ Liczba bajt¢w: 2
+
+Uwaga: Rozkaz typu {odczyt-modyfikacja-zapis:OdczytModyfikacjaZapis}.
+
+ XRL adr8,#n
+ ßßßßßßßßßßß
+ Operacja: (adr8)  ((adr8) mod 2 n)
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ 0   1   1   0 ³ 0   0   1   1 ³ 63H
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³a7  a6  a5  a4  a3  a2  a1  a0 ³
+ ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³               n               ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+ Liczba cykli:  2
+ Liczba bajt¢w: 3
+
+Uwaga: Rozkaz typu {odczyt-modyfikacja-zapis:OdczytModyfikacjaZapis}.
+

@@ -1,0 +1,199 @@
+; %COMBINED%  -> Do not REMOVE or MODIFY this line!!
+.topic EditClear
+ Edycja³Wyczy˜† Ü
+ ßßßßßßßßßßßßßßßß
+Usuwa zawarto˜† bufora.
+
+.topic EditCopy
+ Edycja³Kopiuj Ü
+ ßßßßßßßßßßßßßßß
+Kopiuje zaznaczony blok tekstu i umieszcza go w buforze.
+
+.topic EditCut
+ Edycja³Wytnij Ü
+ ßßßßßßßßßßßßßßß
+Usuwa zaznaczony blok tekstu i umieszcza go w buforze.
+
+.topic EditPaste
+ Edycja³Wklej Ü
+ ßßßßßßßßßßßßßß
+Wkleja pod˜wietlony blok bufora w miejscu kursora.
+
+.topic EditReplace
+ Edycja³Zast¥p Ü
+ ßßßßßßßßßßßßßßß
+Szukanie zadanego ci¥gu znak¢w i zast©powanie go innym, mo¾e dotyczy†
+tylko caˆych ˆaäcuch¢w lub ich fragment¢w, z rozr¢¾nianiem wielko˜ci
+liter lub bez. Zamiana ˆaäcuch¢w mo¾e odbywa† si© po ka¾dorazowym
+potwierdzeniu lub bez, mo¾e dotyczy† jednego lub wszystkich sˆ¢w
+speˆniaj¥cych zadany wz¢r. Szukanie ˆaäcucha do zamiany rozpoczyna si©
+od bie¾¥cego poˆo¾enia kursora.
+
+.topic EditSearch
+ Edycja³Szukaj Ü
+ ßßßßßßßßßßßßßßß
+Szukanie zadanego ci¥gu znak¢w, mo¾e dotyczy† tylko caˆych ˆaäcuch¢w
+lub ich fragment¢w, z rozr¢¾nianiem wielko˜ci liter lub bez. Szukanie
+ˆaäcucha rozpoczyna si© od bie¾¥cego poˆo¾enia kursora.
+
+.topic EditSearchAgain
+ Edycja³Szukaj ponownie Ü
+ ßßßßßßßßßßßßßßßßßßßßßßßß
+Ponawia pr¢b© szukania lub szukania i zast©powania zadanego ˆaäcucha.
+Rozpoczyna si© ka¾dorazowo od bie¾¥cego poˆo¾enia kursora.
+
+.topic EditShowClipboard
+ Edycja³Poka¾ schowek Ü
+ ßßßßßßßßßßßßßßßßßßßßßß
+Wy˜wietla okienko z wszystkimi fragmentami tekstu, kt¢re byˆy ostatnio
+kopiowane lub wycinane do schowka.
+
+.topic EditUndo
+ Edycja³Cofnij Ü
+ ßßßßßßßßßßßßßßß
+Anuluje ostatnio wykonan¥ operacj© na bloku tekstu.
+
+.topic FileExit
+ Plik³Koniec Ü
+ ßßßßßßßßßßßßß
+Zakoäczenie pracy programu.
+
+.topic FileChangeDir
+ Plik³Zmieä katalog Ü
+ ßßßßßßßßßßßßßßßßßßßß
+Okno umo¾liwiaj¥ce zmian© bie¾¥cego katalogu.
+
+.topic FileDosShell
+ Plik³Wyj˜cie do DOS Ü
+ ßßßßßßßßßßßßßßßßßßßßß
+Przerwanie pracy programu, by wykona† polecenie DOS i powr¢ci† do
+pracy z programem, bez konieczno˜ci zapisywania otwartych plik¢w. Przy
+powrocie do programu nale¾y napisa† 'EXIT' i nacisn¥† klawisz Enter.
+
+.topic FileNew
+ Plik³Nowy Ü
+ ßßßßßßßßßßß
+Otwiera nowy plik w oknie edytora nadaj¥c mu nazw© 'BezNazwy'.
+
+.topic FileOpen
+ Plik³Otw¢rz Ü
+ ßßßßßßßßßßßßß
+Wyb¢r pliku, kt¢ry b©dzie umieszczony w oknie edytora lub usuni©ty.
+
+.topic FileSave
+ Plik³Zapisz Ü
+ ßßßßßßßßßßßßß
+Zapisuje na dysku plik znajduj¥cy si© w aktywnym oknie edytora. Dla
+okien o nazwie 'BezNazwy' wywoˆywane jest polecenie {Zapisz jako:FileSaveAs}.
+
+.topic FileSaveAll
+ Plik³Zapisz wszystko Ü
+ ßßßßßßßßßßßßßßßßßßßßßß
+Zapisuje na dysku wszystkie pliki znajduj¥ce si© w oknach edytora. Dla
+okien o nazwie 'BezNazwy' wywoˆywane jest polecenie {Zapisz jako:FileSaveAs}.
+
+.topic FileSaveAs
+ Plik³Zapisz jako Ü
+ ßßßßßßßßßßßßßßßßßß
+Okno umo¾liwiaj¥ce nazwanie pliku zawartego w aktywnym oknie edytora i
+zapisanie go na dysku.
+
+.topic MenuEdycja
+ Edycja Ü
+ ßßßßßßßß
+Grupa poleceä edytora umo¾liwiaj¥ca:
+ - anulowanie ostatnio wykonanej operacji na bloku tekstu {Cofnij:EditUndo}
+ - wycinanie zaznaczonego bloku tekstu {Wytnij:EditCut}
+ - kopiowanie zaznaczonego bloku tekstu {Kopiuj:EditCopy}
+ - wklejanie zaznaczonego bloku tekstu {Wklej:EditPaste}
+ - usuwanie zawarto˜ci bufora {Wyczy˜†:EditClear}
+ - szukanie zadanych ˆaäcuch¢w {Szukaj:EditSearch}
+ - zamienianie zadanych ˆaäcuch¢w innymi {Zast¥p:EditReplace}
+ - powtarzanie powy¾szych operacji {Szukaj ponownie:EditSearchAgain}
+ - wy˜wietlenie zawarto˜ci schowka {Poka¾ schowek:EditShowClipboard}
+
+.topic MenuOkna
+ Okna Ü
+ ßßßßßß
+Grupa poleceä sˆu¾¥cych do administrowania oknami pozwalaj¥ca na:
+ - r¢wnolegˆe uˆo¾enie okien {R¢wnolegle:WindowsTile}
+ - kaskadowe uˆo¾enie okien {Kaskadowo:WindowsCascade}
+ - pˆynn¥ zmian© wielko˜ci i poˆo¾enia okna {Rozmiar/Przesuä:WindowsMoveResize}
+ - skokow¥ zmian© wielko˜ci okna {Powi©ksz:WindowsZoom}
+ - uaktywnienie nast©pnego okna {Nast©pne:WindowsNext}
+ - uaktywnienie poprzedniego okna {Poprzednie:WindowsPrevious}
+ - zamkni©cie okna {Zamknij:WindowsClose}
+ - zamkni©cie wszystkich okien {Zamknij wszystkie:WindowsCloseAll}
+
+.topic WindowsCascade
+ Okno³Kaskadowo Ü
+ ßßßßßßßßßßßßßßßß
+Pozwala umie˜ci† okna w spos¢b przedstawiony poni¾ej:
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ1Ä¿
+ ³ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ2Ä¿
+ ³³ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ3Ä¿
+ ³³³ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ4Í»
+ ³³³º                         º
+ ³³³º                         º
+ ³³³º                         º
+ ³³³º                         º
+ ³³³º                         º
+ ÀÀÀÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+
+.topic WindowsClose
+ Okno³Zamknij Ü
+ ßßßßßßßßßßßßßß
+Zamyka aktywne okno lub obiekt.
+
+.topic WindowsCloseAll
+ Okno³Zamknij wszystkie Ü
+ ßßßßßßßßßßßßßßßßßßßßßßßß
+Zamyka wszystkie okna i inne obiekty.
+
+;
+; topic created 12.04.00 12:56:10
+;
+.TOPIC WindowsMoveResize
+ Okna³Zmieä rozmiar/Przesuä Ü
+ ßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+Pˆynna zmiana wielko˜ci i poˆo¾enia aktywnego okna.
+
+ Strzaˆki+Shift - zmiana rozmiaru okna,
+ Strzaˆki       - zmiana poˆo¾enia okna,
+ Enter          - potwierdzenie,
+ Esc            - zakoäczenie
+
+.topic WindowsNext
+ Okno³Nast©pne Ü
+ ßßßßßßßßßßßßßßß
+Pozwala cyklicznie uaktywnia† okna i inne numerowane obiekty w
+porz¥dku rosn¥cych identyfikator¢w.
+
+.topic WindowsPrevious
+ Okno³Poprzednie Ü
+ ßßßßßßßßßßßßßßßßß
+Pozwala cyklicznie uaktywnia† okna i inne numerowane obiekty w
+porz¥dku malej¥cych identyfikator¢w.
+
+.topic WindowsTile
+ Okno³R¢wnolegle Ü
+ ßßßßßßßßßßßßßßßßß
+Pozwala umie˜ci† okna w spos¢b przedstawiony poni¾ej:
+
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ ÉÍÍÍÍÍÍÍÍ1ÍÍ»ÚÄÄÄÄÄÄÄÄ2ÄÄ¿ ³
+ ³ º           º³           ³ ³
+ ³ º           º³           ³ ³
+ ³ ÈÍÍÍÍÍÍÍÍÍÍÍ¼ÀÄÄÄÄÄÄÄÄÄÄÄÙ ³
+ ³ ÚÄÄÄÄÄÄÄÄ3ÄÄ¿ÚÄÄÄÄÄÄÄÄ4ÄÄ¿ ³
+ ³ ³           ³³           ³ ³
+ ³ ³           ³³           ³ ³
+ ³ ÀÄÄÄÄÄÄÄÄÄÄÄÙÀÄÄÄÄÄÄÄÄÄÄÄÙ ³
+ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+.topic WindowsZoom
+ Okno³Powi©ksz Ü
+ ßßßßßßßßßßßßßßß
+Pozwala nada† aktywnemu oknu maksymalny rozmiar.
+

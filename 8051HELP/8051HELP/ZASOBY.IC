@@ -1,0 +1,694 @@
+; %COMBINED%  -> Do not REMOVE or MODIFY this line!!
+.topic Akumulator
+ A Ü   ACCUMULATOR
+ ßßß   akumulator
+
+Akumulator jest rejestrem wsp¢ˆpracuj¥cym z jednostk¥
+arytmetyczno-logiczn¥ (ARYTHMETIC-LOGIC UNIT = ALU). Z niego jest
+pobierany argument i do niego wpisywany jest wynik wi©kszo˜ci
+operacji. Odgrywa kluczow¥ rol© w rozkazach {MOVC:MOVC}
+i {JMP:JMPADptr}.
+
+Istniej¥ dwa sposoby dost©pu programowego do akumulatora:
+ - za pomoc¥ nazwy A, np. MOV A,#5,
+ - za pomoc¥ nazwy rejestru specjalnego adresowanego
+   bezpo˜rednio ACC, np. PUSH ACC.
+
+.topic BankRejestrow
+ Bank rejestr¢w Ü
+ ßßßßßßßßßßßßßßßß
+Bank rejestr¢w mo¾na zmienia† lub przez modyfikacj© dw¢ch
+bit¢w RS1 i RS0 sˆowa stanu programu {PSW:PSW}.
+
+ RS1.RS0=00 - bank 0, adresy 0..7
+ RS1.RS0=01 - bank 1, adresy 8..15
+ RS1.RS0=10 - bank 2, adresy 16..23
+ RS1.RS0=11 - bank 3, adresy 24..31
+
+.topic DPTR
+ DPTR Ü   DATA POINTER
+ ßßßßßß   wska«nik danych
+
+16-bitowy wska«nik danych skˆadaj¥cy si© z dw¢ch rejestr¢w DPH
+(starszy) i DPL (mˆodszy).
+
+;
+; topic created 12.04.00 13:23:50
+;
+.TOPIC DyrektywaEQU
+ EQU Ü
+ ßßßßß
+;
+; topic created 12.04.00 12:42:35
+;
+.TOPIC DyrektywaEQUROM
+ EQUROM Ü
+ ßßßßßßßß
+
+;
+; topic created 12.04.00 12:50:02
+;
+.TOPIC DyrektywEQURAM
+ EQURAM Ü
+ ßßßßßßßß
+;
+.topic FlagaC
+ C Ü   CARRY FLAG
+ ßßß   wska«nik przeniesienia
+
+Bit CY sˆowa stanu {PSW:PSW}. Wpisywane jest do niego przeniesienie z
+najbardziej znacz¥cego bitu. Jest ustawiany podczas wykonywania
+operacji arytmetycznych oraz przesuni©† {(wykazÿrozkaz¢w):Wskazniki}.
+
+.topic Hash
+  #
+ ßßß
+Znak '#' w mnemoniku poprzedza argument bezpo˜redni
+
+ np.   MOV A,#5    A   5    do akumulatora jest wpisana liczba 5
+
+       MOV A,5     A  (5)   do akumulatora jest wpisana
+                             kom¢rka pami©ci o adresie 5
+
+.topic Malpka
+  @
+ ßßß
+Znak '@' w mnemoniku poprzedza adres po˜redni
+
+ np.   MOV A,@R0   A  (R0)   do akumulatora jest wpisana kom¢rka
+                              pami©ci o adresie umieszczonym w R0
+
+       MOV A,R0    A   R0    do akumulatora jest wpisana
+                              zawarto˜† rejestru R0
+
+.topic OdczytModyfikacjaZapis
+ Rozkazy typu odczyt-modyfikacja-zapis Ü
+ ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+Ze wzgl©du na struktur© port¢w I/O ich stan mo¾na odczyta† na dwa
+sposoby:
+ - przez odczyt stanu rejestru wyj˜ciowego portu za pomoc¥ rozkaz¢w typu
+   odczyt-modyfikacja-zapis:
+    {ANL:ANL}  Adres_portu,X
+    {CLR:CLR}  Adres_portu.Nr_bitu
+    {CPL:CPL}  Adres_portu.Nr_bitu
+    {DEC:DEC}  Adres_portu
+    {DJNZ:DJNZ} Adres_portu,rel
+    {INC:INC}  Adres_portu
+    {JBC:JBC}  Adres_portu.Nr_bitu       gdzie X - A lub #n
+    {MOV:MOV}  Adres_portu.Nr_bitu,C
+    {ORL:ORL}  Adres_portu,X
+    {XRL:XRL}  Adres_portu,X
+    {SETB:SETB} Adres_portu.Nr_bitu
+ - przez odczyt stanu linii wej˜ciowych portu - pozostaˆe rozkazy.
+
+Rozkazy typu odczyt-modyfikacja-zapis odnosz¥ce si© do bit¢w port¢w
+I/O P0,P1,... odczytuj¥ (testuj¥) i modyfikuj¥ stan rejestru
+wyj˜ciowego portu, nie za˜ stan linii wej˜ciowych portu.
+
+Aby poprawnie odczyta† stan linii wej˜ciowych portu nale¾y najpierw
+wysˆa† do rejestru wyj˜ciowego portu jedynki.
+
+;
+;
+; topic created 12.04.00 14:12:13
+;
+.TOPIC OknoAbout
+ O programie... Ü
+ ßßßßßßßßßßßßßßßß
+
+Jak na ka¾dy porz¥dny program przystaˆo, dodaˆem okienko
+skr¢towej informacji.
+
+ {Wst©p:Wstep}
+;
+;
+; topic created 12.04.00 14:14:51
+;
+.TOPIC OknoCPU
+ Procesor³Okno CPU Ü
+ ßßßßßßßßßßßßßßßßßßß
+
+Najwa¾niejsz okno w programi. To tu mo¾na dokˆadnie prze˜ledzi†
+dziaˆanie mikroprocesora.
+;
+; topic created 12.04.00 14:26:29
+;
+.TOPIC OknoEdycjaSymbolu
+ Edycja symbolu Ü
+ ßßßßßßßßßßßßßßßß
+;
+;
+;
+; topic created 12.04.00 14:13:20
+;
+.TOPIC OknoEdycjaZwykla
+ Edycja warto˜ci Ü
+ ßßßßßßßßßßßßßßßßß
+;
+;
+; topic created 12.04.00 14:19:21
+;
+.TOPIC OknoEdytoraASM
+ Edytor kodu «r¢dˆowego Ü
+ ßßßßßßßßßßßßßßßßßßßßßßßß
+;
+;
+; topic created 12.04.00 14:19:27
+;
+.TOPIC OknoOtworzASM
+ Ü
+ ßßßßßßßßßßßßßßßßßßß
+;
+;
+; topic created 12.04.00 14:20:33
+;
+.TOPIC OknoSchowek
+ Ü
+ ßßßßßßßßßßßßßßßßßßß
+;
+; topic created 12.04.00 14:26:24
+;
+.TOPIC OknoSymbole
+ Ü
+ ßßßßßßßßßßßßßßßßßßß
+;
+;
+;
+;
+; topic created 12.04.00 14:13:24
+;
+.TOPIC OknoSzukaj
+ Ü
+ ßßßßßßßßßßßßßßßßßßß
+;
+; topic created 12.04.00 14:19:49
+;
+.TOPIC OknoWczytajRAM
+ Ü
+ ßßßßßßßßßßßßßßßßßßß
+;
+;
+; topic created 12.04.00 14:19:46
+;
+.TOPIC OknoWczytajROM
+ Ü
+ ßßßßßßßßßßßßßßßßßßß
+;
+;
+; topic created 12.04.00 14:20:24
+;
+.TOPIC OknoWczytajSYM
+ Ü
+ ßßßßßßßßßßßßßßßßßßß
+;
+;
+; topic created 12.04.00 14:14:17
+;
+.TOPIC OknoWyborProcka
+ Ü
+ ßßßßßßßßßßßßßßßßßßß
+;
+; topic created 12.04.00 14:19:42
+;
+.TOPIC OknoZapiszRAM
+ Ü
+ ßßßßßßßßßßßßßßßßßßß
+;
+;
+; topic created 12.04.00 14:19:38
+;
+.TOPIC OknoZapiszROM
+ Ü
+ ßßßßßßßßßßßßßßßßßßß
+;
+;
+; topic created 12.04.00 14:19:57
+;
+.TOPIC OknoZapiszSYM
+ Ü
+ ßßßßßßßßßßßßßßßßßßß
+;
+;
+;
+; topic created 12.04.00 14:13:33
+;
+.TOPIC OknoZastap
+ Ü
+ ßßßßßßßßßßßßßßßßßßß
+;
+.topic Oznaczenia
+U¾yte oznaczenia:
+
+ adr11 - 11-bitowy adres pami©ci programu stosowany w rozkazach
+         skok¢w w ramach 2 kB przestrzeni adresowania
+ adr16 - 16-bitowy adres pami©ci programu stosowany w rozkazach
+         skok¢w w ramach 64 kB przestrzeni adresowania
+ adr8  - 8-bitowy adres bezpo˜redni wewn©trznej pami©ci RAM
+         (pami©ci danych 0ö127 i rejestr¢w SFR 128ö255)
+ rel   - 8-bitowa liczba ze znakiem w kodzie ZU2 (Znak-Uzupeˆnienie do 2)
+         stanowi¥ca wzgl©dn¥ warto˜† skoku {SJMP:SJMP} i skok¢w warunkowych
+ #n    - 8-bitowa staˆa (argument bezpo˜redni)
+ #nn   - 16-bitowa staˆa (argument bezpo˜redni)
+ bit   - 8-bitowy adres bezpo˜redni (b7..b0) bitu w wewn©trznej
+         pami©ci danych lub w obszarze rejestr¢w SFR
+ {A:Akumulator},ACC - akumulator
+ {B:RejestrB}     - rejestr B
+ {C:FlagaC},CY  - wska«nik przeniesienia
+ {DPTR:DPTR}  - wska«nik danych
+ {PC:PC}    - licznik rozkaz¢w
+ {SP:SP}    - wska«nik stosu
+ {#:Hash}     - argument bezpo˜redni
+ {@:Malpka}     - adres po˜redni
+
+.topic PC
+ PC Ü   PROGRAM COUNTER
+ ßßßß   licznik rozkaz¢w
+
+16-bitowy licznik okre˜laj¥cy adres pobieranej kom¢rki pami©ci
+programu. Z poziomu programu uP nie istnieje bezpo˜redni
+spos¢b zmiany tego rejestru/licznika. Jedynymi instrukcjami
+zmienaj¥cymi jego stan s¥ instrukcje skoku/wywoˆania.
+
+.topic PSW
+ PSW Ü   PROGRAM STATUS WORD
+ ßßßßß   sˆowo stanu programu
+
+ ÚÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄ¿
+ ³CY ³AC ³F0 ³RS1³RS0³OV ³F1 ³ P ³ D0H
+ ÀÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÙ
+  D7  D6  D5  D4  D3  D2  D1  D0
+
+ CY   CARRY FLAG
+ ßß   wska«nik przeniesienia
+
+Ustawiany lub zerowany sprz©towo podczas wykonywania rozkaz¢w
+arytmetycznych:
+ - sygnalizuje przeniesienie lub po¾yczk© z bitu 7, wskazuje przekroczenie
+   zakresu liczb w naturalnym kodzie dw¢jkowym (CY=1),
+ - peˆni funkcj© akumulatora procesora boolowskiego,
+ - ustawiany w wyniku wykonania operacji arytmetycznych oraz przesuni©†
+   {RLC:RLC} i {RRC:RRC},
+ - w rozkazach dost©pny przez nazw© C np. {SETB:SETB} C.
+
+ AC   AUXILIARY CARRY FLAG
+ ßß   wska«nik przeniesienia pomocniczego
+
+Ustawiany lub zerowany sprz©towo podczas wykonywania rozkaz¢w
+arytmetycznych:
+ - sygnalizuje przeniesienie lub po¾yczk© z bitu 3 podczas wykonywania
+   operacji dodawania {ADD:ADD}, {ADDC:ADDC} i odejmowania {SUBB:SUBB},
+ - wykorzystywany przy korekcji dziesi©tnej wyniku dodawania liczb w kodzie
+   BCD {DAÿA:DA}.
+
+ F0   USER CONTROLLED FLAG 0
+ ßß   wska«nik programowy og¢lnego przeznaczenia
+
+     Zmieniany wyˆ¥cznie programowo. Sˆu¾y do przekazywania informacji
+     dw¢jkowej mi©dzy r¢¾nymi fragmentami programu.
+
+ RS1.RS0   REGISTER BANK SELECT
+ ßßßßßßß   wyb¢r banku rejestr¢w
+
+Zmieniany wyˆ¥cznie programowo, umo¾liwia zmian© {bankuÿrejestr¢w:BankRejestrow}
+roboczych:
+ RS1.RS0 = 00 - bank 0 (00H-07H),
+ RS1.RS0 = 01 - bank 1 (08H-0FH),
+ RS1.RS0 = 10 - bank 2 (10H-17H),
+ RS1.RS0 = 11 - bank 3 (18H-1FH).
+
+ OV   OVERFLOW FLAG
+ ßß   wska«nik nadmiaru
+
+Ustawiany lub zerowany sprz©towo podczas wykonywania rozkaz¢w
+arytmetycznych:
+ - wskazuje przekroczenie zakresu liczb ze znakiem w kodzie uzupeˆnienia
+   do dw¢ch (OV=1),
+ - przy operacji dzielenia {DIV:DIV} wskazuje pr¢b© dzielenia przez zero (OV=1),
+ - przy wykonywaniu operacji dodawania {ADD:ADD}, {ADDC:ADDC} i odejmowania {SUBB:SUBB}
+   zawiera r¢¾nic© symetryczn¥ przeniesieä lub po¾yczek z bit¢w 6 i 7.
+
+ F1   USER CONTROLLED FLAG 1
+ ßß   wska«nik programowy og¢lnego przeznaczenia
+
+     Zmieniany wyˆ¥cznie programowo. Sˆu¾y do przekazywania informacji
+     dw¢jkowej mi©dzy r¢¾nymi fragmentami programu.
+
+ P   PARITY FLAG
+ ß   wska«nik parzysto˜ci
+
+Ustawiany lub zerowany sprz©towo w ka¾dym cyklu maszynowym, wskazuje
+parzyst¥/nieparzyst¥ (P=1/0) liczb© jedynek w akumulatorze.
+
+ {Rozkazyÿ8051ÿmodyfikuj¥ceÿwska«niki:Wskazniki}
+
+.topic R0R7
+Rejestry R0..R7 mog¥ by† argumentami rozkaz¢w wykorzystuj¥cych
+adresowanie przez nazw© rejestru
+
+ np.   MOV {Rn:Rn},A   Rr  A
+
+Rejestry R0..R1 mog¥ sˆu¾y† do adresowania po˜redniego zawarto˜ci¥
+rejestru
+
+ np.   MOV @{Ri:Ri},A   (Ri)  A
+
+.topic RejestrB
+ B Ü
+ ßßß
+Rejestr B jest wykorzystywany przy operacji mno¾enia {MUL:MUL} i dzielenia
+{DIV:DIV}. Poza tym mo¾e by† wykorzystywany jako rejestr uniwersalny.
+
+.topic RejestrIE
+ IE Ü   INTERRUPT ENABLE
+ ßßßß   maska przerwaä
+
+ ÚÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄ¿
+ ³EA ³ - ³ - ³ES ³ET1³EX1³ET0³EX0³ A8H
+ ÀÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÙ
+  AF   .   .  AC  AB  AA  A9  A8
+
+ EA   ENABLES ALL INTERRUPTS
+ ßß   bit maski systemu przerwaä
+
+  EA=0 - wszystkie przerwania zablokowane
+  EA=1 - odblokowane te przerwania, kt¢rych bit maski jest jedynk¥
+
+ ES   ENABLES THE SERIAL PORT
+ ßß   bit maski przerwania z portu szeregowego,
+
+ ET1   ENABLES THE TIMER 1 OVERFLOW INTERRUPT
+ ßßß   bit maski przerwania z licznika T1
+
+ EX1   ENABLES EXTERNAL INTERRUPT 1
+ ßßß   bit maski przerwania zewn©trznego INT1
+
+ ET0 - ENABLES THE TIMER 0 OVERFLOW INTERRUPT
+ ßßß   bit maski przerwania z licznika T0
+
+ EX0   ENABLES EXTERNAL INTERRUPT 0
+ ßßß   bit maski przerwania zewn©trznego INT0
+
+ Uwaga: Powy¾szy opis odnosi si© do mikrokomputer¢w:
+        51, C51, LV51, C52T2, C324, C451,
+        C504, C508, C521, C541, C851, C2051, C4051.
+        up C1051 nie posiada bit¢w ES oraz ET1.
+.topic RejestrIP
+ IP Ü   INTERRUPT PRIORITY CONTROL REGISTER
+ ßßßß   rejestr steruj¥cy priorytetem przerwaä
+
+ ÚÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄ¿
+ ³ - ³ - ³ - ³PS ³PT1³PX1³PT0³PX0³ B8H
+ ÀÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÙ
+  BF  BE  BD  BC  BB  BA  B9  B8
+
+ PS  - bit priorytetu przerwania z portu szeregowego
+ PT1 - bit priorytetu przerwania z licznika T1
+ PX1 - bit priorytetu przerwania zewn©trznego INT1
+ PT0 - bit priorytetu przerwania z licznika T0
+ PX0 - bit priorytetu przerwania zewn©trznego INT0
+
+ IP.i=0 przerwanie umieszczone na ni¾szym poziomie priorytetu
+ IP.i=1 przerwanie umieszczone na wy¾szym poziomie priorytetu
+
+ Uwaga: Powy¾szy opis odnosi si© do mikrokomputer¢w:
+        51, C51, LV51, C52T2, C324, C451, C504,
+        C508, C521, C541, C851, C2051, C4051.
+        uP C1051 nie posiada bit¢w PS i PT1.
+.topic RejestrPCON
+ PCON Ü   POWER CONTROL REGISTER
+ ßßßßßß   rejestr steruj¥cy zasilaniem
+
+ ÚÄÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄ¿
+ ³SMOD³ - ³ - ³ - ³GF1³GF0³PD ³IDL³ 87H
+ ÀÄÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÙ
+
+ SMOD   podwojenie szybko˜ci transmisji
+ ßßßß
+Ustawiany programowo, w celu podwojenia szybko˜ci transmisji portu
+szeregowego (SMOD=1) pracuj¥cego w trybie 2 oraz w trybie 1 i 3,
+je¾eli port jest taktowany licznikiem T1.
+
+ GF1,GF0   wska«niki programowe og¢lnego przeznaczenia
+ ßßßßßßß
+Wska«niki te s¥ ustawiane i testowane programowo.
+
+ PD   POWER DOWN
+ ßß   obni¾ony pob¢r mocy
+
+Ustawiany programowo w celu wprowadzenia ukˆadu w stan obni¾onego
+poboru mocy (PD=1), zerowany tylko przy zerowaniu mikrokomputera.
+
+ IDL   IDLE
+ ßßß   stan jaˆowy
+
+Ustawiany programowo w celu wprowadzenia ukˆadu w tryb pracy jaˆowej
+(IDL=1), zerowany przy przyj©ciu przerwania i restarcie
+mikrokomputera.
+
+ Uwaga: Powy¾szy opis odnosi si© do mikrokomputer¢w:
+        C51, LV51, CL51, C52, LV52, CL52, C52T2, C55, C324, CL411, C451,
+        C521, C524, C528, C541, C652, C654, CL781, CL782, C851, C2051.
+        Mikrokomputery 51, 52 (w techn. NMOS) maj¥ w tym rejestrze tylko SMOD.
+
+.topic RejestrSCON
+ SCON Ü   SERIAL PORT CONTROL REGISTER
+ ßßßßßß   rejestr steruj¥cy portem szeregowym
+
+ SM0.SM1   SPECIFY THE SERIAL PORT MODE
+ ßßßßßßß   bity okre˜laj¥ce tryb pracy
+
+ SM0.SM1=00 - tryb 0: transmisja synchroniczna, znaki
+                      8-bitowe taktowane zegarem f/12
+ SM0.SM1=01 - tryb 1: transmisja asynchroniczna, znaki
+                      8-bitowe, szybko˜† okre˜lona programowo
+ SM0.SM1=10 - tryb 2: transmisja asynchroniczna, znaki
+                      9-bitowe, szybko˜† f/64 lub f/32
+ SM0.SM1=11 - tryb 3: transmisja asynchroniczna, znaki
+                      9-bitowe, szybko˜† okre˜lona programowo
+
+ SM2   SPECIAL MULTIPROCESSOR COMMUNICATION
+ ßßß   maskowanie odbioru znaku
+
+Zmieniany programowo, je˜li SM2=1, to ignorowane s¥ odebrane znaki, w
+kt¢rych:
+ - w trybie 2 i 3 dziewi¥ty bit danych (DB8) jest zerem,
+ - w trybie 1 nie zostaˆ wykryty bit stopu,
+ - w trybie 0 powinno by† SM2=0.
+Funkcja pozwala tworzy† sie† mikrokomputer¢w jednoukˆadowych rodziny
+8051 komunikuj¥cych si© za pomoc¥ ˆ¥cza szeregowego.
+
+ REN   RECEPTION ENABLE
+ ßßß   uaktywnienie odbioru
+
+Zmieniany programowo dla uaktywnienia/zablokowania odbiornika
+(REN=1/0).
+
+ TB8   9-th DATA BIT THAT WILL BE TRANSMITTED
+ ßßß   dziewi¥ty bit nadawanego znaku
+
+Zmieniany programowo, jest dziewi¥tym bitem (DB8) znaku wysyˆanego w
+trybie 2 i 3.
+
+ RB8   9-th DATA BIT THAT WAS RECEIVED
+ ßßß   dziewi¥ty bit odebranego znaku
+
+Funkcja:
+ - w trybie 2 i 3 jest wpisywany dziewi¥ty bit (DB8) odebranego znaku,
+ - w trybie 1 jest wpisywany bit stopu,
+ - w trybie 0 nie jest u¾ywany.
+
+ TI   TRANSMIT INTERRUPT FLAG
+ ßß   wska«nik wysˆania znaku
+
+Ustawiany sprz©towo po zakoäczeniu wysyˆania znaku, zerowany tylko
+programowo, jest sygnaˆem zgˆoszenia przerwania.
+
+ RI   RECEIVE INTERRUPT FLAG
+ ßß   wska«nik odebrania znaku
+
+Ustawiany sprz©towo po odebraniu znaku, zerowany tylko programowo,
+jest sygnaˆem zgˆoszenia przerwania.
+
+ Uwaga: Powy¾szy opis odnosi si© do mikrokomputer¢w:
+        51, C51, LV51, C52, LV52, CL52, C52T2, C55, C154, C324,
+        CL411, C451, C501..C503, C515, C515A, C521, C524, C528,
+        CE528, C541, C550, C552, CE558, CE559, C562, CL580,
+        C652, C654, CE654, CL781, CL782, C851, C2051, S8252,
+        C1051.
+
+.topic RejestrTCON
+ TCON Ü   TIMER/COUNTER CONTROL REGISTER
+ ßßßßßß   rejestr ukˆadu czasowo-licznikowego i przerwaä zewn©trznych
+
+ ÚÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄ¿
+ ³TF1³TR1³TF0³TR0³IE1³IT1³IE0³IT0³ 88H
+ ÀÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÙ
+  8F  8E  8D  8C  8B  8A  89  88
+
+ TF1   TIMER 1 OVERFLOW FLAG
+ ßßß   wska«nik przepeˆnienia licznika T1
+
+Ustawiany sprz©towo sygnaˆ przepeˆnienia licznika T1, jest sygnaˆem
+zgˆoszenia przerwania, zerowany przy przyj©ciu przerwania.
+
+ TR1   TIMER 1 RUN CONTROL BIT
+ ßßß   bit steruj¥cy zliczaniem licznika T1
+
+Zmieniany programowo, zapewnia doˆ¥czenie/odˆ¥czenie (TR1=1/0) sygnaˆu
+zliczanego do licznika T1.
+
+ TF0   TIMER 0 OVERFLOW FLAG
+ ßßß   wska«nik przepeˆnienia licznika T0
+
+Ustawiany sprz©towo sygnaˆ przepeˆnienia licznika T0, jest sygnaˆem
+zgˆoszenia przerwania, zerowany przy przyj©ciu przerwania.
+
+ TR0   TIMER 0 RUN CONTROL BIT
+ ßßß   bit steruj¥cy zliczaniem licznika T0
+
+Zmieniany programowo, zapewnia doˆ¥czenie/odˆ¥czenie (TR0=1/0) sygnaˆu
+zliczanego do licznika T0.
+
+ IE1   INTERRUPT 1 EDGE FLAG
+ ßßß   wska«nik zgˆoszenia przerwania na INT1
+
+Ustawiany sprz©towo po wykryciu zgˆoszenia przerwania zewn©trznego na
+wej˜ciu INT1, zerowany przy przyj©ciu przerwania.
+
+ IT1   INTERRUPT 1 TYP CONTROL BIT
+ ßßß   bit steruj¥cy zgˆoszeniem przerwania INT1
+
+Zmieniany programowo, okre˜la spos¢b zgˆaszania przerwania
+zewn©trznego INT1, poziomem niskim/opadaj¥cym zboczem (IT1=0/1)
+sygnaˆu przerywaj¥cego.
+
+ IE0   INTERRUPT 0 EDGE FLAG
+ ßßß   wska«nik zgˆoszenia przerwania na INT0
+
+Ustawiany sprz©towo po wykryciu zgˆoszenia przerwania zewn©trznego na
+wej˜ciu INT0, zerowany przy przyj©ciu przerwania.
+
+ IT0   INTERRUPT 0 TYP CONTROL BIT
+ ßßß   bit steruj¥cy zgˆoszeniem przerwania INT0
+
+Zmieniany programowo, okre˜la spos¢b zgˆaszania przerwania
+zewn©trznego INT0, poziomem niskim/opadaj¥cym zboczem (IT0=0/1)
+sygnaˆu przerywaj¥cego.
+
+ Uwaga: Powy¾szy opis nie odnosi si© mi©dzy
+        innymi do mikrokomputer¢w C748..C752.
+
+.topic RejestrTMOD
+ TMOD Ü   TIMER/COUNTER MODE CONTROL REGISTER
+ ßßßßßß   rejestr ukˆadu czasowo-licznikowego
+
+     licznik T1       licznik T0
+ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ÚÄÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄ¿
+ ³GATE³C/T³M1 ³M0 ³GATE³C/T³M1 ³M0 ³ 89H
+ ÀÄÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÙ
+
+Warto˜ci bit¢w sˆowa TMOD s¥ zmieniane wyˆ¥cznie programowo.
+
+ GATE   uaktywnienie zewn©trznego
+ ßßßß   bramkowania licznika:
+
+ GATE=0 - licznik Ti pracuje, gdy TRi=1,
+ GATE=1 - licznik Ti pracuje, gdy TRi=1 i INTi=1.
+
+ C/T   COUNTER or TIMER SELECTOR
+ ßßß   funkcja realizowana przez licznik Ti
+
+ C/T=0 - czasomierz taktowany wewn©trznym sygnaˆem zegarowym f/12,
+ C/T=1 - licznik impuls¢w zewn©trznych z wej˜cia Ti.
+
+ M1,M0   MODE BIT
+ ßßßßß   tryb pracy licznika Ti
+
+ M1.M0=00 - tryb 0: 8-bitowy licznik THi taktowany
+                    przez 5-bitowy dzielnik TLi,
+ M1.M0=01 - tryb 1: 16-bitowy licznik THi.TLi,
+ M1.M0=10 - tryb 2: 8-bitowy licznik TLi z automatycznym
+                    wpisywaniem warto˜ci pocz¥tkowej z THi,
+ M1.M0=11 - tryb 3: licznik T0 - dwa niezale¾ne 8-bitowe liczniki:
+                    TL0 (sterowany bitami steruj¥cymi licznika T0) i
+                    TH0 (sterowany bitami steruj¥cymi licznika T1)
+                    licznik T1 zatrzymany.
+
+ Uwaga: Powy¾szy opis nie odnosi si© mi©dzy innymi do mikrokomputera C1051.
+
+.topic Ri
+ Ri
+ ßß
+R0..R1 aktualnego {bankuÿrejestr¢w:BankRejestrow}.
+
+W kodzie rozkazu umieszczony jest adres wzgl©dny wskazywanego
+rejestru.
+ ÚÄÄÄÂÄÄÄÄÄÄÄÂÄÄÄÄÄ¿
+ ³ i ³Rejestr³Adres³
+ ÃÄÄÄÅÄÄÄÄÄÄÄÅÄÄÄÄÄ´
+ ³ 0 ³  R0   ³  0  ³
+ ³ 1 ³  R1   ³  1  ³
+ ÀÄÄÄÁÄÄÄÄÄÄÄÁÄÄÄÄÄÙ
+Adres bezwzgl©dny = Nr_banku_rejestr¢w * 8 + Adres
+
+.topic Rn
+ Rn
+ ßß
+R0..R7 aktualnego {bankuÿrejestr¢w:BankRejestrow}.
+
+W kodzie rozkazu umieszczony jest adres wzgl©dny wskazywanego
+rejestru.
+ ÚÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÄÄÄÄÂÄÄÄÄÄ¿
+ ³r2 ³r1 ³r0 ³Rejestr³Adres³
+ ÃÄÄÄÅÄÄÄÅÄÄÄÅÄÄÄÄÄÄÄÅÄÄÄÄÄ´
+ ³ 0 ³ 0 ³ 0 ³  R0   ³  0  ³
+ ³ 0 ³ 0 ³ 1 ³  R1   ³  1  ³
+ ³ 0 ³ 1 ³ 0 ³  R2   ³  2  ³
+ ³ 0 ³ 1 ³ 1 ³  R3   ³  3  ³
+ ³ 1 ³ 0 ³ 0 ³  R4   ³  4  ³
+ ³ 1 ³ 0 ³ 1 ³  R5   ³  5  ³
+ ³ 1 ³ 1 ³ 0 ³  R6   ³  6  ³
+ ³ 1 ³ 1 ³ 1 ³  R7   ³  7  ³
+ ÀÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÄÄÄÄÁÄÄÄÄÄÙ
+Adres bezwzgl©dny = Nr_banku_rejestr¢w * 8 + Adres
+
+.topic Wskazniki
+ Rozkazy modyfikuj¥ce wska«niki.
+ ÚÄÄÄÄÄÄÄÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+ ³ ROZKAZ   ³{CY:FlagaC} ³AC ³OV ³                   UWAGI                        ³
+ ÃÄÄÄÄÄÄÄÄÄÄÅÄÄÄÅÄÄÄÅÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´
+ ³ADD A,arg ³  ³  ³  ³ Je˜li (ACC.7) to CY1, w przeciwnym razie CY0³
+ ³          ³   ³   ³   ³ Je˜li (ACC.3) to AC1, w przeciwnym razie AC0³
+ ³          ³   ³   ³   ³ Je˜li ((ACC.6) xor (ACC.7)) to OV1,         ³
+ ³          ³   ³   ³   ³               w przeciwnym razie OV0          ³
+ ³ADDC A,arg³  ³  ³  ³ j.w.                                           ³
+ ³ANL C,bit ³  ³ - ³ - ³ CY  CY and bit                                ³
+ ³ANL C,/bit³  ³ - ³ - ³ CY  CY and (not bit)                          ³
+ ³CJNE x,y,s³  ³ - ³ - ³ Je˜li x<y to CY1, w przeciwnym razie CY0     ³
+ ³CLR C     ³ 0 ³ - ³ - ³ CY  0                                         ³
+ ³CPL C     ³  ³ - ³ - ³ CY  not CY                                    ³
+ ³DA A      ³  ³ - ³ - ³ Je˜li (A(7-4)>9 lub CY=1)i(A(7-4)+6>9) to CY1 ³
+ ³DIV AB    ³ 0 ³ - ³  ³ Je˜li przed dzieleniem B=0 to OV1             ³
+ ³MOV C,bit ³  ³ - ³ - ³ CY  bit                                       ³
+ ³MUL AB    ³ 0 ³ - ³  ³ Je˜li A x B > 255 to OV1                      ³
+ ³          ³   ³   ³   ³ Je˜li High(A x B) = 0 to OV0                  ³
+ ³ORL C,bit ³  ³ - ³ - ³ CY  CY or bit                                 ³
+ ³ORL C,/bit³  ³ - ³ - ³ CY  CY or (not bit)                           ³
+ ³RLC A     ³  ³ - ³ - ³ CY  ACC.7                                     ³
+ ³RRC A     ³  ³ - ³ - ³ CY  ACC.0                                     ³
+ ³SETB C    ³ 1 ³ - ³ - ³ CY  1                                         ³
+ ³SUBB A,arg³  ³  ³  ³ Je˜li (ACC.7) to CY1, w przeciwnym razie CY0³
+ ³          ³   ³   ³   ³ Je˜li (ACC.3) to AC1, w przeciwnym razie AC0³
+ ³          ³   ³   ³   ³ Je˜li ((ACC.6) xor (ACC.7)) to OV1,         ³
+ ³          ³   ³   ³   ³               w przeciwnym razie OV0          ³
+ ÀÄÄÄÄÄÄÄÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+  - wska«nik ustawiany zgodnie z wynikiem operacji
+ 0 - wska«nik zerowany
+ 1 - wska«nik ustawiony
+ - - wska«nik nie jest zmieniany
+ (.) - przeniesienie z bitu (.)
+ (.) - po¾yczka z bitu (.)
+ x,y - liczby bez znaku
+

@@ -1,0 +1,11 @@
+Mapfile for 8051HELP
+Created: 03.01.20 20:27:46
+
+        file                            pos
+        8051HELP\PRETPC.IC              29
+        8051HELP\TO2.IC                 55
+        8051HELP\INSTR.IC               16223
+        8051HELP\ZASOBY.IC              63156
+        8051HELP\IDE.IC                 84684
+        8051HELP\OKNA.IC                90761
+        8051HELP\AUTOR.IC               92124
