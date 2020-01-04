@@ -1,10 +1,10 @@
 # 8051emu
-Repozytorium zwiera środowisko emulatora mikroproceosrów o architekturze **8051** wraz z asemblerem. Oprogramowane zostały trzy wersje kości to:
+Repozytorium zwiera środowisko symulatora mikroproceosrów o architekturze **8051** wraz z asemblerem. Oprogramowane zostały trzy wersje kości to:
   * [AT89C2051](http://www.keil.com/dd/docs/datashts/atmel/doc0366.pdf)
   * [AT89C2051](https://ww1.microchip.com/downloads/en/DeviceDoc/doc0368.pdf)
   * [AT89C4051](https://ww1.microchip.com/downloads/en/devicedoc/doc1001.pdf)
   
-![???????????](./docs/about_mini.png)
+![about_mini](./docs/about_mini.png)
   
 ## Opis  
 
@@ -70,8 +70,8 @@ cd C:\BP\BIN
 BP
 ```
 A następnie skompilować i uruchomić:
-  * **debugger** - otwrzyć [debug.pas](./8051emu/debug.pas), skompilować i uruchomić.
-  * **kompilator** - otworzyć [kompil/kompil51.pas](./8051emu/kompil/kompil51.pas), skompilować i uruchomić.
+  * **debugger** - otwrzyć [DEBUG.PAS](./8051emu/DEBUG.PAS), skompilować i uruchomić.
+  * **kompilator** - otworzyć [KOMPIL/KOMPIL51.PAS](./8051emu/kOMPIL/KOMPIL51.PAS), skompilować i uruchomić.
 
 W wyniku kompilacji wygenerowane zostaną pliki **debug.exe** oraz **kompil51.exe** - właściwe pliki wykonywalne.
 
@@ -79,7 +79,7 @@ W wyniku kompilacji wygenerowane zostaną pliki **debug.exe** oraz **kompil51.ex
 
 Po uruchomieniu skompilowanego debuggera, bezpośrednio z poiomu IDE Pascala lub plikiem **debug.exe** środowisko przywita się następującym widokiem.
 
-![???????????](./docs/start.png)
+![xxxxx](./docs/start.png)
 
 Cechy debuggera:
  * Emulacja architektury 8051 na poziomie sprzętowym wraz z liczeniem cykli.
@@ -94,50 +94,52 @@ Cechy debuggera:
  * Pełna interaktywność środowiska - na zmiany  zawartości rejestrów RAM/pamięci ROM natychmiast reagowały pozostałe elementy interfejsu, np. poprzez aktualizację zawartości okna śledzenia stanu CPU.
  * Okno śledzenia stanu CPU wyświetla nazwy symboli w miejsa adresów, co znacząco ułatwia proces debugowania.
 
-![???????????](./docs/breakpoints.png)
+###### Widoki aplikacji
+
+Okno debuggera - śledzenia stanu i pracy mikroproceosra po wczytaniu programu.
+![debug_window](./docs/debug_window.png)
+
+Możliwość dodawania wielu pułapek, na których następnie program się zatrzymywał.
+![breakpoints](./docs/breakpoints.png)
+
+Możliwość generowania przerwań zewnętrznych jak i wewnętrznych. 
+![interrupt_generation](./docs/interrupt_generation.png)
 
 
-![???????????](./docs/chip_select.png)
+Edytor pamięci ROM (programu):
+![memory_editor2](./docs/memory_editor2.png)
 
+Edytor pamięci RAM (rejestry, pamięć ogólnego przeznaczenia):
+![memory_editor](./docs/memory_editor.png)
 
-![???????????](./docs/debug_window.png)
+Wczytaną pamięć programu można w każdej chwili zmodyfikować tak, aby wprowadzić drobne zmiany bez konieczności ponownej kompilacji i restartu symulacji mikroprocesora.
+![memory_editor_byte](./docs/memory_editor_byte.png)
 
+W oknie stanu mikroprocesora można zmienić wartość każdego rejestru (tutaj *P3*), flag, numeru banku pamięci oraz stosu.
+![register_editor](./docs/register_editor.png)
 
-![???????????](./docs/interrupt_generation.png)
+Do wczytanego programu można dodać/usuwać symbole.
+![symbol_editor](./docs/symbol_editor.png)
 
+Można je też edytować; symbole podzielone są na dwa zbiory - dla przestrzeni RAM oraz ROM, co jest naturalną konsekwencją [harwardzkiej](https://en.wikipedia.org/wiki/Harvard_architecture) architektury 8051.
+![symbol_editor2](./docs/symbol_editor2.png)
 
-![???????????](./docs/memory_editor.png)
+Program można uruchomić w trybie pracy ciągłej - wykonuje się sam do jego przerwania lub natrafienia na pułapkę.
+![trace_animation](./docs/trace_animation.png)
 
+###### Animacje
 
-![???????????](./docs/memory_editor2.png)
+Animacja przedstawiająca proces wczytywania pliku wykonywalnego w formacie Intel HEX wraz z listą symboli. 
+Po pomyślnym wczytaniu uruchamiana jest opcja animacji wykonywania kodu (*Uruchom*).
+![video_debugging](./docs/video_debugging.gif)
 
+Nie ma dobrego środowiska uruchomieniowego bez pułapek, prawda? Prawda! A skoro tak, to tutaj widać
+chwilę ustawienia pułapki oraz wstrzymywanie procesu wykonywania po natrafienia na nią.
+![video_run_to_breakpoint](./docs/video_run_to_breakpoint.gif)
 
-![???????????](./docs/memory_editor_byte.png)
-
-
-![???????????](./docs/memory_editor_ram.png)
-
-
-![???????????](./docs/register_editor.png)
-
-
-![???????????](./docs/symbol_editor.png)
-
-
-![???????????](./docs/symbol_editor2.png)
-
-
-![???????????](./docs/trace_animation.png)
-
-
-![???????????](./docs/video_debugging.gif)
-
-
-![???????????](./docs/video_live_ram.gif)
-
-
-![???????????](./docs/video_run_to_breakpoint.gif)
-
+Zastosowanie środowiska Turbo Vision oraz mechamizmu wymiany komunikatów ułatwiło zachowanie interaktywności.
+Poniżej widać, jak zmiany stanu pamięci RAM procesora natychmiast wpływają na zawartość okna podglądu pamięci RAM jak i na zawartość okna śledzenia CPU.
+![video_live_ram](./docs/video_live_ram.gif)
 
 ## Kompilator
 
@@ -145,16 +147,23 @@ Jest to typowy kompilator dwuprzebiegowy.
 W pierwszym przebiegu następuja kompilacja kodu, co pozwala na określenie adresów wszystkich symboli.
 W drugim natomiast następuje uzupełnienie informacji adresowe w generowanym kodzie oraz jego faktyczne wygenerowanie.
 
-Ciekawymi elementami były:
+Ciekawe elementy:
  * wbudowany preprocesor - można rekurencyjnie dołączać pliki nagłówkowe (taki odpowiedni `#include` z C/C++)
  * możliwość wykorzystania wyrażeń całkowitych (np. `2 * (2 + 2)`) jako wyrażń liczbowych.
 
 W wersji repozytorium kompilator zafiksowany jest na AT89C2051 oraz plik TEST.ASM. 
 
-![???????????](./docs/code_editor.png)
+-------------------
 
+Podczas pisania kodu można wybrać jeden z kilku predefiniowanych mikroprocesorów:
+![chip_select.png](./docs/chip_select.png)
 
-![???????????](./docs/compiler_output.png)
+Do pisania kodu można wykorzystać wbudowany w Turbo Vision edytor.
+![code_editor.png](./docs/code_editor.png)
+
+Podczas kompilacji kompilator generuje następujące komunikaty podsumowujące.
+![compiler_output.png](./docs/compiler_output.png)
+Tutaj wszystko poszło po myśli autora kodu :)
 
 ## Cechy wersji ostateczniej
 Poniżej znajduje się lista cech, które posiadała wersja ostateczna a która gdzieś zaginęła.
@@ -165,7 +174,7 @@ Poniżej znajduje się lista cech, które posiadała wersja ostateczna a która 
  
 
 ## Wnioski
-Jeżeli szukasz przykładu jak budować emulatory, to ten kod nie jest najlepszym miejscem :) Choćby z tego powodu, że Pascala nikt już nie używa.
+Jeżeli szukasz przykładu jak budować symulatory, to ten kod nie jest najlepszym miejscem :) Choćby z tego powodu, że Pascala nikt już nie używa.
 Pamiętam, że pod koniec miałem problem z modułowością oraz brakiem abstrakcji - kod ma wiele miejsc wyspecjalizowanych do podrodziny AT90C, brak zasady *jedna klasa = jeden plik*, itd...
 To była najważniejsza lekcja, jaką otrzymałem w tym projekcie :-)
 
