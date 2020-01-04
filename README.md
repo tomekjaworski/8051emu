@@ -1,5 +1,5 @@
 # 8051emu
-Repozytorium zwiera środowisko symulatora mikroproceosrów o architekturze **8051** wraz z asemblerem. Oprogramowane zostały trzy wersje kości to:
+Repozytorium zwiera środowisko symulatora mikroprocesorów o architekturze **8051** wraz z asemblerem. Oprogramowane zostały trzy wersje kości to:
   * [AT89C2051](http://www.keil.com/dd/docs/datashts/atmel/doc0366.pdf)
   * [AT89C2051](https://ww1.microchip.com/downloads/en/DeviceDoc/doc0368.pdf)
   * [AT89C4051](https://ww1.microchip.com/downloads/en/devicedoc/doc1001.pdf)
@@ -10,19 +10,19 @@ Repozytorium zwiera środowisko symulatora mikroproceosrów o architekturze **80
 
 Projekt powstał w 1999-2001, gdy uczęszczałem do szkoły średniej (Technikum Elektroniczne w Kutnie).
 Miał on zastąpić środowisko [DSM51](https://pl.wikipedia.org/wiki/Dydaktyczny_System_Mikroprocesorowy) firmy MicroMade,
-używane na zajęciach z programiwania mikroprocesorów.
+używane na zajęciach z programowania mikroprocesorów.
 
-Środowisko składa się z dwuprzebiegowego asemblera - komilatora języka asembler w postaci pełnej listy rozkazwów '51 oraz z debuggera.
+Środowisko składa się z dwuprzebiegowego asemblera - kompilatora języka asembler w postaci pełnej listy rozkazwów '51 oraz z debuggera.
 Całość napisałem w języku Borland Pascal 7.0 a pracuje one poprawnie w trybie chronionym 16 bitowym, pod kontrolą systemu DOS. 
 Do wykonania interfejsu okienkowego wykorzystałem popularny wówczas pakiet [Turbo Vision](https://en.wikipedia.org/wiki/Turbo_Vision).
 
 Repozytorium GIT nie zawiera ostatecznej wersji środowiska a jedynie najaktualniejszą wersję źródeł, jaką znalazłem.
-Nie znałem wtedy koncepcji repozytorii kodów, a GIT miał powstać dopiero za kilka lat ;-).
-Jeżeli kiedyś natrafię na ostatnią wersję - z pewnąscią ją tutaj opublikuję.
+Nie znałem wtedy koncepcji repozytorium kodu źródłowego, a GIT miał powstać dopiero za kilka lat ;-).
+Jeżeli kiedyś natrafię na ostatnią wersję - z pewnością ją tutaj opublikuję.
 
 ## Kompilacja/uruchomienie
 
-Do kompilacji konieczne jest DOSowe środowisko **Borland Pascal 7.0** (profesjonalny odpwiedni Turbo Pascala) oraz **DOSBox**. Pakiety te można pobrać tutaj:
+Do kompilacji konieczne jest DOSowe środowisko **Borland Pascal 7.0** (profesjonalny odpowiedni Turbo Pascala) oraz **DOSBox**. Pakiety te można pobrać tutaj:
   * [Borland Pascal 7](https://winworldpc.com/product/borland-pascal/7x)
   * [DOSBox](https://www.dosbox.com/)
 
@@ -77,9 +77,9 @@ W wyniku kompilacji wygenerowane zostaną pliki **debug.exe** oraz **kompil51.ex
 
 # Debugger - moduł uruchomieniowy
 
-Po uruchomieniu skompilowanego debuggera, bezpośrednio z poiomu IDE Pascala lub plikiem **debug.exe** środowisko przywita się następującym widokiem.
+Po uruchomieniu skompilowanego debuggera, bezpośrednio z poziomu IDE Pascala lub plikiem **debug.exe** środowisko przywita się następującym widokiem.
 
-![xxxxx](./docs/start.png)
+![start](./docs/start.png)
 
 Cechy debuggera:
  * Emulacja architektury 8051 na poziomie sprzętowym wraz z liczeniem cykli.
@@ -89,10 +89,10 @@ Cechy debuggera:
  * Możliwość wczytywania symboli z plików generowanych przez kompilator **kompil51** (pliki `.SYM`);
    wczytane symbole można w pełni edytować i ponownie zapisywać na dysk.
 
- * Możliwość pracy debuggera krok po kroku oraz z animacją śleczdzenia.
+ * Możliwość pracy debuggera krok po kroku oraz z animacją procesu wykonywania.
  * Możliwość edycji zawartości pamięci RAM (danych) oraz ROM (kodu programu).
  * Pełna interaktywność środowiska - na zmiany  zawartości rejestrów RAM/pamięci ROM natychmiast reagowały pozostałe elementy interfejsu, np. poprzez aktualizację zawartości okna śledzenia stanu CPU.
- * Okno śledzenia stanu CPU wyświetla nazwy symboli w miejsa adresów, co znacząco ułatwia proces debugowania.
+ * Okno śledzenia stanu CPU wyświetla nazwy symboli w miejscach adresów, co znacząco ułatwia proces debugowania.
 
 #### Widoki aplikacji
 
@@ -144,12 +144,12 @@ Poniżej widać, jak zmiany stanu pamięci RAM procesora natychmiast wpływają 
 ## Kompilator
 
 Jest to typowy kompilator dwuprzebiegowy.
-W pierwszym przebiegu następuja kompilacja kodu, co pozwala na określenie adresów wszystkich symboli.
+W pierwszym przebiegu następuje kompilacja kodu, co pozwala na określenie adresów wszystkich symboli.
 W drugim natomiast następuje uzupełnienie informacji adresowe w generowanym kodzie oraz jego faktyczne wygenerowanie.
 
 Ciekawe elementy:
  * wbudowany preprocesor - można rekurencyjnie dołączać pliki nagłówkowe (taki odpowiedni `#include` z C/C++)
- * możliwość wykorzystania wyrażeń całkowitych (np. `2 * (2 + 2)`) jako wyrażń liczbowych.
+ * możliwość wykorzystania wyrażeń całkowitych (np. `2 * (2 + 2)`) jako wyrażeń liczbowych.
 
 W wersji repozytorium kompilator zafiksowany jest na AT89C2051 oraz plik TEST.ASM. 
 
@@ -163,9 +163,10 @@ Do pisania kodu można wykorzystać wbudowany w Turbo Vision edytor.
 
 Podczas kompilacji kompilator generuje następujące komunikaty podsumowujące.
 ![compiler_output.png](./docs/compiler_output.png)
+
 Tutaj wszystko poszło po myśli autora kodu :)
 
-## Cechy wersji ostateczniej
+## Cechy wersji ostatecznej
 Poniżej znajduje się lista cech, które posiadała wersja ostateczna a która gdzieś zaginęła.
  * Pełna integracja kompilatora z debuggerem (działająca funkcja *Kompiluj*)
  * Współpraca z modułem DSM51.
