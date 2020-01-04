@@ -94,7 +94,7 @@ Cechy debuggera:
  * Pełna interaktywność środowiska - na zmiany  zawartości rejestrów RAM/pamięci ROM natychmiast reagowały pozostałe elementy interfejsu, np. poprzez aktualizację zawartości okna śledzenia stanu CPU.
  * Okno śledzenia stanu CPU wyświetla nazwy symboli w miejsa adresów, co znacząco ułatwia proces debugowania.
 
-###### Widoki aplikacji
+#### Widoki aplikacji
 
 Okno debuggera - śledzenia stanu i pracy mikroproceosra po wczytaniu programu.
 ![debug_window](./docs/debug_window.png)
@@ -127,7 +127,7 @@ Można je też edytować; symbole podzielone są na dwa zbiory - dla przestrzeni
 Program można uruchomić w trybie pracy ciągłej - wykonuje się sam do jego przerwania lub natrafienia na pułapkę.
 ![trace_animation](./docs/trace_animation.png)
 
-###### Animacje
+#### Animacje
 
 Animacja przedstawiająca proces wczytywania pliku wykonywalnego w formacie Intel HEX wraz z listą symboli. 
 Po pomyślnym wczytaniu uruchamiana jest opcja animacji wykonywania kodu (*Uruchom*).
